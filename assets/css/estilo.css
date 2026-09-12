@@ -279,10 +279,10 @@ ul{margin:0;padding:0;list-style:none}
 /* ===========================================================
    Páginas de servicio
    =========================================================== */
-.hero--servicio{min-height:min(58vh,520px);padding-block:var(--s6) var(--s5);align-items:flex-end}
-.hero--servicio h1{font-size:clamp(34px,5vw,58px);max-width:20ch}
+.hero--servicio{min-height:min(88vh,820px);padding-block:var(--s6);align-items:center}
+.hero--servicio h1{font-size:clamp(34px,4.4vw,56px);max-width:none;margin-bottom:var(--s3)}
 .hero--servicio .hero__caja{max-width:none}
-.hero--servicio .hero__caja p{max-width:64ch}
+.hero--servicio .hero__caja p{max-width:none}
 .migas{font-size:15px;color:var(--steel-l);margin-bottom:var(--s3)}
 .migas a{text-decoration:none;opacity:.9}
 .migas a:hover{opacity:1;text-decoration:underline}
@@ -693,3 +693,23 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
   background:var(--action);transform:scaleX(0);transform-origin:0 50%;
   transition:transform .12s linear;pointer-events:none}
 .fx-quieto .fx-progreso{display:none}
+/* el hero de servicio lleva tarjeta encima: el velo tiene que sostenerla */
+.hero--servicio::before{background:linear-gradient(100deg,rgba(22,22,22,.96) 6%,rgba(22,22,22,.9) 44%,rgba(22,22,22,.74) 100%)}
+
+/* --- La tarjeta del hero tiene que caber en la primera pantalla ---
+   Menos campos (nombre y teléfono bastan, regla de Dani) y todo
+   el espaciado interior apretado un punto.                        */
+.hero__tarjeta{padding:26px 26px 22px;max-width:400px;margin-left:auto}
+.hero__nota{padding-bottom:16px;margin-bottom:16px;gap:10px}
+.hero__nota b{font-size:34px}
+.hero__nota span{font-size:13.5px}
+.hero__tarjeta h2{font-size:clamp(22px,1.8vw,26px)}
+.hero__tarjeta .hero__tarjeta-sub{font-size:15px;margin:8px 0 18px}
+.hero__tarjeta .estado{margin-bottom:14px;font-size:13.5px}
+.formulario--claro .campo{margin-bottom:12px;gap:4px}
+.formulario--claro .campo label{font-size:14px}
+.formulario--claro .campo input{height:44px}
+.formulario--claro .acepto{margin-bottom:16px;font-size:13.5px}
+.formulario--claro .btn{height:48px}
+.hero__tarjeta .hero__tarjeta-pie{margin-top:16px;font-size:14px}
+.hero__rejilla{grid-template-columns:minmax(0,1.3fr) minmax(340px,400px)}
