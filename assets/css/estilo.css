@@ -713,3 +713,16 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .formulario--claro .btn{height:48px}
 .hero__tarjeta .hero__tarjeta-pie{margin-top:16px;font-size:14px}
 .hero__rejilla{grid-template-columns:minmax(0,1.3fr) minmax(340px,400px)}
+
+/* --- Movimiento de la banda de cifras -------------------------- */
+.fx-js .cifras li{position:relative}
+.fx-js .cifras li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:var(--action);transform:scaleY(0);transform-origin:50% 0;
+  transition:transform .6s var(--ease) var(--fx-esp,0ms)}
+.fx-js .cifras li.fx-dentro::before{transform:scaleY(1)}
+.fx-js .cifras li:first-child::before{display:none}
+.fx-js .cifras__mas{opacity:0;transform:translateY(6px);
+  transition:opacity .5s var(--ease) .9s,transform .5s var(--ease) .9s}
+.fx-js .cifras li.fx-dentro .cifras__mas{opacity:1;transform:none}
+.fx-quieto .cifras li::before{transform:scaleY(1)}
+.fx-quieto .cifras__mas{opacity:1;transform:none}

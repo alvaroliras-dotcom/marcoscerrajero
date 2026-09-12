@@ -52,7 +52,7 @@
   /* --- 2 · entradas al hacer scroll, escalonadas por grupo -------- */
   var GRUPOS = [
     '.seccion > .contenedor > .antetitulo, .seccion > .contenedor > h2, .seccion > .contenedor > .medida',
-    '.banda li', '.caso', '.tarjeta', '.resena', '.tipos li', '.ventajas li',
+    '.banda li', '.cifras li', '.caso', '.tarjeta', '.resena', '.tipos li', '.ventajas li',
     '.pasos li', '.faq details', '.faq-intro > *', '.texto-foto > div',
     '.pasos-foto > div, .pasos-foto > figure', '.partido > div', '.cta > *',
     '.opiniones__cab > *', '.opiniones__pie'
@@ -96,7 +96,7 @@
     }
     requestAnimationFrame(paso);
   }
-  var cifras = [].slice.call(document.querySelectorAll('.hero__nota b, .opiniones__nota b, .nota b'));
+  var cifras = [].slice.call(document.querySelectorAll('.hero__nota b, .opiniones__nota b, .nota b, .cifras b[data-fx-cifra]'));
   if (cifras.length && !quieto && 'IntersectionObserver' in window) {
     var obs2 = new IntersectionObserver(function (filas) {
       filas.forEach(function (f) {
@@ -162,6 +162,34 @@
     pista.addEventListener('scroll', estado, { passive: true });
     window.addEventListener('resize', estado, { passive: true });
     estado();
+
+    /* avance automático: pausa al pasar el ratón, al enfocar con el
+       teclado y si el sistema pide menos movimiento */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var reloj = null, parado = false;
+    function avanza() {
+      if (parado) return;
+      var fin = pista.scrollWidth - pista.clientWidth - 2;
+      if (pista.scrollLeft >= fin) pista.scrollTo({ left: 0, behavior: 'smooth' });
+      else pista.scrollBy({ left: paso(), behavior: 'smooth' });
+    }
+    function arranca() { if (!reloj) reloj = setInterval(avanza, 5000); }
+    function para() { clearInterval(reloj); reloj = null; }
+    ['mouseenter', 'focusin', 'touchstart'].forEach(function (e) {
+      c.addEventListener(e, function () { parado = true; para(); }, { passive: true });
+    });
+    ['mouseleave', 'focusout'].forEach(function (e) {
+      c.addEventListener(e, function () { parado = false; arranca(); });
+    });
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? para() : arranca();
+    });
+    /* solo empieza a girar cuando el bloque está a la vista */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (f) {
+        f.forEach(function (x) { x.isIntersecting ? arranca() : para(); });
+      }, { threshold: 0.3 }).observe(c);
+    } else { arranca(); }
   });
 })();
 
