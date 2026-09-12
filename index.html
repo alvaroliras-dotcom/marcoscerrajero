@@ -572,14 +572,6 @@
     el.querySelector('.estado__txt').textContent=txt;
   });
 })();
-(function(){
-  /* cabecera: transparente sobre el hero, sólida al bajar */
-  var cab=document.querySelector('.cabecera');
-  if(cab&&document.querySelector('.hero')){
-    var f=function(){cab.classList.toggle('cabecera--fija',(window.pageYOffset||0)>60)};
-    window.addEventListener('scroll',f,{passive:true}); f();
-  }
-})();
 </script>
 <script src="/assets/js/movimiento.js" defer></script>
 </body>

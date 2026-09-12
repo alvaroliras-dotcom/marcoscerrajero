@@ -88,8 +88,10 @@ ul{margin:0;padding:0;list-style:none}
   box-shadow:0 24px 56px rgba(22,22,22,.16);padding:10px;
   opacity:0;visibility:hidden;transform:translateY(10px);
   transition:opacity .28s var(--ease),transform .28s var(--ease),visibility .28s}
-.menu__grupo:hover .menu__sub,.menu__grupo:focus-within .menu__sub,
-.menu__grupo[data-abierto] .menu__sub{opacity:1;visibility:visible;transform:translateY(0)}
+.menu__grupo:hover .menu__sub,.menu__grupo:focus-within .menu__sub{opacity:1;visibility:visible;transform:translateY(0)}
+/* puente invisible entre el rótulo y la tarjeta, para que el desplegable no se
+   cierre al cruzar el hueco con el ratón */
+.menu__grupo::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
 .menu__sub a{display:block;padding:11px 14px;border-radius:10px;font-weight:600;font-size:15.5px;
   color:var(--ink);transition:background .2s var(--ease),color .2s var(--ease)}
 .menu__sub a::after{display:none}
@@ -543,11 +545,15 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 .cabecera{background:transparent;border-bottom-color:transparent;transition:background .35s var(--ease),border-color .35s var(--ease)}
 .cabecera--fija{background:var(--paper);border-bottom-color:var(--line);box-shadow:0 6px 24px rgba(22,22,22,.07)}
 body:has(.hero) .cabecera{position:fixed;left:0;right:0;top:0}
-body:has(.hero) .cabecera .menu a,body:has(.hero) .cabecera__logo{color:#fff}
-body:has(.hero) .cabecera .menu a::after{background:#fff}
+body:has(.hero) .cabecera .menu a,body:has(.hero) .cabecera .menu__jefe,
+body:has(.hero) .cabecera__logo{color:#fff}
+body:has(.hero) .cabecera .menu__lista > li > a::after,
+body:has(.hero) .cabecera .menu__jefe::after{background:#fff}
 body:has(.hero) .cabecera__logo img{filter:brightness(0) invert(1)}
-.cabecera--fija .menu a,.cabecera--fija .cabecera__logo{color:var(--ink) !important}
-.cabecera--fija .menu a::after{background:var(--ink) !important}
+.cabecera--fija .menu a,.cabecera--fija .menu__jefe,
+.cabecera--fija .cabecera__logo{color:var(--ink) !important}
+.cabecera--fija .menu__lista > li > a::after,
+.cabecera--fija .menu__jefe::after{background:var(--ink) !important}
 .cabecera--fija .cabecera__logo img{filter:none !important}
 body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 @media (max-width:768px){
@@ -841,19 +847,18 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .ficha h3{margin-bottom:var(--s2)}
 .ficha .aviso .estado{margin:0}
 
-/* Mapa con permiso: no se conecta con Google hasta que el visitante quiere */
-.mapa{position:relative;margin-top:var(--s5);border-radius:var(--r-img);overflow:hidden;
-  border:1px solid var(--line);background:var(--paper);aspect-ratio:16/8;min-height:320px}
-.mapa iframe{display:block;width:100%;height:100%;border:0}
-.mapa__aviso{position:absolute;inset:0;display:grid;align-content:center;justify-items:start;
-  gap:12px;padding:clamp(24px,4vw,48px);
-  background:var(--fx-puntos) 0 0/22px 22px,
-    radial-gradient(90% 70% at 100% 0%,rgba(242,183,5,.22),transparent 60%),var(--paper)}
-.mapa__aviso p{max-width:46ch;font-size:16px}
-.mapa__aviso .apoyo{color:var(--steel-txt)}
-.mapa__aviso .btn{margin-top:6px}
-.mapa__aviso a{font-weight:600}
-@media (max-width:576px){ .mapa{aspect-ratio:1/1;min-height:0} }
+/* Mapa: entra en gris, como el resto de la página, y coge color al acercarse */
+.mapa{margin:var(--s5) 0 0;border-radius:var(--r-img);overflow:hidden;
+  border:1px solid var(--line);background:var(--paper)}
+.mapa iframe{display:block;width:100%;height:min(52vh,440px);border:0;
+  filter:grayscale(1) contrast(1.04);transition:filter .5s var(--ease)}
+.mapa:hover iframe,.mapa:focus-within iframe{filter:grayscale(0)}
+.mapa figcaption{padding:14px var(--s3);font-size:15px;color:var(--steel-txt);
+  border-top:1px solid var(--line);background:var(--surface)}
+.mapa figcaption a{font-weight:600;color:var(--ink)}
+@media (max-width:576px){
+  .mapa iframe{height:320px;filter:none}   /* en móvil no hay ratón: a color desde el principio */
+}
 
 /* Long page de Móstoles: los servicios van en H3 con el peso de un H2 */
 .mostoles__h3{font-size:clamp(26px,3vw,34px);line-height:1.15;letter-spacing:-.012em;margin-bottom:var(--s3)}

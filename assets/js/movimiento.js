@@ -110,7 +110,12 @@
     });
   }
 
-  /* --- 4 · parallax suave de la foto del hero (solo escritorio) --- */
+  /* --- 4 · cabecera sólida al bajar + parallax del hero + progreso ---
+     La cabecera es lo primero: transparente sobre el hero y sólida en cuanto
+     se baja, o el menú se queda invisible sobre la foto. Vive aquí y no en el
+     HTML de una página suelta, para que lo hereden todas. */
+  var cabecera = document.querySelector('.cabecera');
+  var hayHero = !!document.querySelector('.hero');
   var foto = document.querySelector('.hero__foto');
   var barra = document.querySelector('.fx-progreso');
   var pedido = false;
@@ -120,6 +125,7 @@
     requestAnimationFrame(function () {
       pedido = false;
       var y = window.pageYOffset || 0;
+      if (cabecera && hayHero) cabecera.classList.toggle('cabecera--fija', y > 60);
       if (foto && !quieto && !movil.matches) {
         foto.style.transform = 'translate3d(0,' + (y * 0.14).toFixed(1) + 'px,0) scale(1.06)';
       }
@@ -129,11 +135,9 @@
       }
     });
   }
-  if (foto || barra) {
-    window.addEventListener('scroll', alScroll, { passive: true });
-    window.addEventListener('resize', alScroll, { passive: true });
-    alScroll();
-  }
+  window.addEventListener('scroll', alScroll, { passive: true });
+  window.addEventListener('resize', alScroll, { passive: true });
+  alScroll();
 })();
 
 /* --- 5 · carrusel de opiniones (sin librería) ------------------ */
@@ -251,41 +255,20 @@
   movil.addEventListener ? movil.addEventListener('change', ajusta) : movil.addListener(ajusta);
   ajusta();
 
-  /* ---- desplegables de escritorio, también con clic (portátiles táctiles) */
-  jefes.forEach(function (b) {
-    b.addEventListener('click', function () {
-      if (movil.matches) return;
-      var g = b.parentNode, abierto = g.hasAttribute('data-abierto');
-      menu.querySelectorAll('.menu__grupo[data-abierto]').forEach(function (o) { o.removeAttribute('data-abierto'); });
-      if (!abierto) g.setAttribute('data-abierto', '');
-      b.setAttribute('aria-expanded', abierto ? 'false' : 'true');
-    });
-  });
-  document.addEventListener('click', function (e) {
-    if (movil.matches || e.target.closest('.menu__grupo')) return;
-    menu.querySelectorAll('.menu__grupo[data-abierto]').forEach(function (g) {
-      g.removeAttribute('data-abierto');
-      g.querySelector('.menu__jefe').setAttribute('aria-expanded', 'false');
-    });
-  });
-})();
-
-/* --- 8 · el mapa solo se conecta con Google si el visitante quiere */
-(function () {
-  'use strict';
-  document.querySelectorAll('[data-mapa]').forEach(function (caja) {
-    var boton = caja.querySelector('[data-mapa-ver]');
-    if (!boton) return;
-    boton.addEventListener('click', function () {
-      var f = document.createElement('iframe');
-      f.src = caja.getAttribute('data-src');
-      f.title = 'Mapa con la ubicación de Marcos Cerrajeros en Alcorcón';
-      f.loading = 'lazy';
-      f.referrerPolicy = 'no-referrer-when-downgrade';
-      f.setAttribute('allowfullscreen', '');
-      caja.textContent = '';
-      caja.appendChild(f);
-    });
+  /* ---- desplegables de escritorio ------------------------------
+     Los abre y los cierra el CSS con :hover y :focus-within. No hay clic
+     que los deje enganchados: el clic ponía una marca que nada quitaba al
+     salir con el ratón, así que se iban montando unos sobre otros.
+     Aquí solo se mantiene aria-expanded al día, para el teclado. */
+  menu.querySelectorAll('.menu__grupo').forEach(function (g) {
+    var jefe = g.querySelector('.menu__jefe');
+    function di(v) { if (!movil.matches) jefe.setAttribute('aria-expanded', v); }
+    g.addEventListener('mouseenter', function () { di('true'); });
+    g.addEventListener('mouseleave', function () { di('false'); });
+    g.addEventListener('focusin', function () { di('true'); });
+    g.addEventListener('focusout', function () { di('false'); });
+    /* el botón no navega: que no haga nada al pulsarlo */
+    jefe.addEventListener('click', function (e) { e.preventDefault(); });
   });
 })();
 
