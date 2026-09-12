@@ -135,3 +135,41 @@
     alScroll();
   }
 })();
+
+/* --- 5 · carrusel de opiniones (sin librería) ------------------ */
+(function () {
+  'use strict';
+  document.querySelectorAll('[data-carrusel]').forEach(function (c) {
+    var pista = c.querySelector('.carrusel__pista');
+    var botones = c.querySelectorAll('[data-carrusel-ir]');
+    if (!pista) return;
+    function paso() {
+      var t = pista.querySelector('.resena');
+      return t ? t.offsetWidth + 24 : pista.clientWidth;
+    }
+    function estado() {
+      var fin = pista.scrollWidth - pista.clientWidth - 2;
+      botones.forEach(function (b) {
+        var d = parseInt(b.getAttribute('data-carrusel-ir'), 10);
+        b.disabled = d < 0 ? pista.scrollLeft <= 2 : pista.scrollLeft >= fin;
+      });
+    }
+    botones.forEach(function (b) {
+      b.addEventListener('click', function () {
+        pista.scrollBy({ left: paso() * parseInt(b.getAttribute('data-carrusel-ir'), 10), behavior: 'smooth' });
+      });
+    });
+    pista.addEventListener('scroll', estado, { passive: true });
+    window.addEventListener('resize', estado, { passive: true });
+    estado();
+  });
+})();
+
+/* --- 6 · la cinta se duplica para que el bucle no corte -------- */
+(function () {
+  'use strict';
+  document.querySelectorAll('[data-cinta]').forEach(function (c) {
+    var g = c.firstElementChild;
+    if (g && !c.dataset.listo) { c.appendChild(g.cloneNode(true)); c.dataset.listo = '1'; }
+  });
+})();

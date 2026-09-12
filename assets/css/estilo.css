@@ -520,50 +520,133 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .tarjeta__mas svg{width:16px;height:16px;fill:currentColor;transition:transform .4s var(--ease)}
 .tarjeta:hover .tarjeta__mas svg{transform:translateX(6px)}
 
-/* --- OPINIONES a lo grande: tres tarjetas limpias, una destacada,
-       y cambio de color al pasar por encima (gesto de Arctiq) ------ */
+/* --- OPINIONES: tarjeta al detalle de la referencia -----------
+   orden: estrellas · servicio · cita · filete · avatar + comillas ·
+   nombre · fuente. Al pasar por encima, la tarjeta entera cambia de
+   color y aparece una trama de puntos en la esquina.            */
 .opiniones__cab{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s5);flex-wrap:wrap}
 .opiniones__cab h2{max-width:22ch}
-.resenas{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5);align-items:stretch}
-.resena{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--r-card);padding:var(--s4);color:var(--ink);
-  transition:background .45s var(--ease),border-color .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease)}
-.resena__estrellas{color:var(--action);letter-spacing:3px;font-size:18px;margin:0 0 14px}
-.resena__servicio{font:600 15px/1.3 var(--font-body);color:var(--steel-txt);margin:0 0 14px}
-.resena blockquote{margin:0;font-size:16.5px;line-height:1.6;color:var(--steel-txt);flex:1}
-.resena__pie{display:flex;align-items:center;gap:12px;margin-top:var(--s4);
-  padding-top:var(--s3);border-top:1px solid var(--line)}
-.resena__ini{width:44px;height:44px;flex:none;border-radius:50%;background:var(--ink);color:#fff;
-  display:grid;place-items:center;font:700 16px/1 var(--font-head);transition:background .45s var(--ease),color .45s var(--ease)}
-.resena__pie b{display:block;font:700 18px/1.2 var(--font-head)}
-.resena__pie span span,.resena__pie > span:last-child{font-size:14.5px;color:var(--steel-txt)}
-/* la destacada y el hover comparten tratamiento */
-.resena--destacada,.resena:hover{background:var(--action);border-color:var(--action);transform:translateY(-4px);
-  box-shadow:0 18px 46px rgba(22,22,22,.12)}
-.resena--destacada blockquote,.resena:hover blockquote,
-.resena--destacada .resena__servicio,.resena:hover .resena__servicio,
-.resena--destacada .resena__pie > span:last-child,.resena:hover .resena__pie > span:last-child{color:rgba(22,22,22,.72)}
-.resena--destacada .resena__estrellas,.resena:hover .resena__estrellas{color:var(--ink)}
-.resena--destacada .resena__pie,.resena:hover .resena__pie{border-top-color:rgba(22,22,22,.22)}
-.resena--destacada .resena__ini,.resena:hover .resena__ini{background:var(--ink);color:var(--action)}
+.resena{position:relative;overflow:hidden;display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--s4);color:var(--ink);
+  transition:background .45s var(--ease),border-color .45s var(--ease),
+             transform .45s var(--ease),box-shadow .45s var(--ease)}
+.resena::after{content:"";position:absolute;right:-30px;bottom:-30px;width:190px;height:150px;
+  opacity:0;pointer-events:none;transition:opacity .45s var(--ease);
+  background:radial-gradient(circle at center,rgba(22,22,22,.22) 1.6px,transparent 1.7px) 0 0/13px 13px;
+  -webkit-mask:radial-gradient(circle at 100% 100%,#000 25%,transparent 72%);
+          mask:radial-gradient(circle at 100% 100%,#000 25%,transparent 72%)}
+.resena > *{position:relative;z-index:1}
+.resena__estrellas{color:var(--action);letter-spacing:3px;font-size:19px;margin:0 0 16px;
+  transition:color .45s var(--ease)}
+.resena__servicio{font:700 17px/1.3 var(--font-head);color:var(--ink);margin:0 0 14px;
+  transition:color .45s var(--ease)}
+.resena blockquote{margin:0 0 var(--s4);font-size:16.5px;line-height:1.6;color:var(--steel-txt);flex:1;
+  transition:color .45s var(--ease)}
+.resena__marcas{display:flex;align-items:center;gap:12px;
+  padding-top:var(--s3);border-top:1px solid var(--line);margin-bottom:16px;
+  transition:border-color .45s var(--ease)}
+.resena__ini{width:48px;height:48px;flex:none;border-radius:50%;background:var(--ink);color:#fff;
+  display:grid;place-items:center;font:700 17px/1 var(--font-head);
+  transition:background .45s var(--ease),color .45s var(--ease)}
+.resena__comillas{width:48px;height:48px;flex:none;border-radius:12px;background:var(--action);
+  color:var(--ink);display:grid;place-items:center;font:700 40px/1 var(--font-head);
+  padding-top:26px;font-size:46px;transition:background .45s var(--ease),color .45s var(--ease)}
+.resena__nombre{font:700 21px/1.2 var(--font-head);margin:0 0 4px;transition:color .45s var(--ease)}
+.resena__fuente{font-size:14.5px;color:var(--steel-txt);margin:0;transition:color .45s var(--ease)}
+
+/* estado al pasar por encima (y al llegar con el teclado) */
+.resena:hover,.resena:focus-within{background:var(--action);border-color:var(--action);
+  transform:translateY(-4px);box-shadow:0 18px 46px rgba(22,22,22,.14)}
+.resena:hover::after,.resena:focus-within::after{opacity:1}
+.resena:hover .resena__estrellas,.resena:focus-within .resena__estrellas{color:var(--ink)}
+.resena:hover blockquote,.resena:focus-within blockquote,
+.resena:hover .resena__fuente,.resena:focus-within .resena__fuente{color:rgba(22,22,22,.74)}
+.resena:hover .resena__marcas,.resena:focus-within .resena__marcas{border-top-color:rgba(22,22,22,.24)}
+.resena:hover .resena__comillas,.resena:focus-within .resena__comillas{background:var(--surface)}
+
 .opiniones__pie{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
   margin-top:var(--s5);font-size:16px;color:var(--steel-txt);text-align:center}
 .opiniones__nota{display:inline-flex;align-items:center;gap:8px;background:var(--surface);
   border:1px solid var(--line);border-radius:50px;padding:8px 16px}
 .opiniones__nota b{font:700 22px/1 var(--font-head);color:var(--ink)}
 .opiniones__pie a{color:var(--ink);font-weight:600}
-@media (max-width:992px){ .resenas{grid-template-columns:1fr} }
+
+/* --- Carrusel de opiniones ------------------------------------ */
+.carrusel{position:relative;margin-top:var(--s5)}
+.carrusel__pista{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - var(--s3)*2)/3);
+  gap:var(--s3);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding-bottom:var(--s2);scrollbar-width:none}
+.carrusel__pista::-webkit-scrollbar{display:none}
+.carrusel__pista > .resena{scroll-snap-align:start}
+.carrusel__nav{display:flex;gap:12px;justify-content:flex-end;margin-top:var(--s3)}
+.carrusel__btn{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);
+  background:var(--surface);cursor:pointer;flex:none;
+  background-image:var(--fx-flecha-nav);background-repeat:no-repeat;background-position:center;
+  background-size:18px 18px;transition:background-color .3s var(--ease),border-color .3s var(--ease),opacity .3s var(--ease)}
+:root{--fx-flecha-nav:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23161616' d='M4 11h12.2l-4.6-4.6L13 5l7 7-7 7-1.4-1.4 4.6-4.6H4z'/%3E%3C/svg%3E")}
+.carrusel__btn[data-carrusel-ir="-1"]{transform:scaleX(-1)}
+.carrusel__btn:hover{background-color:var(--action);border-color:var(--action)}
+.carrusel__btn[disabled]{opacity:.3;cursor:default}
+.carrusel__btn[disabled]:hover{background-color:var(--surface);border-color:var(--line)}
+@media (max-width:992px){ .carrusel__pista{grid-auto-columns:calc(100% - 48px)} .carrusel__nav{justify-content:center} }
+
+/* --- CIFRAS grandes: los sellos pesan, no son texto suelto ----- */
+.seccion--cifras{padding-block:var(--s6)}
+.cifras{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4) var(--s5)}
+.cifras li{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;
+  column-gap:6px;align-items:baseline;
+  border-left:1px solid var(--line);padding-left:var(--s4)}
+.cifras li:first-child{border-left:0;padding-left:0}
+.cifras b{font:700 clamp(48px,5vw,68px)/1 var(--font-head)}
+.cifras__mas{font:700 clamp(22px,2.2vw,30px)/1 var(--font-head);color:var(--action)}
+.cifras li > span:last-child{grid-column:1 / -1;margin-top:10px;
+  font-size:16px;line-height:1.4;color:var(--steel-txt)}
+@media (max-width:992px){
+  .cifras{grid-template-columns:1fr 1fr;gap:var(--s4)}
+  .cifras li:nth-child(3){border-left:0;padding-left:0}
+}
+@media (max-width:520px){ .cifras{grid-template-columns:1fr} .cifras li{border-left:0;padding-left:0} }
+
+/* --- CINTA de servicios en movimiento -------------------------- */
+.cinta{background:var(--ink);color:#fff;overflow:hidden;padding-block:22px;
+  border-block:1px solid rgba(255,255,255,.1)}
+.cinta__pista{display:flex;width:max-content}
+.cinta__grupo{display:flex;align-items:center;gap:var(--s4);padding-right:var(--s4);flex:none}
+.cinta__grupo span{font:700 clamp(22px,2.4vw,30px)/1 var(--font-head);white-space:nowrap}
+.cinta__grupo i{color:var(--action);font-style:normal;font-size:18px}
+.fx-js .cinta__pista{animation:fx-cinta 42s linear infinite}
+.cinta:hover .cinta__pista{animation-play-state:paused}
+@keyframes fx-cinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fx-quieto .cinta__pista{animation:none}
+.fx-quieto .cinta{overflow-x:auto}
+
+/* --- Etiqueta de categoría sobre las tarjetas de servicio ------- */
+.tarjeta__cat{position:absolute;top:20px;left:20px;z-index:1;
+  background:var(--action);color:var(--ink);border-radius:50px;
+  padding:7px 15px;font:600 14px/1 var(--font-body)}
+
+/* --- Iconos de comprobación en las listas de ventajas ---------- */
+.ventajas li,.tipos li{position:relative}
+.ventajas li{border-top:0;padding-top:0;padding-left:36px}
+.ventajas li::before{content:"";position:absolute;left:0;top:3px;width:24px;height:24px;
+  border-radius:50%;background:var(--action) var(--fx-check) center/13px 13px no-repeat}
+:root{--fx-check:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23161616' d='M9.5 17.2 4.8 12.5l1.4-1.4 3.3 3.3 8-8L19 7.8z'/%3E%3C/svg%3E")}
+.seccion--tinta .ventajas li::before{background-color:var(--action)}
+/* la cifra y su símbolo van pegados, no repartidos */
+.cifras li{justify-content:start}
+/* los puntos de la home también con icono de comprobación */
+.puntos li{position:relative;border-top:0;padding:0 0 0 36px;margin-bottom:var(--s4)}
+.puntos li::before{content:"";position:absolute;left:0;top:3px;width:24px;height:24px;
+  border-radius:50%;background:var(--action) var(--fx-check) center/13px 13px no-repeat}
 
 /* --- FAQ sobre tinta, con tarjeta de contacto e insignia circular --- */
 .seccion--tinta .faq details{background:var(--surface)}
 .seccion--tinta .faq-intro__txt{color:var(--steel-l)}
-.faq summary::after{content:"";width:36px;height:36px;flex:none;border-radius:50%;
-  background:var(--action);
-  -webkit-mask:var(--fx-mas) center/15px 15px no-repeat;mask:var(--fx-mas) center/15px 15px no-repeat;
-  transition:transform .35s var(--ease),background .35s var(--ease)}
-.faq details[open] summary::after{transform:rotate(45deg);background:var(--ink)}
-:root{--fx-mas:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M11 5h2v14h-2z'/%3E%3Cpath fill='%23000' d='M5 11h14v2H5z'/%3E%3C/svg%3E")}
-/* la insignia se recorta con máscara, así que el círculo se pinta aparte */
+.seccion--tinta .faq summary{color:var(--ink)}
+.seccion--tinta .faq details[open] summary{color:var(--ink)}
+.seccion--tinta .faq p{color:var(--steel-txt)}
+.seccion--tinta .faq a{color:var(--ink)}
 .faq summary{position:relative}
 .faq summary::before{content:"";position:absolute;right:24px;top:50%;width:36px;height:36px;
   margin-top:-18px;border-radius:50%;background:rgba(242,183,5,.16);transition:background .35s var(--ease)}
@@ -580,12 +663,6 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .faq-contacto__fila:hover .faq-contacto__ico{transform:translateY(-3px)}
 .faq-contacto__fila b{display:block;font:400 14.5px/1.3 var(--font-body);color:rgba(22,22,22,.7)}
 .faq-contacto__fila > span:last-child{font:700 21px/1.25 var(--font-head)}
-/* dentro de una sección en tinta, las tarjetas de FAQ son claras:
-   el texto tiene que volver a tinta, no heredar el blanco */
-.seccion--tinta .faq summary{color:var(--ink)}
-.seccion--tinta .faq details[open] summary{color:var(--ink)}
-.seccion--tinta .faq p{color:var(--steel-txt)}
-.seccion--tinta .faq a{color:var(--ink)}
 
 /* ==============================================================
    CAPA DE MOVIMIENTO (gyf-fx)
@@ -597,7 +674,6 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .fx-js .fx-entra.fx-dentro{opacity:1;transform:none}
 .fx-quieto .fx-entra{opacity:1 !important;transform:none !important;transition:none !important}
 
-/* el hero entra al cargar, no al hacer scroll */
 .fx-js .hero__caja > *,.fx-js .hero__tarjeta{animation:fx-sube .8s var(--ease) both}
 .fx-js .hero__caja > *:nth-child(2){animation-delay:.06s}
 .fx-js .hero__caja > *:nth-child(3){animation-delay:.12s}
@@ -607,15 +683,12 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 @keyframes fx-sube{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 .fx-quieto .hero__caja > *,.fx-quieto .hero__tarjeta{animation:none}
 
-/* el parallax necesita que la foto pueda salirse por arriba */
 .fx-js .hero{overflow:hidden}
 .fx-js .hero__foto{will-change:transform}
 
-/* acordeón: la altura se anima desde JS */
 .faq__cuerpo{overflow:hidden;transition:height .42s var(--ease)}
 .fx-quieto .faq__cuerpo{transition:none}
 
-/* barra de progreso de lectura, fina, bajo la cabecera */
 .fx-progreso{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;
   background:var(--action);transform:scaleX(0);transform-origin:0 50%;
   transition:transform .12s linear;pointer-events:none}
