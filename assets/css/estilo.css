@@ -457,3 +457,65 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
   .cabecera .btn{padding-inline:20px}
   .btn{padding-left:20px}
 }
+
+/* ==============================================================
+   FONDOS CON CUERPO · ninguna sección es un color plano
+   (en Arctiq: resplandor en esquina + retícula de puntos +
+   dibujo de línea del sector de fondo). Aquí el dibujo es un
+   bombín de perfil europeo y una llave, dibujados para Marcos.
+   ============================================================== */
+:root{
+  --fx-puntos:radial-gradient(circle at center, rgba(255,255,255,.09) 1.4px, transparent 1.5px);
+  --fx-puntos-claro:radial-gradient(circle at center, rgba(22,22,22,.07) 1.4px, transparent 1.5px);
+  --fx-dibujo:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 260' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M150 40h120a34 34 0 0 1 0 68h-52v104a18 18 0 0 1-18 18h-32a18 18 0 0 1-18-18V40z'/%3E%3Ccircle cx='262' cy='74' r='15'/%3E%3Cpath d='M178 128h40M178 152h40M178 176h28'/%3E%3Cpath d='M300 196h96M300 214h64'/%3E%3Ccircle cx='352' cy='150' r='26'/%3E%3Cpath d='M352 176v54l14 10-14 12'/%3E%3Ccircle cx='352' cy='150' r='9'/%3E%3C/svg%3E");
+}
+
+/* secciones en tinta: resplandor + puntos + dibujo */
+.seccion--tinta,.banda{position:relative;isolation:isolate;overflow:hidden}
+.seccion--tinta::before,.banda::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(760px 420px at 6% -10%, rgba(242,183,5,.16), transparent 62%),
+    radial-gradient(620px 520px at 104% 108%, rgba(242,183,5,.07), transparent 60%)}
+.seccion--tinta::after{content:"";position:absolute;z-index:-1;pointer-events:none;
+  right:24px;bottom:-10px;width:400px;height:250px;opacity:.055;
+  background:var(--fx-dibujo) right bottom/contain no-repeat}
+/* retícula de puntos en el canto izquierdo */
+.seccion--tinta .contenedor::before{content:"";position:absolute;left:-4px;top:8%;
+  width:150px;height:220px;z-index:-1;pointer-events:none;opacity:.9;
+  background:var(--fx-puntos) 0 0/18px 18px;
+  -webkit-mask:linear-gradient(100deg,#000 25%,transparent 75%);
+          mask:linear-gradient(100deg,#000 25%,transparent 75%)}
+.seccion--tinta .contenedor{position:relative}
+
+/* secciones en papel: degradado muy leve, nunca color plano */
+.seccion{position:relative;background-image:linear-gradient(178deg,rgba(255,255,255,.55),rgba(255,255,255,0) 42%)}
+.seccion--blanca{background-image:linear-gradient(178deg,rgba(246,243,238,.7),rgba(246,243,238,0) 38%)}
+/* retícula tenue a la derecha, solo en las secciones de papel */
+.seccion:not(.seccion--tinta):not(.seccion--franja)::after{content:"";position:absolute;
+  right:0;top:14%;width:180px;height:240px;pointer-events:none;opacity:.6;z-index:0;
+  background:var(--fx-puntos-claro) 0 0/20px 20px;
+  -webkit-mask:linear-gradient(260deg,#000 20%,transparent 72%);
+          mask:linear-gradient(260deg,#000 20%,transparent 72%)}
+.seccion > .contenedor{position:relative;z-index:1}
+
+/* la franja de opiniones se queda limpia: es una pausa */
+.seccion--franja::after{display:none}
+
+/* --- TARJETA DE SERVICIO A FOTO COMPLETA ----------------------
+   (Arctiq: foto a sangre, texto encima sobre velo, insignia
+   circular arriba a la izquierda). Sustituye a foto + texto debajo. */
+.tarjeta{position:relative;display:block;border-radius:var(--r-card);overflow:hidden;
+  min-height:420px;color:#fff;text-decoration:none;isolation:isolate;background:var(--ink)}
+.tarjeta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
+  transition:transform .7s var(--ease)}
+.tarjeta::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,rgba(22,22,22,.93) 8%,rgba(22,22,22,.55) 46%,rgba(22,22,22,.12) 100%)}
+.tarjeta:hover img{transform:scale(1.06)}
+.tarjeta > h3,.tarjeta > p,.tarjeta__mas{position:relative}
+.tarjeta > h3{margin:0;padding:0 24px;color:#fff}
+.tarjeta > p{padding:10px 24px 0;color:#DCD8D1;font-size:16px}
+.tarjeta__mas{display:inline-flex;align-items:center;gap:10px;margin:18px 24px 24px;
+  font-weight:600;font-size:15.5px;color:var(--action)}
+.tarjeta{display:flex;flex-direction:column;justify-content:flex-end;padding-top:var(--s6)}
+.tarjeta__mas svg{width:16px;height:16px;fill:currentColor;transition:transform .4s var(--ease)}
+.tarjeta:hover .tarjeta__mas svg{transform:translateX(6px)}
