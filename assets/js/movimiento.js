@@ -193,6 +193,102 @@
   });
 })();
 
+/* --- 7 · menú: desplegables en escritorio, panel en móvil ------
+   Sin este script la navegación sigue ahí: el CSS solo esconde el
+   panel cuando la página lleva la clase fx-js, que la pone el script. */
+(function () {
+  'use strict';
+  var cabecera = document.querySelector('.cabecera');
+  var menu = document.getElementById('menu-principal');
+  var boton = document.querySelector('.hamburguesa');
+  if (!menu || !boton || !cabecera) return;
+
+  var movil = window.matchMedia('(max-width:1100px)');
+  var filas = [].slice.call(menu.querySelectorAll('.menu__lista > li'));
+  var jefes = [].slice.call(menu.querySelectorAll('.menu__jefe'));
+
+  filas.forEach(function (li, i) { li.style.setProperty('--i', i); });
+
+  /* ---- panel de móvil ------------------------------------------ */
+  function abre() {
+    menu.setAttribute('data-abierto', '');
+    cabecera.setAttribute('data-menu', '');
+    document.documentElement.classList.add('menu-abierto');
+    boton.setAttribute('aria-expanded', 'true');
+    boton.setAttribute('aria-label', 'Cerrar el menú');
+  }
+  function cierra() {
+    menu.removeAttribute('data-abierto');
+    cabecera.removeAttribute('data-menu');
+    document.documentElement.classList.remove('menu-abierto');
+    boton.setAttribute('aria-expanded', 'false');
+    boton.setAttribute('aria-label', 'Abrir el menú');
+  }
+  boton.addEventListener('click', function () {
+    menu.hasAttribute('data-abierto') ? cierra() : abre();
+  });
+
+  /* al elegir destino, el panel se va solo */
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a') && movil.matches) cierra();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.hasAttribute('data-abierto')) { cierra(); boton.focus(); }
+  });
+
+  /* ---- los rótulos de grupo cambian de papel según el ancho ----- */
+  function ajusta() {
+    if (movil.matches) {
+      /* en el panel todo va desplegado: el rótulo es un título, no un botón */
+      jefes.forEach(function (b) { b.setAttribute('tabindex', '-1'); b.setAttribute('aria-expanded', 'true'); });
+    } else {
+      cierra();
+      jefes.forEach(function (b) { b.removeAttribute('tabindex'); b.setAttribute('aria-expanded', 'false'); });
+      menu.querySelectorAll('.menu__grupo[data-abierto]').forEach(function (g) { g.removeAttribute('data-abierto'); });
+    }
+  }
+  movil.addEventListener ? movil.addEventListener('change', ajusta) : movil.addListener(ajusta);
+  ajusta();
+
+  /* ---- desplegables de escritorio, también con clic (portátiles táctiles) */
+  jefes.forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (movil.matches) return;
+      var g = b.parentNode, abierto = g.hasAttribute('data-abierto');
+      menu.querySelectorAll('.menu__grupo[data-abierto]').forEach(function (o) { o.removeAttribute('data-abierto'); });
+      if (!abierto) g.setAttribute('data-abierto', '');
+      b.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (movil.matches || e.target.closest('.menu__grupo')) return;
+    menu.querySelectorAll('.menu__grupo[data-abierto]').forEach(function (g) {
+      g.removeAttribute('data-abierto');
+      g.querySelector('.menu__jefe').setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+
+/* --- 8 · el mapa solo se conecta con Google si el visitante quiere */
+(function () {
+  'use strict';
+  document.querySelectorAll('[data-mapa]').forEach(function (caja) {
+    var boton = caja.querySelector('[data-mapa-ver]');
+    if (!boton) return;
+    boton.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = caja.getAttribute('data-src');
+      f.title = 'Mapa con la ubicación de Marcos Cerrajeros en Alcorcón';
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.setAttribute('allowfullscreen', '');
+      caja.textContent = '';
+      caja.appendChild(f);
+    });
+  });
+})();
+
 /* --- 6 · la cinta se duplica para que el bucle no corte -------- */
 (function () {
   'use strict';

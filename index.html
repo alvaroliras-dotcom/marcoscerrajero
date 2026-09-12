@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cerrajero en Alcorcón | Presupuesto GRATIS y Sin Sorpresas</title>
-<meta name="description" content="Cerrajero en Alcorcón con más de 15 años de oficio: aperturas, cambio y reparación de cerraduras, rejas y cerrojos. Presupuesto gratis, sin compromiso y sin sorpresas. Llame al 663 250 778.">
+<meta name="description" content="Cerrajero en Alcorcón con más de 15 años de oficio: aperturas, cambio y reparación de cerraduras, rejas y cerrojos. Presupuesto gratis: 663 250 778.">
 <link rel="canonical" href="https://marcoscerrajeros.es/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cerrajero en Alcorcón | Marcos Cerrajeros">
@@ -57,15 +57,45 @@
     <a class="cabecera__logo" href="/" aria-label="Marcos Cerrajeros Alcorcón, inicio">
       <img src="/assets/logo/logo.svg" alt="Marcos Cerrajeros · Alcorcón" width="180" height="52">
     </a>
-    <nav class="menu" aria-label="Principal">
-      <a href="/apertura-de-puertas/">Apertura de puertas</a>
-      <a href="/cambio-de-cerraduras/">Cerraduras</a>
-      <a href="/instalacion-puerta-acorazada/">Puertas acorazadas</a>
-      <a href="/rejas-a-medida/">Rejas</a>
-      <a href="/sobre-mi/">Sobre mí</a>
-      <a href="/contacto/">Contacto</a>
+    <nav class="menu" id="menu-principal" aria-label="Principal">
+      <ul class="menu__lista">
+        <li><a href="/" aria-current="page">Inicio</a></li>
+        <li class="menu__grupo">
+          <button class="menu__jefe" type="button" aria-expanded="false">Puertas<svg class="menu__chevron" aria-hidden="true" viewBox="0 0 12 8"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="menu__sub">
+            <li><a href="/apertura-de-puertas/">Apertura de puertas</a></li>
+            <li><a href="/reparacion-de-puertas/">Reparación de puertas</a></li>
+            <li><a href="/instalacion-puerta-acorazada/">Puertas acorazadas</a></li>
+            <li><a href="/instalacion-puertas-blindadas/">Puertas blindadas</a></li>
+          </ul>
+        </li>
+        <li class="menu__grupo">
+          <button class="menu__jefe" type="button" aria-expanded="false">Cerraduras<svg class="menu__chevron" aria-hidden="true" viewBox="0 0 12 8"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="menu__sub">
+            <li><a href="/cambio-de-cerraduras/">Cambio de cerraduras</a></li>
+            <li><a href="/reparacion-de-cerraduras-de-puertas/">Reparación de cerraduras</a></li>
+            <li><a href="/cerrojos-de-seguridad/">Cerrojos de seguridad</a></li>
+            <li><a href="/cerraduras-de-borjas/">Cerraduras de borjas</a></li>
+            <li><a href="/cambio-de-llave/">Copia y cambio de llave</a></li>
+            <li><a href="/cerradura-puerta-acorazada/">Cerradura de puerta acorazada</a></li>
+          </ul>
+        </li>
+        <li class="menu__grupo">
+          <button class="menu__jefe" type="button" aria-expanded="false">Rejas y vallas<svg class="menu__chevron" aria-hidden="true" viewBox="0 0 12 8"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="menu__sub">
+            <li><a href="/rejas-a-medida/">Rejas a medida</a></li>
+            <li><a href="/instalacion-de-vallas/">Instalación de vallas</a></li>
+          </ul>
+        </li>
+        <li><a href="/contacto/">Contacto</a></li>
+        <li class="menu__solo-movil"><a href="/sobre-mi/">Sobre mí</a></li>
+      </ul>
     </nav>
     <a class="btn" data-cta="tel-cabecera" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>663 250 778</a>
+    <button class="hamburguesa" type="button" aria-expanded="false"
+            aria-controls="menu-principal" aria-label="Abrir el menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -467,6 +497,7 @@
         <img class="pie__logo" src="/assets/logo/logo-negativo.svg" alt="Marcos Cerrajeros · Alcorcón" width="180" height="52">
         <p style="font-size:16px">Cerrajería en Alcorcón desde hace más de 15 años. Presupuesto gratis, sin compromiso y sin sorpresas.</p>
         <p style="margin-top:var(--s3);font-size:16px"><a data-cta="tel-pie" href="tel:+34663250778" style="color:#fff;font-weight:600">663 250 778</a><br><a class="enlace-wa" data-cta="wa-pie" style="color:#fff;margin-top:8px" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a></p>
+        <p style="margin-top:var(--s3);font-size:16px"><a href="/sobre-mi/" style="color:#fff;font-weight:600">Sobre mí</a></p>
       </div>
       <div>
         <h4>Servicios</h4>
@@ -474,8 +505,14 @@
           <li><a href="/apertura-de-puertas/">Apertura de puertas</a></li>
           <li><a href="/cambio-de-cerraduras/">Cambio de cerraduras</a></li>
           <li><a href="/reparacion-de-cerraduras-de-puertas/">Reparación de cerraduras</a></li>
+          <li><a href="/reparacion-de-puertas/">Reparación de puertas</a></li>
           <li><a href="/instalacion-puerta-acorazada/">Puertas acorazadas</a></li>
+          <li><a href="/instalacion-puertas-blindadas/">Puertas blindadas</a></li>
+          <li><a href="/cerraduras-de-borjas/">Cerraduras de borjas</a></li>
+          <li><a href="/cambio-de-llave/">Copia y cambio de llave</a></li>
+          <li><a href="/cerradura-puerta-acorazada/">Cerradura de puerta acorazada</a></li>
           <li><a href="/rejas-a-medida/">Rejas a medida</a></li>
+          <li><a href="/instalacion-de-vallas/">Instalación de vallas</a></li>
           <li><a href="/cerrojos-de-seguridad/">Cerrojos de seguridad</a></li>
         </ul>
       </div>
@@ -500,7 +537,7 @@
     </div>
     <div class="pie__legal">
       <p>© 2026 Marcos Cerrajeros Alcorcón</p>
-      <p><a href="/aviso-legal/">Aviso legal</a> · <a href="/politica-privacidad/">Política de privacidad</a> · <a href="/politica-cookies/">Cookies</a></p>
+      <p><a href="/aviso-legal/">Aviso legal</a> · <a href="/politica-privacidad/">Política de privacidad</a> · <a href="/politica-de-cookies/">Cookies</a></p>
     </div>
   </div>
 </footer>
