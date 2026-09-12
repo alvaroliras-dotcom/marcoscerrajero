@@ -56,7 +56,7 @@
 <body>
 <a class="sr" href="#contenido">Ir al contenido</a>
 
-<svg class="sr" aria-hidden="true"><symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M9.5 17.2 4.8 12.5l1.4-1.4 3.3 3.3 8-8L19 7.8z"/></symbol><symbol id="i-flecha" viewBox="0 0 24 24"><path d="M4 11h12.2l-4.6-4.6L13 5l7 7-7 7-1.4-1.4 4.6-4.6H4z"/></symbol></svg>
+<svg class="sr" aria-hidden="true"><symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M9.5 17.2 4.8 12.5l1.4-1.4 3.3 3.3 8-8L19 7.8z"/></symbol><symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 0 1 6 13.8 8.2 8.2 0 0 1-9.9 1.5l-.4-.2-3 .8.8-2.9-.2-.4A8.2 8.2 0 0 1 12 3.8zm-3.3 4c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.7 2.7 4.2 3.7 2.1.8 2.5.7 3 .6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4z"/></symbol><symbol id="i-flecha" viewBox="0 0 24 24"><path d="M4 11h12.2l-4.6-4.6L13 5l7 7-7 7-1.4-1.4 4.6-4.6H4z"/></symbol></svg>
 
 <header class="cabecera">
   <div class="contenedor cabecera__inner">
@@ -71,7 +71,7 @@
       <a href="/sobre-mi/">Sobre mí</a>
       <a href="/contacto/">Contacto</a>
     </nav>
-    <a class="btn" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>663 250 778</a>
+    <a class="btn" data-cta="tel-cabecera" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>663 250 778</a>
   </div>
 </header>
 
@@ -83,13 +83,14 @@
       <nav class="migas" aria-label="Migas de pan">
         <a href="/">Inicio</a><span>›</span>Apertura de puertas
       </nav>
-      <h1>Apertura de puertas en Alcorcón, urgente y sin daños</h1>
+      <h1>Apertura de puertas en Alcorcón, <span class="destaca">urgente y sin daños</span></h1>
       <p>Las llaves se han quedado dentro. La llave se ha partido en el bombín. O la cerradura ha dicho basta justo hoy, con usted en el rellano y con prisa. Para eso está nuestro servicio de apertura de puertas en Alcorcón: rápido, sin romper nada siempre que se pueda y con el precio claro antes de tocar la puerta.</p>
       <p>Le damos hora para el mismo día, de lunes a viernes, de 8:00 a 20:00. En Alcorcón, normalmente llegamos en menos de media hora.</p>
       <div class="hero__acciones">
-        <a class="btn" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a>
-        <a class="btn btn--linea" href="#contacto">Presupuesto gratis</a>
+        <a class="btn" data-cta="tel-hero" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a>
+        <a class="btn btn--wa" data-cta="wa-hero" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>Escríbanos por WhatsApp</a>
       </div>
+      <p class="estado" data-estado hidden><span class="estado__punto"></span><span class="estado__txt"></span></p>
     </div>
   </section>
 
@@ -111,7 +112,7 @@
       <h2>¿Se ha quedado fuera de casa?</h2>
       <p class="medida apoyo" style="margin-top:var(--s3)">Le pasa a cualquiera. Estas son las situaciones que más nos encontramos:</p>
       <div class="casos">
-        <article class="caso">
+        <article class="caso caso--ancho">
           <h3>«Me he dejado las llaves dentro»</h3>
           <p>Es la llamada más habitual. Sale a bajar la basura, la puerta se cierra con la corriente y las llaves se quedan en el recibidor. Si la puerta ha quedado solo con el resbalón, sin la llave echada, suele ser la apertura más sencilla. Mejor no pelearse con ella con una tarjeta: es fácil acabar dañando el marco o el resbalón.</p>
         </article>
@@ -169,14 +170,21 @@
 
   <section class="seccion seccion--blanca">
     <div class="contenedor">
+      <div class="pasos-foto">
+      <div>
       <p class="antetitulo">Paso a paso</p>
       <h2>Así trabajamos en una apertura urgente</h2>
-      <ul class="pasos" style="margin-top:var(--s5);max-width:900px">
+      <ul class="pasos" style="margin-top:var(--s4)">
         <li><span class="num">1</span><span><b>Nos llama y le atiende Marcos</b><span>Nos dice dónde está y qué ha pasado: si la puerta se ha cerrado solo con el resbalón o con la llave echada, y qué cerradura tiene. Con eso ya sabemos por dónde ir.</span></span></li>
         <li><span class="num">2</span><span><b>Le damos hora</b><span>Para el mismo día. En una urgencia, lo prioritario es llegar pronto.</span></span></li>
         <li><span class="num">3</span><span><b>Vemos la puerta y le decimos el precio</b><span>Antes de tocar nada. Le explicamos cómo vamos a abrir y qué opciones tiene, y usted elige la que mejor le encaja.</span></span></li>
         <li><span class="num">4</span><span><b>Abrimos respetando su puerta</b><span>Y si lo necesita, en el mismo servicio le instalamos un <a href="/cerrojos-de-seguridad/">cerrojo de seguridad</a>, para que su puerta sea mucho más difícil de abrir para cualquiera que no sea usted.</span></span></li>
       </ul>
+      </div>
+      <figure class="pasos-foto__img">
+        <img src="/assets/img/apertura-de-puertas-alcorcon.jpg" alt="Marcos abriendo una puerta sin dañar la cerradura en Alcorcón" width="1000" height="1250" loading="lazy">
+      </figure>
+      </div>
     </div>
   </section>
 
@@ -194,7 +202,7 @@
     </div>
   </section>
 
-  <section class="seccion seccion--tinta">
+  <section class="seccion seccion--tinta seccion--franja">
     <div class="contenedor">
       <div class="opinion-corta">
         <div>
@@ -211,10 +219,14 @@
   </section>
 
   <section class="seccion seccion--blanca">
-    <div class="contenedor">
-      <p class="antetitulo">Preguntas frecuentes</p>
-      <h2>Sobre la apertura de puertas en Alcorcón</h2>
-      <div class="faq" style="margin-top:var(--s4)">
+    <div class="contenedor faq-rejilla">
+      <div class="faq-intro">
+        <p class="antetitulo">Preguntas frecuentes</p>
+        <h2>Sobre la apertura de puertas en Alcorcón</h2>
+        <p class="faq-intro__txt">Son las dudas que más nos plantean por teléfono. Si la suya no está aquí, llámenos y se la resolvemos en un minuto, sin compromiso.</p>
+        <a class="btn btn--tinta" data-cta="tel-faq" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a>
+      </div>
+      <div class="faq">
         <details open><summary>¿Van a romper la cerradura para abrir la puerta?</summary><p>En la mayoría de los casos, no. Abrir sin daños es siempre lo primero que intentamos. Solo hay que romper la cerradura cuando el bombín está reventado, manipulado o no admite otra técnica, y en ese caso se lo decimos antes de empezar, junto con el precio de la cerradura nueva.</p></details>
         <details><summary>Me he dejado las llaves dentro, ¿cuánto tardan en llegar?</summary><p>En Alcorcón, normalmente menos de media hora, dentro de nuestro horario: de lunes a viernes, de 8:00 a 20:00. No trabajamos de noche ni los fines de semana.</p></details>
         <details><summary>¿Cuánto cuesta una apertura de puertas en Alcorcón?</summary><p>Depende de la cerradura y de si se puede abrir sin dañarla, así que no hay un precio fijo. Le decimos el precio por teléfono o al llegar, siempre antes de tocar nada. El presupuesto es gratis y sin compromiso.</p></details>
@@ -259,13 +271,13 @@
           <p class="antetitulo">¿Le ayudamos?</p>
           <h2>¿Necesita una apertura de puertas en Alcorcón?</h2>
           <p>No se quede en el rellano dándole vueltas. Llámenos: le decimos el precio por teléfono y le damos hora para el mismo día.</p>
-          <p style="margin-top:var(--s4)"><a class="btn" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a></p>
+          <p style="margin-top:var(--s4)"><a class="btn" data-cta="tel-cta-final" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a></p>
           <p style="margin-top:var(--s4);max-width:42ch">Somos cerrajeros: lo nuestro es la rapidez. Si lo prefiere, déjenos un mensaje y le llamamos nosotros.</p>
         </div>
-        <form class="formulario pendiente" data-pendiente="Pendiente: conectar el envío del formulario y probarlo" method="post" action="#">
+        <form class="formulario" method="post" action="#">
           <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required></div>
           <div class="campo"><label for="telefono">Teléfono</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" required></div>
-          <div class="campo"><label for="necesita">¿Qué le ha pasado con su puerta?</label><textarea id="necesita" name="necesita" required></textarea></div>
+          <div class="campo"><label for="necesita">¿Qué le ha pasado con su puerta?</label><textarea id="necesita" name="necesita"></textarea></div>
           <p class="acepto"><input id="privacidad" name="privacidad" type="checkbox" required><label for="privacidad">Acepto la <a href="/politica-privacidad/">política de privacidad</a>.</label></p>
           <button class="btn" type="submit">Enviar mensaje <svg aria-hidden="true"><use href="#i-flecha"></use></svg></button>
         </form>
@@ -281,7 +293,7 @@
       <div>
         <img class="pie__logo" src="/assets/logo/logo-negativo.svg" alt="Marcos Cerrajeros · Alcorcón" width="180" height="52">
         <p style="font-size:16px">Cerrajería en Alcorcón desde hace más de 15 años. Presupuesto gratis, sin compromiso y sin sorpresas.</p>
-        <p style="margin-top:var(--s3);font-size:16px"><a href="tel:+34663250778" style="color:#fff;font-weight:600">663 250 778</a></p>
+        <p style="margin-top:var(--s3);font-size:16px"><a data-cta="tel-pie" href="tel:+34663250778" style="color:#fff;font-weight:600">663 250 778</a><br><a class="enlace-wa" data-cta="wa-pie" style="color:#fff;margin-top:8px" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a></p>
       </div>
       <div>
         <h4>Servicios</h4>
@@ -321,9 +333,43 @@
 </footer>
 
 <div class="llamar-movil">
-  <a class="btn" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llamar ahora</a>
-  <a class="btn btn--tinta" href="#contacto">Presupuesto</a>
+  <a class="btn" data-cta="tel-barra-movil" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llamar ahora</a>
+  <a class="btn btn--wa" data-cta="wa-barra-movil" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a>
 </div>
 
+
+<script>
+/* Estado de apertura en vivo: L-V 8:00-20:00 (hora de Madrid) */
+(function(){
+  var dias=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+  function ahoraMadrid(){
+    var f=new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+    var o={}; f.forEach(function(p){o[p.type]=p.value});
+    var d=new Date().toLocaleString('en-US',{timeZone:'Europe/Madrid'});
+    var m=new Date(d);
+    return {dia:m.getDay(), min:m.getHours()*60+m.getMinutes()};
+  }
+  var t=ahoraMadrid(), abierto=(t.dia>=1&&t.dia<=5&&t.min>=480&&t.min<1200), txt;
+  if(abierto){
+    txt='Abierto ahora · hasta las 20:00';
+  }else{
+    var prox = (t.dia===0)?'mañana':(t.dia===6)?'el lunes':(t.dia>=1&&t.dia<=4&&t.min>=1200)?'mañana':(t.dia===5&&t.min>=1200)?'el lunes':'hoy';
+    txt='Cerrado ahora · abrimos '+prox+' a las 8:00';
+  }
+  document.querySelectorAll('[data-estado]').forEach(function(el){
+    el.hidden=false;
+    el.classList.toggle('estado--on',abierto);
+    el.querySelector('.estado__txt').textContent=txt;
+  });
+})();
+(function(){
+  /* cabecera: transparente sobre el hero, sólida al bajar */
+  var cab=document.querySelector('.cabecera');
+  if(cab&&document.querySelector('.hero')){
+    var f=function(){cab.classList.toggle('cabecera--fija',(window.pageYOffset||0)>60)};
+    window.addEventListener('scroll',f,{passive:true}); f();
+  }
+})();
+</script>
 </body>
 </html>

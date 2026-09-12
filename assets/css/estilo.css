@@ -77,19 +77,51 @@ ul{margin:0;padding:0;list-style:none}
 
 /* --- Hero --------------------------------------------------- */
 .hero{position:relative;isolation:isolate;color:#fff;background:var(--ink);
-  min-height:min(78vh,680px);display:flex;align-items:flex-end;padding-block:var(--s7) var(--s6)}
+  min-height:min(86vh,780px);display:flex;align-items:center;padding-block:var(--s6)}
 .hero__foto{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(100deg,rgba(22,22,22,.94) 8%,rgba(22,22,22,.78) 46%,rgba(22,22,22,.42) 100%)}
-.hero__caja{max-width:62ch}
+  background:linear-gradient(100deg,rgba(22,22,22,.95) 8%,rgba(22,22,22,.86) 46%,rgba(22,22,22,.66) 100%)}
+.hero__rejilla{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(360px,430px);
+  gap:var(--s6);align-items:center}
+.hero__caja{max-width:none}
 .hero h1{margin-bottom:var(--s3)}
 .hero p{color:#E7E3DC;margin-bottom:var(--s2)}
+.hero__entrada{font-size:clamp(18px,1.35vw,20px);line-height:1.55}
 .hero__pill{display:inline-block;background:var(--action);color:var(--on-action);
   font:600 15px/1 var(--font-body);padding:9px 14px;border-radius:50px;margin-bottom:var(--s3)}
 .hero__acciones{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s4)}
 .hero__sello{display:flex;align-items:center;gap:12px;margin-top:var(--s4);font-size:15.5px;color:#E7E3DC}
 .hero__sello b{font:700 24px/1 var(--font-head);color:#fff}
 .estrellas{color:var(--action);letter-spacing:2px;font-size:15px}
+
+/* Tarjeta del hero: prueba social + formulario corto */
+.hero__tarjeta{background:var(--paper);color:var(--ink);border-radius:var(--r-card);
+  padding:var(--s4);box-shadow:0 30px 70px rgba(0,0,0,.42)}
+.hero__nota{display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--line);padding-bottom:var(--s3);margin-bottom:var(--s3)}
+.hero__nota b{font:700 40px/1 var(--font-head)}
+.hero__nota span{font-size:14px;line-height:1.35;color:var(--steel-txt)}
+.hero__tarjeta h2{font-size:clamp(24px,2.1vw,30px);line-height:1.12}
+.hero__tarjeta .hero__tarjeta-sub{color:var(--steel-txt);font-size:15.5px;line-height:1.5;margin:10px 0 var(--s3)}
+.hero__tarjeta .hero__tarjeta-pie{color:var(--steel-txt);font-size:15px;margin:var(--s3) 0 0;text-align:center}
+.hero__tarjeta .hero__tarjeta-pie a{font-weight:600;color:var(--ink)}
+.formulario--claro{background:transparent;border:0;padding:0}
+.formulario--claro .campo{margin-bottom:14px}
+.formulario--claro .campo label{color:var(--steel-txt)}
+.formulario--claro .campo input,.formulario--claro .campo select{color:var(--ink);background:var(--surface);
+  border:1px solid var(--line);height:46px;padding:0 14px;font:400 16px var(--font-body);
+  border-radius:var(--r-btn);width:100%;appearance:none}
+.formulario--claro .campo select{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23666D73' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:38px}
+.formulario--claro .acepto{color:var(--steel-txt);margin-bottom:var(--s3)}
+.formulario--claro .acepto a{color:var(--ink)}
+.formulario--claro .btn{width:100%}
+.formulario--claro.pendiente::after{background:var(--ink)}
+@media (max-width:1180px){
+  .hero__rejilla{grid-template-columns:1fr;gap:var(--s5);max-width:640px}
+  .hero{min-height:0;padding-block:var(--s6) var(--s6)}
+}
+@media (max-width:768px){ .hero__tarjeta{display:none} }
 
 /* --- Banda de confianza ------------------------------------- */
 .banda{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.08)}
@@ -170,11 +202,11 @@ ul{margin:0;padding:0;list-style:none}
 
 /* --- Hueco de foto o contenido pendiente -------------------- */
 .pendiente{position:relative}
-.pendiente--arriba{padding-top:40px}
-.pendiente--arriba::after{bottom:auto;top:0}
 .pendiente::after{content:attr(data-pendiente);position:absolute;left:12px;bottom:12px;z-index:3;
   background:rgba(22,22,22,.86);color:#fff;font:600 12.5px/1.4 var(--font-body);
   padding:7px 11px;border-radius:6px;border-left:3px solid var(--action);max-width:calc(100% - 24px)}
+.pendiente--arriba{padding-top:40px}
+.pendiente--arriba::after{bottom:auto;top:0}
 
 /* --- Dónde estamos ------------------------------------------ */
 .local{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:var(--s6);align-items:start}
@@ -189,7 +221,11 @@ ul{margin:0;padding:0;list-style:none}
 @media (max-width:992px){ .local{grid-template-columns:1fr} }
 
 /* --- FAQ ---------------------------------------------------- */
-.faq{max-width:900px}
+.faq-rejilla{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:var(--s6) var(--s8);
+  align-items:start}
+.faq-intro{position:sticky;top:112px}
+.faq-intro__txt{color:var(--steel-txt);margin:var(--s3) 0 var(--s4);max-width:42ch}
+.faq{max-width:none}
 .faq details{border-top:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--s3);
   padding-block:20px;font:700 22px/1.25 var(--font-head)}
@@ -197,6 +233,11 @@ ul{margin:0;padding:0;list-style:none}
 .faq summary::after{content:"+";font:400 26px/1 var(--font-body);color:var(--steel-txt);transition:transform .3s var(--ease)}
 .faq details[open] summary::after{transform:rotate(45deg);color:var(--ink)}
 .faq p{padding-bottom:22px;max-width:var(--measure);color:var(--steel-txt)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+@media (max-width:992px){
+  .faq-rejilla{grid-template-columns:1fr;gap:var(--s4)}
+  .faq-intro{position:static}
+}
 
 /* --- CTA final y formulario --------------------------------- */
 .cta{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:var(--s6);align-items:start}
@@ -238,20 +279,23 @@ ul{margin:0;padding:0;list-style:none}
 /* ===========================================================
    Páginas de servicio
    =========================================================== */
-.hero--servicio{min-height:min(58vh,520px);padding-block:var(--s6) var(--s5)}
-.hero--servicio h1{font-size:clamp(34px,5vw,58px)}
+.hero--servicio{min-height:min(58vh,520px);padding-block:var(--s6) var(--s5);align-items:flex-end}
+.hero--servicio h1{font-size:clamp(34px,5vw,58px);max-width:20ch}
+.hero--servicio .hero__caja{max-width:none}
+.hero--servicio .hero__caja p{max-width:64ch}
 .migas{font-size:15px;color:var(--steel-l);margin-bottom:var(--s3)}
 .migas a{text-decoration:none;opacity:.9}
 .migas a:hover{opacity:1;text-decoration:underline}
 .migas span{opacity:.6;margin-inline:6px}
 
 /* situaciones: tarjetas de texto sobre papel */
-.casos{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-top:var(--s5)}
+.casos{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5)}
 .caso{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4);
   transition:border-color .4s var(--ease)}
 .caso:hover{border-color:var(--ink)}
 .caso h3{margin-bottom:10px}
 .caso p{color:var(--steel-txt);font-size:16.5px}
+@media (max-width:1100px){ .casos{grid-template-columns:1fr 1fr} }
 @media (max-width:768px){ .casos{grid-template-columns:1fr} }
 
 /* bloque de texto con foto a un lado */
@@ -275,3 +319,141 @@ ul{margin:0;padding:0;list-style:none}
 /* tarjetas de otros servicios */
 .relacionados{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5)}
 @media (max-width:900px){ .relacionados{grid-template-columns:1fr} }
+
+/* --- Estado de apertura en vivo (CRO) ----------------------- */
+.estado{display:flex;align-items:center;gap:9px;font:600 14.5px/1.3 var(--font-body);
+  color:#E7E3DC;margin-top:var(--s3)}
+.estado__punto{width:9px;height:9px;border-radius:50%;background:#B4B9BE;flex:none}
+.estado--on .estado__punto{background:#3DBE6B;box-shadow:0 0 0 4px rgba(61,190,107,.22)}
+.hero__tarjeta .estado{color:var(--steel-txt);margin:0 0 var(--s3)}
+.llamar-movil .btn:first-child{flex:1.7}
+.llamar-movil .btn:last-child{flex:1}
+@media (max-width:640px){ .hero__caja p + p{display:none} }
+.opcional{font-weight:400;color:var(--steel)}
+
+/* --- Paso a paso con foto (rompe el ritmo de columna) -------- */
+.pasos-foto{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--s6);align-items:center}
+.pasos-foto__img{margin:0;border-radius:var(--r-img);overflow:hidden;aspect-ratio:4/5}
+.pasos-foto__img img{width:100%;height:100%;object-fit:cover}
+@media (max-width:992px){
+  .pasos-foto{grid-template-columns:1fr;gap:var(--s4)}
+  .pasos-foto__img{aspect-ratio:16/10}
+}
+/* el caso más frecuente pesa el doble */
+.caso--ancho{grid-column:1 / -1;background:var(--ink);color:#fff;border-color:var(--ink)}
+.caso--ancho h3{font-size:clamp(24px,2.6vw,30px)}
+.caso--ancho p{color:#DCD8D1;font-size:17.5px;max-width:70ch}
+.caso--ancho:hover{border-color:var(--action)}
+@media (max-width:768px){ .caso--ancho{grid-column:auto} }
+/* la franja de opiniones no se come una pantalla entera */
+.seccion--franja{padding-block:var(--s5)}
+
+/* --- WhatsApp ----------------------------------------------- */
+.btn--wa{background:transparent;color:inherit;border-color:currentColor}
+.btn--wa svg{fill:#25D366}
+.btn--wa:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hero .btn--wa,.seccion--tinta .btn--wa{color:#fff}
+.hero .btn--wa:hover,.seccion--tinta .btn--wa:hover{background:#fff;color:var(--ink);border-color:#fff}
+.enlace-wa{display:inline-flex;align-items:center;gap:8px;font-weight:600;text-decoration:none}
+.enlace-wa svg{width:17px;height:17px;fill:#25D366;flex:none}
+.enlace-wa:hover{text-decoration:underline}
+
+/* --- Bloques nuevos de la plantilla de servicio --------------- */
+/* foto a la izquierda: alterna el ritmo sin duplicar componente */
+.texto-foto--inv > div:first-child{order:2}
+.texto-foto--inv .texto-foto__img{order:1}
+@media (max-width:992px){ .texto-foto--inv > div:first-child{order:1} .texto-foto--inv .texto-foto__img{order:2} }
+
+/* lista de tipos: dos columnas con filete lateral en color de acción */
+.tipos{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4) var(--s6);margin-top:var(--s5)}
+.tipos li{border-left:3px solid var(--action);padding-left:20px}
+.tipos b{display:block;font:700 21px/1.2 var(--font-head);margin-bottom:8px}
+.tipos span{font-size:16.5px;color:var(--steel-txt)}
+.tipos a,.ventajas a,.caso a,.faq a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:768px){ .tipos{grid-template-columns:1fr} }
+
+/* tarjetas de casos: reparto flexible, sin huérfanas */
+.casos{display:flex;flex-wrap:wrap}
+.casos > .caso{flex:1 1 300px}
+.casos > .caso--ancho{flex:1 1 100%}
+
+/* cita real dentro de la franja de opiniones */
+.opinion-corta__cita{max-width:46ch;font-size:17px;line-height:1.55;color:#DCD8D1;margin:0}
+.opinion-corta__cita cite{display:block;margin-top:10px;font-style:normal;font-size:14.5px;color:var(--steel)}
+
+/* ==============================================================
+   CARÁCTER ARCTIQ · lenguaje formal tomado de la plantilla de
+   referencia y vestido con la marca de Marcos. No es un clon:
+   se toman los gestos (pastilla + insignia, etiqueta redonda,
+   acento en el titular, radios), no el color ni la tipografía.
+   ============================================================== */
+
+/* 1 · BOTÓN: pastilla + insignia circular con la flecha a 45°
+      (en Arctiq: pastilla r50 h52 + círculo de 52 solapado) */
+.btn{height:52px;border-radius:50px;padding:0 8px 0 26px;gap:14px;font-weight:700}
+.btn::after{content:"";width:40px;height:40px;flex:none;
+  background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23161616'/%3E%3Cpath fill='%23F2B705' d='M11.5 19h9.2l-3.4-3.4L18.6 14l5.4 5.4-5.4 5.4-1.3-1.3 3.4-3.4h-9.2z' transform='translate(-1.2 .6)'/%3E%3C/svg%3E") center/40px 40px no-repeat;
+  transform:rotate(-45deg);transition:transform .45s var(--ease)}
+.btn:hover::after{transform:rotate(0deg)}
+.btn--tinta::after{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23F2B705'/%3E%3Cpath fill='%23161616' d='M11.5 19h9.2l-3.4-3.4L18.6 14l5.4 5.4-5.4 5.4-1.3-1.3 3.4-3.4h-9.2z' transform='translate(-1.2 .6)'/%3E%3C/svg%3E")}
+.btn--linea::after{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23161616'/%3E%3Cpath fill='%23FFFFFF' d='M11.5 19h9.2l-3.4-3.4L18.6 14l5.4 5.4-5.4 5.4-1.3-1.3 3.4-3.4h-9.2z' transform='translate(-1.2 .6)'/%3E%3C/svg%3E")}
+.hero .btn--linea::after,.seccion--tinta .btn--linea::after{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23FFFFFF'/%3E%3Cpath fill='%23161616' d='M11.5 19h9.2l-3.4-3.4L18.6 14l5.4 5.4-5.4 5.4-1.3-1.3 3.4-3.4h-9.2z' transform='translate(-1.2 .6)'/%3E%3C/svg%3E")}
+.btn--wa::after{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%2325D366'/%3E%3Cpath fill='%23FFFFFF' d='M11.5 19h9.2l-3.4-3.4L18.6 14l5.4 5.4-5.4 5.4-1.3-1.3 3.4-3.4h-9.2z' transform='translate(-1.2 .6)'/%3E%3C/svg%3E")}
+/* el botón de enviar ya lleva su propia flecha dentro */
+.formulario .btn::after{display:none}
+.formulario .btn{padding-inline:26px}
+/* en la barra de móvil el espacio manda: sin insignia */
+.llamar-movil .btn::after{display:none}
+.llamar-movil .btn{padding-inline:18px}
+
+/* 2 · ETIQUETA DE SECCIÓN: pastilla con el símbolo de la marca
+      (sustituye a las versalitas espaciadas) */
+.antetitulo{display:inline-flex;align-items:center;gap:9px;
+  background:var(--surface);color:var(--ink);
+  border-radius:50px;padding:7px 16px 7px 8px;
+  font:500 15.5px/1 var(--font-body);letter-spacing:0;text-transform:none;
+  margin-bottom:var(--s3);box-shadow:0 1px 0 rgba(22,22,22,.06)}
+.antetitulo::before{content:"";width:26px;height:26px;flex:none;border-radius:50%;
+  background:var(--action) var(--fx-simbolo) center/13px 13px no-repeat}
+:root{--fx-simbolo:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23161616' d='M0 13L13 0H38L50 19L62 0H87L100 13V100H63L56 64.65A14 14 0 1 0 44 64.65L37 100H0Z'/%3E%3C/svg%3E")}
+.seccion--tinta .antetitulo,.hero .antetitulo{background:rgba(242,183,5,.16);color:#fff;box-shadow:none}
+.seccion--blanca .antetitulo{background:var(--paper)}
+
+/* 3 · ACENTO EN EL TITULAR: sobre tinta, la palabra en amarillo;
+      sobre papel, marcador amarillo por detrás (el amarillo puro
+      no contrasta lo bastante como texto sobre fondo claro) */
+.destaca{background:linear-gradient(transparent 58%,rgba(242,183,5,.55) 58%);
+  padding-inline:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.seccion--tinta .destaca,.hero .destaca{background:none;color:var(--action)}
+
+/* 4 · RADIOS: imágenes a 20, tarjetas a 16 (Arctiq: 20 y 16) */
+:root{--r-img:20px;--r-card:16px;--r-btn:50px}
+
+/* 5 · FAQ EN TARJETAS separadas, la abierta con la cabecera en color */
+.faq details{border-top:0;background:var(--surface);border-radius:var(--r-card);
+  margin-bottom:12px;overflow:hidden;transition:box-shadow .3s var(--ease)}
+.faq details:last-child{border-bottom:0}
+.faq summary{padding:20px 24px;font-size:20px;gap:var(--s3)}
+.faq details[open]{box-shadow:0 10px 30px rgba(22,22,22,.07)}
+.faq details[open] summary{background:var(--action);color:var(--ink)}
+.faq details[open] summary::after{color:var(--ink)}
+.faq p{padding:0 24px 22px}
+.seccion--blanca .faq details{background:var(--paper)}
+.seccion--blanca .faq details[open] summary{background:var(--action)}
+
+/* 6 · CABECERA transparente sobre el hero, sólida al bajar */
+.cabecera{background:transparent;border-bottom-color:transparent;transition:background .35s var(--ease),border-color .35s var(--ease)}
+.cabecera--fija{background:var(--paper);border-bottom-color:var(--line);box-shadow:0 6px 24px rgba(22,22,22,.07)}
+body:has(.hero) .cabecera{position:fixed;left:0;right:0;top:0}
+body:has(.hero) .cabecera .menu a,body:has(.hero) .cabecera__logo{color:#fff}
+body:has(.hero) .cabecera .menu a::after{background:#fff}
+body:has(.hero) .cabecera__logo img{filter:brightness(0) invert(1)}
+.cabecera--fija .menu a,.cabecera--fija .cabecera__logo{color:var(--ink) !important}
+.cabecera--fija .menu a::after{background:var(--ink) !important}
+.cabecera--fija .cabecera__logo img{filter:none !important}
+body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
+@media (max-width:768px){
+  .cabecera .btn::after{display:none}
+  .cabecera .btn{padding-inline:20px}
+  .btn{padding-left:20px}
+}
