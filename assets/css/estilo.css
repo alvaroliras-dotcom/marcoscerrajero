@@ -474,7 +474,7 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .seccion--tinta,.banda{position:relative;isolation:isolate;overflow:hidden}
 .seccion--tinta::before,.banda::before{content:"";position:absolute;inset:0;z-index:-1;
   background:
-    radial-gradient(760px 420px at 6% -10%, rgba(242,183,5,.16), transparent 62%),
+    radial-gradient(700px 380px at 6% -12%, rgba(242,183,5,.11), transparent 60%),
     radial-gradient(620px 520px at 104% 108%, rgba(242,183,5,.07), transparent 60%)}
 .seccion--tinta::after{content:"";position:absolute;z-index:-1;pointer-events:none;
   right:24px;bottom:-10px;width:400px;height:250px;opacity:.055;
@@ -519,3 +519,70 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .tarjeta{display:flex;flex-direction:column;justify-content:flex-end;padding-top:var(--s6)}
 .tarjeta__mas svg{width:16px;height:16px;fill:currentColor;transition:transform .4s var(--ease)}
 .tarjeta:hover .tarjeta__mas svg{transform:translateX(6px)}
+
+/* --- OPINIONES a lo grande: tres tarjetas limpias, una destacada,
+       y cambio de color al pasar por encima (gesto de Arctiq) ------ */
+.opiniones__cab{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s5);flex-wrap:wrap}
+.opiniones__cab h2{max-width:22ch}
+.resenas{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5);align-items:stretch}
+.resena{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-card);padding:var(--s4);color:var(--ink);
+  transition:background .45s var(--ease),border-color .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease)}
+.resena__estrellas{color:var(--action);letter-spacing:3px;font-size:18px;margin:0 0 14px}
+.resena__servicio{font:600 15px/1.3 var(--font-body);color:var(--steel-txt);margin:0 0 14px}
+.resena blockquote{margin:0;font-size:16.5px;line-height:1.6;color:var(--steel-txt);flex:1}
+.resena__pie{display:flex;align-items:center;gap:12px;margin-top:var(--s4);
+  padding-top:var(--s3);border-top:1px solid var(--line)}
+.resena__ini{width:44px;height:44px;flex:none;border-radius:50%;background:var(--ink);color:#fff;
+  display:grid;place-items:center;font:700 16px/1 var(--font-head);transition:background .45s var(--ease),color .45s var(--ease)}
+.resena__pie b{display:block;font:700 18px/1.2 var(--font-head)}
+.resena__pie span span,.resena__pie > span:last-child{font-size:14.5px;color:var(--steel-txt)}
+/* la destacada y el hover comparten tratamiento */
+.resena--destacada,.resena:hover{background:var(--action);border-color:var(--action);transform:translateY(-4px);
+  box-shadow:0 18px 46px rgba(22,22,22,.12)}
+.resena--destacada blockquote,.resena:hover blockquote,
+.resena--destacada .resena__servicio,.resena:hover .resena__servicio,
+.resena--destacada .resena__pie > span:last-child,.resena:hover .resena__pie > span:last-child{color:rgba(22,22,22,.72)}
+.resena--destacada .resena__estrellas,.resena:hover .resena__estrellas{color:var(--ink)}
+.resena--destacada .resena__pie,.resena:hover .resena__pie{border-top-color:rgba(22,22,22,.22)}
+.resena--destacada .resena__ini,.resena:hover .resena__ini{background:var(--ink);color:var(--action)}
+.opiniones__pie{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+  margin-top:var(--s5);font-size:16px;color:var(--steel-txt);text-align:center}
+.opiniones__nota{display:inline-flex;align-items:center;gap:8px;background:var(--surface);
+  border:1px solid var(--line);border-radius:50px;padding:8px 16px}
+.opiniones__nota b{font:700 22px/1 var(--font-head);color:var(--ink)}
+.opiniones__pie a{color:var(--ink);font-weight:600}
+@media (max-width:992px){ .resenas{grid-template-columns:1fr} }
+
+/* --- FAQ sobre tinta, con tarjeta de contacto e insignia circular --- */
+.seccion--tinta .faq details{background:var(--surface)}
+.seccion--tinta .faq-intro__txt{color:var(--steel-l)}
+.faq summary::after{content:"";width:36px;height:36px;flex:none;border-radius:50%;
+  background:var(--action);
+  -webkit-mask:var(--fx-mas) center/15px 15px no-repeat;mask:var(--fx-mas) center/15px 15px no-repeat;
+  transition:transform .35s var(--ease),background .35s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg);background:var(--ink)}
+:root{--fx-mas:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M11 5h2v14h-2z'/%3E%3Cpath fill='%23000' d='M5 11h14v2H5z'/%3E%3C/svg%3E")}
+/* la insignia se recorta con máscara, así que el círculo se pinta aparte */
+.faq summary{position:relative}
+.faq summary::before{content:"";position:absolute;right:24px;top:50%;width:36px;height:36px;
+  margin-top:-18px;border-radius:50%;background:rgba(242,183,5,.16);transition:background .35s var(--ease)}
+.faq details[open] summary::before{background:rgba(22,22,22,.12)}
+
+.faq-contacto{display:grid;gap:2px;background:var(--action);border-radius:var(--r-card);
+  padding:var(--s4);margin-top:var(--s3)}
+.faq-contacto__fila{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink);
+  padding-block:14px}
+.faq-contacto__fila + .faq-contacto__fila{border-top:1px solid rgba(22,22,22,.2)}
+.faq-contacto__ico{width:48px;height:48px;flex:none;border-radius:50%;background:var(--surface);
+  display:grid;place-items:center;transition:transform .4s var(--ease)}
+.faq-contacto__ico svg{width:20px;height:20px;fill:var(--ink)}
+.faq-contacto__fila:hover .faq-contacto__ico{transform:translateY(-3px)}
+.faq-contacto__fila b{display:block;font:400 14.5px/1.3 var(--font-body);color:rgba(22,22,22,.7)}
+.faq-contacto__fila > span:last-child{font:700 21px/1.25 var(--font-head)}
+/* dentro de una sección en tinta, las tarjetas de FAQ son claras:
+   el texto tiene que volver a tinta, no heredar el blanco */
+.seccion--tinta .faq summary{color:var(--ink)}
+.seccion--tinta .faq details[open] summary{color:var(--ink)}
+.seccion--tinta .faq p{color:var(--steel-txt)}
+.seccion--tinta .faq a{color:var(--ink)}

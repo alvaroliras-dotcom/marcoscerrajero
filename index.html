@@ -235,28 +235,50 @@
   </section>
 
   <!-- OPINIONES -->
-  <section class="seccion seccion--tinta">
+  <section class="seccion seccion--blanca">
     <div class="contenedor">
-      <div class="opiniones">
+      <div class="opiniones__cab">
         <div>
           <p class="antetitulo">Opiniones de clientes</p>
-          <h2>Lo que dicen de nuestros servicios</h2>
-          <div class="nota" style="margin-top:var(--s4)">
-            <b>4,9</b>
-            <span><span class="estrellas" aria-hidden="true">★★★★★</span><br>Más de 180 opiniones en Google</span>
-          </div>
-          <p style="color:#DCD8D1;margin-top:var(--s3);max-width:46ch">De clientes que nos llamaron por una urgencia, una cerradura o una reja y se tomaron un minuto en contarlo.</p>
-          <p style="margin-top:var(--s4)"><a class="btn btn--linea" href="https://www.google.com/search?q=Marcos+Cerrajeros+Alcorc%C3%B3n" rel="noopener">Ver las opiniones en Google</a></p>
+          <h2>Lo que dicen de <span class="destaca">nuestros servicios</span></h2>
         </div>
-        <div class="bloque-pendiente">
-          <p class="etiqueta-pendiente">Pendiente · tres reseñas reales de la ficha de Google (tarea 37)</p>
-          <div class="resenas">
-            <blockquote class="resena">«Texto de la reseña real, pendiente de elegir entre las 180 de la ficha.»<cite>Nombre del cliente · Google</cite></blockquote>
-            <blockquote class="resena">«Texto de la reseña real, pendiente de elegir entre las 180 de la ficha.»<cite>Nombre del cliente · Google</cite></blockquote>
-            <blockquote class="resena">«Texto de la reseña real, pendiente de elegir entre las 180 de la ficha.»<cite>Nombre del cliente · Google</cite></blockquote>
-          </div>
-        </div>
+        <a class="btn btn--tinta" data-cta="google-opiniones" href="https://www.google.com/search?q=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">Ver todas las opiniones</a>
       </div>
+
+      <div class="resenas pendiente pendiente--arriba" data-pendiente="Pendiente: elegir tres reseñas reales de la ficha (tarea 37)">
+        <article class="resena">
+          <p class="resena__estrellas" aria-label="5 estrellas">★★★★★</p>
+          <p class="resena__servicio">Apertura de puertas · Parque Lisboa</p>
+          <blockquote>«Texto de la reseña real, pendiente de elegir entre las más de 180 de la ficha de Google. Va aquí completa, tal y como la escribió el cliente, sin corregirla.»</blockquote>
+          <div class="resena__pie">
+            <span class="resena__ini" aria-hidden="true">MC</span>
+            <span><b>Nombre del cliente</b>Cliente en Alcorcón</span>
+          </div>
+        </article>
+        <article class="resena resena--destacada">
+          <p class="resena__estrellas" aria-label="5 estrellas">★★★★★</p>
+          <p class="resena__servicio">Cambio de cerradura · Ensanche Sur</p>
+          <blockquote>«Texto de la reseña real, pendiente de elegir entre las más de 180 de la ficha de Google. Va aquí completa, tal y como la escribió el cliente, sin corregirla.»</blockquote>
+          <div class="resena__pie">
+            <span class="resena__ini" aria-hidden="true">MC</span>
+            <span><b>Nombre del cliente</b>Cliente en Alcorcón</span>
+          </div>
+        </article>
+        <article class="resena">
+          <p class="resena__estrellas" aria-label="5 estrellas">★★★★★</p>
+          <p class="resena__servicio">Rejas a medida · Campodón</p>
+          <blockquote>«Texto de la reseña real, pendiente de elegir entre las más de 180 de la ficha de Google. Va aquí completa, tal y como la escribió el cliente, sin corregirla.»</blockquote>
+          <div class="resena__pie">
+            <span class="resena__ini" aria-hidden="true">MC</span>
+            <span><b>Nombre del cliente</b>Cliente en Alcorcón</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="opiniones__pie">
+        <span class="opiniones__nota"><b>4,9</b> <span class="estrellas" aria-hidden="true">★★★★★</span></span>
+        Más de 180 opiniones de vecinos de Alcorcón que nos llamaron por una urgencia, una cerradura o una reja — <a data-cta="google-opiniones-pie" href="https://www.google.com/search?q=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">verlas en Google</a>
+      </p>
     </div>
   </section>
 
@@ -293,13 +315,22 @@
   </section>
 
   <!-- FAQ -->
-  <section class="seccion">
+  <section class="seccion seccion--tinta">
     <div class="contenedor faq-rejilla">
       <div class="faq-intro">
         <p class="antetitulo">Preguntas frecuentes</p>
         <h2>Lo que más nos preguntan</h2>
         <p class="faq-intro__txt">Son las dudas que más nos plantean por teléfono. Si la suya no está aquí, llámenos y se la resolvemos en un minuto, sin compromiso.</p>
-        <a class="btn btn--tinta" data-cta="tel-faq" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a>
+        <div class="faq-contacto">
+          <a class="faq-contacto__fila" data-cta="tel-faq" href="tel:+34663250778">
+            <span class="faq-contacto__ico"><svg aria-hidden="true"><use href="#i-tel"></use></svg></span>
+            <span><b>Llámenos al</b>663 250 778</span>
+          </a>
+          <a class="faq-contacto__fila" data-cta="wa-faq" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener">
+            <span class="faq-contacto__ico"><svg aria-hidden="true"><use href="#i-wa"></use></svg></span>
+            <span><b>O escríbanos</b>por WhatsApp</span>
+          </a>
+        </div>
       </div>
       <div class="faq">
         <details open>
