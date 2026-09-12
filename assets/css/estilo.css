@@ -586,3 +586,37 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .seccion--tinta .faq details[open] summary{color:var(--ink)}
 .seccion--tinta .faq p{color:var(--steel-txt)}
 .seccion--tinta .faq a{color:var(--ink)}
+
+/* ==============================================================
+   CAPA DE MOVIMIENTO (gyf-fx)
+   Nada de esto se aplica sin JS: la clase .fx-js la pone el script.
+   Con prefers-reduced-motion todo queda quieto y visible.
+   ============================================================== */
+.fx-js .fx-entra{opacity:0;transform:translateY(22px);
+  transition:opacity .7s var(--ease) var(--fx-esp,0ms),transform .7s var(--ease) var(--fx-esp,0ms)}
+.fx-js .fx-entra.fx-dentro{opacity:1;transform:none}
+.fx-quieto .fx-entra{opacity:1 !important;transform:none !important;transition:none !important}
+
+/* el hero entra al cargar, no al hacer scroll */
+.fx-js .hero__caja > *,.fx-js .hero__tarjeta{animation:fx-sube .8s var(--ease) both}
+.fx-js .hero__caja > *:nth-child(2){animation-delay:.06s}
+.fx-js .hero__caja > *:nth-child(3){animation-delay:.12s}
+.fx-js .hero__caja > *:nth-child(4){animation-delay:.18s}
+.fx-js .hero__caja > *:nth-child(5){animation-delay:.24s}
+.fx-js .hero__tarjeta{animation-delay:.2s}
+@keyframes fx-sube{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.fx-quieto .hero__caja > *,.fx-quieto .hero__tarjeta{animation:none}
+
+/* el parallax necesita que la foto pueda salirse por arriba */
+.fx-js .hero{overflow:hidden}
+.fx-js .hero__foto{will-change:transform}
+
+/* acordeón: la altura se anima desde JS */
+.faq__cuerpo{overflow:hidden;transition:height .42s var(--ease)}
+.fx-quieto .faq__cuerpo{transition:none}
+
+/* barra de progreso de lectura, fina, bajo la cabecera */
+.fx-progreso{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;
+  background:var(--action);transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .12s linear;pointer-events:none}
+.fx-quieto .fx-progreso{display:none}
