@@ -177,7 +177,7 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 
   /* Entrada escalonada de cada fila */
   html.fx-js:not(.fx-quieto) .menu[data-abierto] .menu__lista > li{
-    animation:menu-entra .42s var(--ease) both;animation-delay:calc(var(--i,0) * 45ms)}
+    animation:menu-entra .42s var(--ease) backwards;animation-delay:calc(var(--i,0) * 45ms)}
 
   /* Con el panel abierto la cabecera se vuelve sólida y oscura */
   .cabecera[data-menu]{z-index:60;background:var(--ink);border-bottom-color:rgba(255,255,255,.13)}
@@ -1056,3 +1056,62 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .bloqueado__aviso{display:grid;gap:12px;justify-items:start;max-width:48ch}
 .bloqueado__aviso p{font-size:16px;margin:0}
 .mapa:not([data-bloqueado]) .bloqueado__aviso{display:none}
+
+/* ===============================================================
+   BLINDAJE DEL TEXTO CLARO SOBRE FONDO OSCURO
+   ---------------------------------------------------------------
+   En un Android concreto las letras del menú no se pintan: el texto
+   está (al pulsarlo navega) pero no se ve. Tres causas posibles y
+   aquí van tapadas las tres, porque no se puede reproducir.
+
+   1. Alguien deja el relleno del texto en transparente. «color» no
+      manda si «-webkit-text-fill-color» dice otra cosa, así que se
+      declaran los dos.
+   2. El tema oscuro automático de Chrome. No basta con declarar
+      color-scheme: lo que de verdad hace que se aparte es que la
+      página demuestre que sabe manejar el modo oscuro, o sea, tener
+      un bloque @media (prefers-color-scheme: dark) de verdad. El de
+      abajo no cambia ni un color: solo lo dice.
+   3. Un contraste forzado del sistema. Para ese caso se usan las
+      palabras reservadas de forced-colors, que son las únicas que
+      ese modo respeta.
+   =============================================================== */
+
+/* 1 · el relleno del texto, declarado a mano donde va claro sobre oscuro */
+.menu__lista > li > a,
+.menu__sub a,
+.menu__solo-movil a,
+.hero h1, .hero p, .hero__caja,
+.seccion--tinta, .seccion--tinta h2, .seccion--tinta h3, .seccion--tinta p,
+.pie, .pie h4, .pie a, .pie li{-webkit-text-fill-color:currentColor}
+html.fx-js .menu[data-abierto] .menu__lista > li > a,
+html.fx-js .menu[data-abierto] .menu__sub a,
+html.fx-js .menu[data-abierto] .menu__solo-movil a{
+  color:#fff;-webkit-text-fill-color:#fff;opacity:1}
+html.fx-js .menu[data-abierto] .menu__jefe{
+  color:var(--action);-webkit-text-fill-color:var(--action);opacity:1}
+
+/* 2 · «esta web ya sabe de modo oscuro, no me la toques» */
+@media (prefers-color-scheme: dark){
+  html.fx-js .menu[data-abierto] .menu__lista > li > a,
+  html.fx-js .menu[data-abierto] .menu__sub a,
+  html.fx-js .menu[data-abierto] .menu__solo-movil a{
+    color:#fff;-webkit-text-fill-color:#fff}
+  html.fx-js .menu[data-abierto] .menu__jefe{
+    color:var(--action);-webkit-text-fill-color:var(--action)}
+  html.fx-js .menu{background:var(--ink)}
+  .pie{background:var(--ink);color:var(--steel-l)}
+  .seccion--tinta{background:var(--ink);color:#fff}
+}
+
+/* 3 · si el sistema fuerza su propia paleta, que use la suya y se lea */
+@media (forced-colors: active){
+  html.fx-js .menu{background:Canvas;forced-color-adjust:none;
+    background-color:Canvas;color:CanvasText}
+  html.fx-js .menu[data-abierto] .menu__lista > li > a,
+  html.fx-js .menu[data-abierto] .menu__sub a,
+  html.fx-js .menu[data-abierto] .menu__solo-movil a,
+  html.fx-js .menu[data-abierto] .menu__jefe{
+    color:LinkText;-webkit-text-fill-color:LinkText}
+  .menu__lista > li,.menu__sub li{border-top-color:CanvasText}
+}
