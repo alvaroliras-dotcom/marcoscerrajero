@@ -354,7 +354,15 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 
 /* --- Pie ---------------------------------------------------- */
 .pie{background:var(--ink);color:var(--steel-l);padding-block:var(--s6) var(--s4);border-top:1px solid rgba(255,255,255,.1)}
-.pie__cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s5)}
+.pie__cols{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s5) var(--s4)}
+/* Seis sextos: marca 2, servicios 2 (en dos columnas), zonas 1 y contacto 1.
+   Con doce servicios, una sola columna dejaba el pie descolgado por la izquierda. */
+.pie__cols > div:nth-child(1),
+.pie__cols > div:nth-child(2){grid-column:span 2}
+/* Dos columnas de texto corrido, no rejilla: así un servicio de dos líneas no
+   abre un hueco en la columna de al lado. */
+.pie__cols > div:nth-child(2) ul{columns:2;column-gap:var(--s4)}
+.pie__cols > div:nth-child(2) li{break-inside:avoid}
 .pie h4{font:600 19px/1.2 var(--font-head);color:#fff;margin-bottom:var(--s3)}
 .pie li{margin-bottom:10px;font-size:16px}
 .pie a{text-decoration:none;display:inline-block;transition:transform .4s var(--ease),color .4s var(--ease)}
@@ -363,8 +371,17 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 .pie__legal{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
   margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid rgba(255,255,255,.1);font-size:14.5px}
 .pie__legal a:hover{transform:none}
-@media (max-width:992px){ .pie__cols{grid-template-columns:1fr 1fr} }
-@media (max-width:576px){ .pie__cols{grid-template-columns:1fr} }
+@media (max-width:992px){
+  .pie__cols{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pie__cols > div:nth-child(1){grid-column:span 4}
+  .pie__cols > div:nth-child(2){grid-column:span 4}
+}
+@media (max-width:576px){
+  .pie__cols{grid-template-columns:1fr}
+  .pie__cols > div:nth-child(1),
+  .pie__cols > div:nth-child(2){grid-column:span 1}
+  .pie__cols > div:nth-child(2) ul{columns:2}
+}
 
 /* --- Barra de llamada en móvil ------------------------------ */
 .llamar-movil{display:none}
