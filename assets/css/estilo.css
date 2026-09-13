@@ -127,13 +127,18 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
     background:var(--fx-puntos) 0 0/22px 22px,
       radial-gradient(120% 60% at 100% 0%,rgba(242,183,5,.20),transparent 62%)}
   html.fx-js .menu[data-abierto]{opacity:1;visibility:visible;transform:translateY(0)}
+  /* El menú tiene catorce entradas y no cabe de una vez: sin esto no hay nada
+     que diga que sigue habiendo lista debajo, y Contacto se queda sin ver. */
+  html.fx-js .menu[data-abierto]::after{content:"";position:fixed;left:0;right:0;bottom:0;
+    height:96px;z-index:1;pointer-events:none;
+    background:linear-gradient(to top,var(--ink) 24%,rgba(22,22,22,0))}
   html.menu-abierto,html.menu-abierto body{overflow:hidden}
 
   .menu__lista{display:block;max-width:560px;margin-inline:auto}
   .menu__lista > li{border-top:1px solid rgba(255,255,255,.13)}
   .menu__lista > li:first-child{border-top:0}
   .menu__lista > li > a{display:flex;align-items:center;justify-content:space-between;
-    min-height:60px;padding:6px 2px;font-size:20px;color:#fff}
+    min-height:52px;padding:6px 2px;font-size:19px;color:#fff}
   .menu__lista > li > a::after{content:"";display:block;position:static;width:8px;height:14px;flex:none;
     background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath d='M1 1l6 6-6 6' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/8px 14px no-repeat;opacity:.42;transition:opacity .25s var(--ease),transform .25s var(--ease)}
   .menu__lista > li > a:hover::after{opacity:1;transform:translateX(3px)}
@@ -141,8 +146,12 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 
   /* El rótulo del grupo deja de ser botón: en el panel todo está desplegado */
   .menu__jefe{pointer-events:none;width:100%;justify-content:flex-start;
-    margin:var(--s4) 0 12px;padding:0;font:600 13px/1 var(--font-body);
+    margin:26px 0 10px;padding:0;font:600 13px/1 var(--font-body);
     letter-spacing:.15em;text-transform:uppercase;color:var(--action)}
+  /* El amarillo del rótulo lo pisaba «body:has(.hero) .cabecera .menu__jefe{color:#fff}»,
+     que está pensada para el menú de escritorio sobre la foto. Dentro del panel
+     los rótulos salían blancos, igual que los enlaces, y las secciones se perdían. */
+  html.fx-js .menu[data-abierto] .menu__jefe{color:var(--action)}
   .menu__jefe::after{display:none}
   .menu__jefe::before{content:"";width:22px;height:22px;flex:none;border-radius:50%;
     background:var(--action) var(--fx-simbolo) center/11px 11px no-repeat}
@@ -153,7 +162,7 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
   .menu__sub li{border-top:1px solid rgba(255,255,255,.13)}
   .menu__sub li:first-child{border-top:0}
   .menu__sub a{display:flex;align-items:center;justify-content:space-between;
-    min-height:58px;padding:6px 2px;border-radius:0;font-size:19px;color:#fff}
+    min-height:52px;padding:6px 2px;border-radius:0;font-size:18px;color:#fff}
   .menu__sub a::after{content:"";display:block;position:static;width:8px;height:14px;flex:none;
     background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath d='M1 1l6 6-6 6' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/8px 14px no-repeat;opacity:.42;
     transition:opacity .25s var(--ease),transform .25s var(--ease),background-image .25s}
@@ -835,7 +844,13 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .formulario--claro .acepto{margin-bottom:16px;font-size:13.5px}
 .formulario--claro .btn{height:48px}
 .hero__tarjeta .hero__tarjeta-pie{margin-top:16px;font-size:14px}
-.hero__rejilla{grid-template-columns:minmax(0,1.3fr) minmax(340px,400px)}
+/* OJO: esto SOLO vale donde el hero va a dos columnas. Sin el media query
+   pisaba a la regla de móvil (.hero__rejilla{grid-template-columns:1fr}),
+   exigía 340px para la tarjeta en un hueco de 342 y dejaba la columna del
+   texto en 0px: cada palabra caía en una línea. */
+@media (min-width:1181px){
+  .hero__rejilla{grid-template-columns:minmax(0,1.3fr) minmax(340px,400px)}
+}
 
 /* --- Movimiento de la banda de cifras -------------------------- */
 .fx-js .cifras li{position:relative}

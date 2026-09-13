@@ -71,14 +71,40 @@
   if (!('IntersectionObserver' in window) || quieto) {
     entran.forEach(function (el) { el.classList.add('fx-dentro'); });
   } else {
-    var obs = new IntersectionObserver(function (filas) {
-      filas.forEach(function (f) {
-        if (!f.isIntersecting) return;
-        f.target.classList.add('fx-dentro');
-        obs.unobserve(f.target);
+    function alEntrar(obs) {
+      return function (filas) {
+        filas.forEach(function (f) {
+          if (!f.isIntersecting) return;
+          f.target.classList.add('fx-dentro');
+          obs.unobserve(f.target);
+        });
+      };
+    }
+    /* Dos observadores, y no es capricho.
+       Un bloque más alto que la pantalla NUNCA puede llegar a tener el 12 %
+       de su superficie a la vista, así que con un umbral de 0.12 se quedaría
+       invisible para siempre. Es justo lo que pasó con el texto de las
+       páginas legales. Todo lo que no cabe en la pantalla entra con umbral 0. */
+    var obs = new IntersectionObserver(function (f) { alEntrar(obs)(f); },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    var obsAlto = new IntersectionObserver(function (f) { alEntrar(obsAlto)(f); },
+      { rootMargin: '0px 0px -5% 0px', threshold: 0 });
+
+    var limite = window.innerHeight * 0.7;
+    entran.forEach(function (el) {
+      (el.getBoundingClientRect().height > limite ? obsAlto : obs).observe(el);
+    });
+
+    /* Red de seguridad: pase lo que pase con los observadores, a los dos
+       segundos nada puede seguir invisible. Más vale una entrada sin gracia
+       que un texto que no se lee. */
+    setTimeout(function () {
+      entran.forEach(function (el) {
+        if (el.classList.contains('fx-dentro')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('fx-dentro');
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-    entran.forEach(function (el) { obs.observe(el); });
+    }, 2000);
   }
 
   /* --- 3 · contadores: la nota y las cifras suben al aparecer ----- */
