@@ -1195,9 +1195,11 @@ html.fx-js .menu[data-abierto] .menu__jefe{
    es horizontal y Contacto va al final, que es su sitio.
    =============================================================== */
 @media (max-width:1100px){
-  .menu__lista{display:flex;flex-direction:column}
+  /* En columna hay que deshacer lo que el menú de escritorio deja puesto:
+     align-items:center centraba cada entrada y gap separaba las filas.
+     Todo a bandera izquierda, que es como tiene que leerse una lista. */
+  .menu__lista{display:flex;flex-direction:column;align-items:stretch;gap:0}
   .menu__lista > li{order:2}                  /* Contacto y cualquier suelto */
-  .menu__lista > li:first-child{order:1}      /* Inicio, el primero */
   .menu__lista > .menu__solo-movil{order:3}   /* Sobre mí */
   .menu__lista > .menu__grupo{order:4}        /* los servicios, debajo */
   /* raya que separa «a dónde voy» de «qué hacéis» */
