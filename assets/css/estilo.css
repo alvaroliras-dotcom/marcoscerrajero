@@ -366,7 +366,9 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 .pie h4{font:600 19px/1.2 var(--font-head);color:#fff;margin-bottom:var(--s3)}
 .pie li{margin-bottom:10px;font-size:16px}
 .pie a{text-decoration:none;display:inline-block;transition:transform .4s var(--ease),color .4s var(--ease)}
-.pie a:hover{color:#fff;transform:translateX(6px)}
+.pie__dest{color:#fff;font-weight:600}
+.pie a:hover,.pie a:focus-visible{color:var(--action);transform:translateX(6px)}
+/* el icono de WhatsApp conserva su verde de marca aunque el texto se ponga naranja */
 .pie__logo{height:52px;width:auto;margin-bottom:var(--s3)}
 .pie__legal{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
   margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid rgba(255,255,255,.1);font-size:14.5px}
@@ -891,6 +893,15 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .legal code{background:rgba(0,0,0,.08);padding:2px 6px;border-radius:5px;font-size:.92em}
 .migas--claras a{color:var(--steel-txt)}
 .legal,.legal p,.legal code{overflow-wrap:anywhere}
+/* texto legal largo: encabezados más contenidos y listas legibles */
+.legal h2{font-size:clamp(21px,2.4vw,26px);line-height:1.25;
+  padding-top:var(--s3);border-top:1px solid var(--line)}
+.legal h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.legal__lista{margin:0 0 var(--s3);padding-left:var(--s3);list-style:disc}
+.legal__lista li{margin-bottom:10px;font-size:17px}
+.legal a{color:inherit;text-underline-offset:3px}
+.legal a:hover{color:var(--steel-txt)}
+.legal .btn{text-decoration:none}
 
 /* Pantallas muy estrechas: en la cabecera solo caben logo y menú.
    El teléfono no se pierde: está en la barra fija de llamada y en el panel. */
