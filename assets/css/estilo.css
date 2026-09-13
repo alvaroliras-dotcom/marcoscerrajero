@@ -1184,3 +1184,43 @@ html.fx-js .menu[data-abierto] .menu__jefe{
   .carrusel__nav{padding-inline:16px}
   .resena{padding:20px}
 }
+
+/* ===============================================================
+   ORDEN DEL MENÚ EN MÓVIL
+   ---------------------------------------------------------------
+   Contacto y Sobre mí venían detrás del grupo «Rejas y vallas» y
+   parecía que colgaban de él, aunque fueran en letra más gorda.
+   En móvil suben arriba con Inicio: primero a dónde ir, después
+   los servicios. En escritorio no cambia nada, porque allí el menú
+   es horizontal y Contacto va al final, que es su sitio.
+   =============================================================== */
+@media (max-width:1100px){
+  .menu__lista{display:flex;flex-direction:column}
+  .menu__lista > li{order:2}                  /* Contacto y cualquier suelto */
+  .menu__lista > li:first-child{order:1}      /* Inicio, el primero */
+  .menu__lista > .menu__solo-movil{order:3}   /* Sobre mí */
+  .menu__lista > .menu__grupo{order:4}        /* los servicios, debajo */
+  /* raya que separa «a dónde voy» de «qué hacéis» */
+  .menu__lista > .menu__solo-movil{border-bottom:1px solid rgba(255,255,255,.22)}
+}
+
+/* ===============================================================
+   EL FALDÓN DE LA CABECERA CON EL MENÚ ABIERTO
+   ---------------------------------------------------------------
+   Al desplazar el panel, las entradas pasaban por encima del logo
+   y de la X. Poner fondo a la cabecera no servía de nada: el <nav>
+   del menú es HIJO de la cabecera, y un hijo siempre pinta por
+   encima del fondo de su padre, valga lo que valga el z-index.
+   La solución es una capa propia dentro de la cabecera, por encima
+   del panel (45) y por debajo del logo y la X (50).
+   =============================================================== */
+@media (max-width:1100px){
+  .cabecera[data-menu]::before{content:"";position:absolute;inset:0;z-index:47;
+    background:var(--ink);
+    border-bottom:1px solid rgba(255,255,255,.16);
+    box-shadow:0 10px 24px -12px rgba(0,0,0,.9)}
+}
+
+/* la firma de la agencia: lo último de la página, centrada y discreta */
+.pie__firma{margin:var(--s3) 0 0;text-align:center;font-size:13.5px;color:var(--steel)}
+.pie__firma a{text-decoration:underline;text-underline-offset:3px}
