@@ -9,6 +9,11 @@
 
 /* --- Variables ---------------------------------------------- */
 :root{
+  /* Declarar el esquema es lo que aparta al tema oscuro automático de Chrome
+     en Android, que reescribe los colores de las webs que no lo declaran.
+     Sobre el panel del menú, ya oscuro de suyo, dejaba el texto oscuro sobre
+     oscuro y desaparecía. La web es de fondo claro y se pinta ella sola. */
+  color-scheme:only light;
   --ink:#161616; --paper:#F6F3EE; --surface:#fff;
   --steel:#7C838A; --steel-txt:#666D73; --steel-l:#B4B9BE;
   --line:#E6E3DE; --action:#F2B705; --on-action:#161616;
@@ -197,7 +202,9 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 .hero p{color:#E7E3DC;margin-bottom:var(--s2)}
 .hero__entrada{font-size:clamp(18px,1.35vw,20px);line-height:1.55}
 .hero__pill{display:inline-block;background:var(--action);color:var(--on-action);
-  font:600 15px/1 var(--font-body);padding:9px 14px;border-radius:50px;margin-bottom:var(--s3)}
+  font:600 15px/1.35 var(--font-body);padding:8px 16px;border-radius:50px;margin-bottom:var(--s3)}
+/* En móvil la píldora parte en dos líneas y con interlineado 1 se tocaban
+   entre sí y con el borde. */
 .hero__acciones{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s4)}
 .hero__sello{display:flex;align-items:center;gap:12px;margin-top:var(--s4);font-size:15.5px;color:#E7E3DC}
 .hero__sello b{font:600 24px/1 var(--font-head);color:#fff}
@@ -828,6 +835,31 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 /* el hero de servicio lleva tarjeta encima: el velo tiene que sostenerla */
 .hero--servicio::before{background:linear-gradient(100deg,rgba(22,22,22,.96) 6%,rgba(22,22,22,.9) 44%,rgba(22,22,22,.74) 100%)}
 
+/* --- El velo del hero en móvil -------------------------------
+   Los dos velos de arriba van en 100deg: casi horizontales, oscuros a la
+   izquierda (donde va el texto en escritorio) y claros a la derecha (donde
+   respira la foto). En móvil el texto ocupa todo el ancho, así que toda la
+   pantalla se comía el extremo del 95% y la foto desaparecía: negro.
+   Aquí el velo se pone vertical: aguanta arriba, donde están el logo y el
+   texto, y se abre abajo, que es donde ya no hay nada escrito y la foto
+   puede verse. */
+@media (max-width:1100px){
+  .hero::before,
+  .hero--servicio::before{
+    background:linear-gradient(180deg,
+      rgba(22,22,22,.86) 0%,
+      rgba(22,22,22,.74) 40%,
+      rgba(22,22,22,.48) 74%,
+      rgba(22,22,22,.20) 100%)}
+  /* lo que asoma por debajo del velo, que se vea: la foto va oscura de suyo */
+  .hero__foto{filter:brightness(1.3) contrast(1.08)}
+  /* Los botones de línea son transparentes: con la foto ya visible detrás,
+     el texto blanco se quedaba en 2,4 de contraste. Se les pone suelo propio
+     para que no dependan de lo que haya en la fotografía. */
+  .hero .btn--linea,.hero .btn--wa{background:rgba(22,22,22,.62);
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+}
+
 /* --- La tarjeta del hero tiene que caber en la primera pantalla ---
    Menos campos (nombre y teléfono bastan, regla de Dani) y todo
    el espaciado interior apretado un punto.                        */
@@ -864,6 +896,31 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .fx-js .cifras li.fx-dentro .cifras__mas{opacity:1;transform:none}
 .fx-quieto .cifras li::before{transform:scaleY(1)}
 .fx-quieto .cifras__mas{opacity:1;transform:none}
+
+/* --- La banda de cifras en móvil ------------------------------
+   En una sola columna, alineadas a la izquierda, las cuatro cifras quedaban
+   descolgadas contra el borde. Centradas se equilibran. Y la rayita de la
+   izquierda, que en escritorio separa columnas, aquí pasa a ser una raya
+   corta centrada encima: sigue entrando con el mismo movimiento, pero en
+   horizontal. Va al final del archivo para ganarle a «.cifras li{justify-
+   content:start}», que está más arriba. */
+@media (max-width:520px){
+  .cifras{gap:var(--s5)}
+  /* Fuera la rejilla de dos columnas: con el pie ocupando las dos, las
+     columnas se estiraban y la unidad («+», «año») se iba lejos del número.
+     En bloque, número y unidad van pegados como una sola palabra. */
+  .cifras li{display:block;text-align:center;padding-top:var(--s3)}
+  .cifras b{display:inline}
+  .cifras__mas{display:inline-block;margin-left:5px;vertical-align:baseline}
+  .cifras li > span:last-child{display:block;margin-top:10px;margin-inline:auto}
+  .fx-js .cifras li::before{left:50%;right:auto;top:0;bottom:auto;
+    width:44px;height:1px;transform:translateX(-50%) scaleX(0);
+    transform-origin:50% 50%}
+  .fx-js .cifras li.fx-dentro::before{transform:translateX(-50%) scaleX(1)}
+  .fx-quieto .cifras li::before{transform:translateX(-50%) scaleX(1)}
+  /* la primera no necesita raya: no separa de nada */
+  .fx-js .cifras li:first-child{padding-top:0}
+}
 
 /* --- Pantallas estrechas: que nada empuje la página a lo ancho --- */
 @media (max-width:430px){
