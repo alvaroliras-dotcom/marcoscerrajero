@@ -923,3 +923,53 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
   body:has(.hero) .cabecera .menu .menu__sub a:hover,
   body:has(.hero) .cabecera .menu .menu__sub a[aria-current]{color:var(--on-action)}
 }
+
+/* ==============================================================
+   AVISO DE COOKIES
+   Tarjeta abajo a la derecha; en móvil, hoja por encima de la barra
+   de llamada. Aceptar y Denegar con el mismo peso: rechazar tiene
+   que costar lo mismo que aceptar.
+   ============================================================== */
+.ck{position:fixed;z-index:70;right:var(--gutter);bottom:var(--gutter);width:min(420px,calc(100vw - var(--gutter)*2));
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-card);
+  box-shadow:0 30px 70px rgba(22,22,22,.28);padding:var(--s4);
+  opacity:0;transform:translateY(16px);transition:opacity .35s var(--ease),transform .4s var(--ease)}
+.ck[data-visible]{opacity:1;transform:none}
+.ck h2{font-size:24px;line-height:1.15;margin-bottom:10px}
+.ck p{font-size:15.5px;line-height:1.55;color:var(--steel-txt)}
+.ck a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.ck__x{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;background:none;
+  font-size:24px;line-height:1;color:var(--steel-txt);cursor:pointer;border-radius:50%}
+.ck__x:hover{background:var(--paper);color:var(--ink)}
+.ck__botones{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:var(--s3)}
+.ck__botones .btn{flex:1 1 130px;height:46px;padding:0 18px;font-size:15px;justify-content:center}
+.ck__botones .btn::after{display:none}
+.ck__mas{flex:1 1 100%;background:none;border:0;padding:4px 0;cursor:pointer;
+  font:600 15px var(--font-body);color:var(--steel-txt);text-decoration:underline;text-underline-offset:3px}
+.ck__mas:hover{color:var(--ink)}
+.ck__detalle{margin-top:var(--s3);border-top:1px solid var(--line);padding-top:var(--s3);
+  max-height:40vh;overflow-y:auto}
+.ck__fila{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;
+  padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.ck__fila:last-child{border-bottom:0}
+.ck__fila input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--action);cursor:pointer}
+.ck__fila--fija{cursor:default;opacity:.75}
+.ck__fila--fija input{cursor:default}
+.ck__fila b{display:block;font-size:15.5px;margin-bottom:2px}
+.ck__fila span{font-size:14.5px;line-height:1.5;color:var(--steel-txt)}
+@media (max-width:768px){
+  .ck{right:10px;left:10px;bottom:calc(76px + env(safe-area-inset-bottom));width:auto;padding:var(--s3)}
+  .ck__detalle{max-height:34vh}
+}
+@media (prefers-reduced-motion:reduce){ .ck{transition:none;transform:none;opacity:1} }
+
+/* Hueco de un contenido de terceros todavía sin permiso */
+[data-bloqueado] iframe{display:none}
+.mapa[data-bloqueado]{display:grid;place-items:start;align-content:center;
+  min-height:320px;padding:clamp(24px,4vw,48px);
+  background:var(--fx-puntos) 0 0/22px 22px,
+    radial-gradient(90% 70% at 100% 0%,rgba(242,183,5,.22),transparent 60%),var(--paper)}
+.mapa[data-bloqueado] figcaption{display:none}  /* su enlace ya está en el aviso */
+.bloqueado__aviso{display:grid;gap:12px;justify-items:start;max-width:48ch}
+.bloqueado__aviso p{font-size:16px;margin:0}
+.mapa:not([data-bloqueado]) .bloqueado__aviso{display:none}
