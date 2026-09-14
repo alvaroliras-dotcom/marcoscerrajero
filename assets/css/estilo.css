@@ -24,9 +24,20 @@
   --section-y:88px;
   --r-btn:7px; --r-card:12px; --r-img:16px;
   --ease:cubic-bezier(.2,.6,.2,1);
+  /* Alto de la cabecera y del logotipo, juntos y en un solo sitio.
+     Van juntos porque el alto de la barra depende del logotipo: el logotipo
+     lleva dos líneas de texto («MARCOS» y, debajo, «CERRAJEROS» en letra
+     pequeña), y si la barra no crece con él la segunda línea se queda en
+     cuatro píxeles y no se lee. De este alto también cuelgan el hueco que el
+     hero deja por arriba y el que deja el panel del menú de móvil: si se
+     cambia aquí, se cambia en los tres a la vez. */
+  --logo-h:64px; --cabecera-h:92px;
 }
 @media (max-width:992px){ :root{ --section-y:64px } }
 @media (max-width:576px){ :root{ --section-y:48px } }
+/* Sin menú de escritorio sobra sitio a lo ancho, pero conviene bajar un punto
+   el alto de la barra: en un teléfono se lleva menos pantalla. */
+@media (max-width:1100px){ :root{ --logo-h:58px; --cabecera-h:86px } }
 
 /* --- Base --------------------------------------------------- */
 *,*::before,*::after{box-sizing:border-box}
@@ -69,9 +80,9 @@ ul{margin:0;padding:0;list-style:none}
 
 /* --- Cabecera ----------------------------------------------- */
 .cabecera{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line)}
-.cabecera__inner{display:flex;align-items:center;gap:var(--s4);min-height:76px}
+.cabecera__inner{display:flex;align-items:center;gap:var(--s4);min-height:var(--cabecera-h)}
 .cabecera__logo{display:block;flex:none}
-.cabecera__logo svg,.cabecera__logo img{height:44px;width:auto}
+.cabecera__logo svg,.cabecera__logo img{height:var(--logo-h);width:auto}
 .menu{margin-left:auto}
 .menu__lista{display:flex;gap:var(--s3);align-items:center}
 .menu a,.menu__jefe{position:relative;text-decoration:none;font:600 16px/1 var(--font-body);
@@ -134,7 +145,7 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
       radial-gradient(120% 60% at 100% 0%,rgba(242,183,5,.20),transparent 62%),
       var(--ink);
     color:#fff;overflow-y:auto;overscroll-behavior:contain;
-    padding:calc(76px + var(--s4)) var(--gutter) 130px;
+    padding:calc(var(--cabecera-h) + var(--s4)) var(--gutter) 130px;
     opacity:0;visibility:hidden;transform:translateY(-14px);pointer-events:none;
     transition:opacity .32s var(--ease),transform .38s var(--ease),visibility .32s}
   /* Cinturón del bug 1: cerrado no recibe pulsaciones, pase lo que pase con la
@@ -412,7 +423,7 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 .pie__dest{color:#fff;font-weight:600}
 .pie a:hover,.pie a:focus-visible{color:var(--action);transform:translateX(6px)}
 /* el icono de WhatsApp conserva su verde de marca aunque el texto se ponga naranja */
-.pie__logo{height:52px;width:auto;margin-bottom:var(--s3)}
+.pie__logo{height:72px;width:auto;margin-bottom:var(--s3)}
 .pie__legal{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
   margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid rgba(255,255,255,.1);font-size:14.5px}
 .pie__legal a:hover{transform:none}
@@ -617,7 +628,7 @@ body:has(.hero) .cabecera__logo img{filter:brightness(0) invert(1)}
 .cabecera--fija .menu__lista > li > a::after,
 .cabecera--fija .menu__jefe::after{background:var(--ink) !important}
 .cabecera--fija .cabecera__logo img{filter:none !important}
-body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
+body:has(.hero) .hero{padding-top:calc(var(--s6) + var(--cabecera-h))}
 @media (max-width:768px){
   .cabecera .btn::after{display:none}
   .cabecera .btn{padding-inline:20px}
@@ -953,7 +964,6 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 /* --- Pantallas estrechas: que nada empuje la página a lo ancho --- */
 @media (max-width:430px){
   .cabecera__inner{gap:var(--s2)}
-  .cabecera__logo svg,.cabecera__logo img{height:38px}
   .cabecera .btn{padding:0 6px 0 16px;font-size:15px;gap:8px}
   .ficha dl{grid-template-columns:minmax(0,1fr);gap:2px}
   .ficha dt{margin-top:10px}
@@ -1003,9 +1013,13 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 .legal a:hover{color:var(--steel-txt)}
 .legal .btn{text-decoration:none}
 
-/* Pantallas muy estrechas: en la cabecera solo caben logo y menú.
-   El teléfono no se pierde: está en la barra fija de llamada y en el panel. */
-@media (max-width:400px){
+/* En el teléfono, en la cabecera solo caben logotipo y menú, y el logotipo
+   manda: con el botón al lado no cabe a un tamaño en el que se lea
+   «CERRAJEROS». El teléfono no se pierde por quitarlo de aquí: desde 768px
+   para abajo hay una barra fija de llamada abajo del todo, siempre a la vista,
+   y el número está además dentro del panel del menú. Antes el corte estaba en
+   400px; sube a 480 porque el logotipo ha crecido. */
+@media (max-width:480px){
   .cabecera .btn{display:none}
   .hamburguesa{margin-left:auto}
 }
