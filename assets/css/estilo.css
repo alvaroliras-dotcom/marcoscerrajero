@@ -1355,3 +1355,54 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
   .seccion:not(.seccion--tinta):not(.seccion--franja):not(.seccion--cifras)::after{display:none}
   .seccion:not(.seccion--tinta):not(.seccion--blanca):not(.seccion--franja):not(.seccion--cifras):not(.seccion--mapa)::before{display:none}
 }
+
+/* ===============================================================
+   LOS BLOQUES DE SERVICIO DE LAS LANDINGS DE PUEBLO
+   ---------------------------------------------------------------
+   Seis bloques seguidos de texto y foto, alternando lado y fondo,
+   se leen como seis párrafos flotando. Faltaban dos cosas: que la
+   foto pareciera colocada y no pegada, y que se viera de un golpe
+   que son seis servicios y no un texto largo.
+
+   Dos piezas, las dos con material de la casa:
+   · una trama de puntos desplazada detrás de la foto, que le hace
+     de sombra y la asienta;
+   · el número del servicio en un disco ámbar delante del titular,
+     igual que los antetítulos llevan el símbolo de la marca.
+   =============================================================== */
+
+/* La trama detrás de la foto. Sin z-index negativo a propósito: en las
+   secciones blancas se colaría detrás del fondo y no se vería. */
+/* La trama NO puede colgar de `.texto-foto__img`: esa caja lleva
+   `overflow:hidden` para redondear la foto, y se la comía entera. Cuelga de
+   la rejilla, que no recorta, y asoma por la esquina de abajo de la foto. */
+.seccion--servicio .texto-foto{position:relative;isolation:isolate}
+.seccion--servicio .texto-foto > *{position:relative;z-index:1}
+.seccion--servicio .texto-foto::after{content:"";position:absolute;z-index:0;
+  pointer-events:none;right:-26px;bottom:-26px;width:32%;height:52%;
+  border-radius:var(--r-card);
+  /* los puntos solos, sobre blanco, casi no se ven: debajo va un velo
+     ámbar muy bajado de tono para que el panel exista de verdad */
+  background:var(--fx-puntos-claro) 0 0/18px 18px, rgba(242,183,5,.13)}
+.seccion--servicio .texto-foto--inv::after{right:auto;left:-26px}
+/* En cuanto la rejilla se apila, la foto ocupa todo el ancho del contenedor y
+   los -26px se salían de la pantalla: el barrido cazó 770 px en una de 768.
+   El corte va donde se apila la rejilla (992), no donde acaba el móvil. */
+@media (max-width:992px){
+  .seccion--servicio .texto-foto::after{right:-12px;bottom:-12px;width:46%;height:16%}
+  .seccion--servicio .texto-foto--inv::after{right:auto;left:-12px}
+}
+
+/* El número, en disco ámbar, delante del titular */
+.seccion--servicio .mostoles__h3[data-n]{display:flex;align-items:baseline;gap:14px}
+.seccion--servicio .mostoles__h3[data-n]::before{content:attr(data-n);flex:none;
+  align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;
+  background:var(--action);color:var(--on-action);
+  font:600 15px/1 var(--font-body);letter-spacing:.02em;
+  transform:translateY(2px)}
+
+@media (max-width:760px){
+  .seccion--servicio .mostoles__h3[data-n]{gap:11px}
+  .seccion--servicio .mostoles__h3[data-n]::before{width:30px;height:30px;font-size:14px}
+}
