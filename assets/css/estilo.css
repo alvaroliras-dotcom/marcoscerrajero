@@ -1300,3 +1300,23 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
   .seccion--cifras .cifras li:nth-child(-n+2){padding-top:0}
   html.fx-js .seccion--cifras .cifras li:nth-child(-n+2)::before{display:none}
 }
+
+/* ===============================================================
+   HERO CON RETRATO
+   ---------------------------------------------------------------
+   El velo del hero está pensado para fotos de objeto: oscurece de
+   izquierda a derecha y da igual lo que haya al fondo. Con una
+   persona no vale: en la página de Empresa, Marcos quedaba
+   convertido en una silueta y además tapado por la tarjeta.
+   Aquí el velo se abre por la derecha, que es donde está él, sin
+   tocar la parte izquierda, que es donde va el texto.
+   =============================================================== */
+.hero--retrato::before{
+  background:linear-gradient(100deg,rgba(22,22,22,.95) 8%,rgba(22,22,22,.84) 42%,rgba(22,22,22,.34) 100%)}
+
+/* En escritorio la foto se ve entera de ancho y el recorte es vertical, así
+   que esto solo actúa en móvil: allí se recorta por los lados y, centrado,
+   a Marcos le cortaba la cabeza. Se desplaza el recorte hacia él. */
+@media (max-width:900px){
+  .hero--retrato .hero__foto{object-position:72% center}
+}
