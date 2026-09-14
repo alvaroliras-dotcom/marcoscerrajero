@@ -1230,11 +1230,11 @@ html.fx-js .menu[data-abierto] .menu__jefe{
      align-items:center centraba cada entrada y gap separaba las filas.
      Todo a bandera izquierda, que es como tiene que leerse una lista. */
   .menu__lista{display:flex;flex-direction:column;align-items:stretch;gap:0}
-  .menu__lista > li{order:2}                  /* Contacto y cualquier suelto */
-  .menu__lista > .menu__empresa{order:3}   /* Marcos Cerrajeros, la página de empresa */
-  .menu__lista > .menu__grupo{order:4}        /* los servicios, debajo */
-  /* raya que separa «a dónde voy» de «qué hacéis» */
-  .menu__lista > .menu__empresa{border-bottom:1px solid rgba(255,255,255,.22)}
+  /* Sin reordenar: el panel sigue el mismo orden que el menú de escritorio
+     —Puertas, Cerraduras, Rejas y vallas, Empresa, Contacto—, que es como
+     Álvaro quiere que se lea en los dos sitios. Antes Contacto y Empresa
+     subían arriba con `order`, y las dos listas no coincidían. */
+  .menu__lista > .menu__empresa{border-top:1px solid rgba(255,255,255,.22)}
 }
 
 /* ===============================================================

@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/barlow-600.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-400.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/assets/css/estilo.css?v=40">
+<link rel="stylesheet" href="/assets/css/estilo.css?v=43">
 
 </head>
 <body>
@@ -66,8 +66,8 @@
             <li><a href="/instalacion-de-vallas/">Instalación de vallas</a></li>
           </ul>
         </li>
+        <li class="menu__empresa"><a href="/sobre-mi/">Empresa</a></li>
         <li><a href="/contacto/">Contacto</a></li>
-        <li class="menu__empresa"><a href="/sobre-mi/">Marcos Cerrajeros</a></li>
       </ul>
     </nav>
     <a class="btn" data-cta="tel-cabecera" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>663 250 778</a>
@@ -232,7 +232,7 @@ Sitio Web: marcoscerrajeros.es, en adelante “El Sitio Web”.</p>
         <img class="pie__logo" src="/assets/logo/logo-negativo.svg" alt="Marcos Cerrajeros · Alcorcón" width="180" height="52">
         <p style="font-size:16px">Cerrajería en Alcorcón desde hace más de 15 años. Presupuesto gratis, sin compromiso y sin sorpresas.</p>
         <p style="margin-top:var(--s3);font-size:16px"><a class="pie__dest" data-cta="tel-pie" href="tel:+34663250778">663 250 778</a><br><a class="enlace-wa pie__dest" data-cta="wa-pie" style="margin-top:8px" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a></p>
-        <p style="margin-top:var(--s3);font-size:16px"><a class="pie__dest" href="/sobre-mi/">Marcos Cerrajeros</a></p>
+        <p style="margin-top:var(--s3);font-size:16px"><a class="pie__dest" href="/sobre-mi/">Empresa</a></p>
       </div>
       <div>
         <h4>Servicios</h4>
@@ -284,23 +284,35 @@ Sitio Web: marcoscerrajeros.es, en adelante “El Sitio Web”.</p>
 </div>
 
 <script>
-/* Estado de apertura en vivo: L-V 8:00-20:00 (hora de Madrid) */
+/* Estado de apertura en vivo: L-V 8:00-20:00 (hora de Madrid).
+   Dentro de horario el cartel dice el horario entero, que es lo que el
+   visitante necesita saber. Fuera de horario NO lo dice: un «abierto de
+   lunes a viernes» a las once de la noche se lee como «abierto ahora», y
+   aquí no se promete nada que no se cumpla. Entonces dice cuándo se abre.
+   Los festivos no los sabe: en un festivo entre semana dirá que está
+   abierto. Hace falta la lista de Marcos para afinarlo. */
 (function(){
   var m=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Madrid'}));
   var d=m.getDay(), min=m.getHours()*60+m.getMinutes();
   var abierto=(d>=1&&d<=5&&min>=480&&min<1200), txt;
-  if(abierto){ txt='Abierto ahora \u00b7 hasta las 20:00'; }
+  var corto;
+  if(abierto){
+    txt='Abierto \u00b7 de lunes a viernes, de 8:00 a 20:00';
+    corto='Abierto ahora';
+  }
   else{
     var prox=(d===0)?'ma\u00f1ana':(d===6)?'el lunes':(d===5&&min>=1200)?'el lunes':(min>=1200)?'ma\u00f1ana':'hoy';
     txt='Cerrado ahora \u00b7 abrimos '+prox+' a las 8:00';
+    corto=txt;
   }
   document.querySelectorAll('[data-estado]').forEach(function(el){
     el.hidden=false; el.classList.toggle('estado--on',abierto);
-    el.querySelector('.estado__txt').textContent=txt;
+    el.querySelector('.estado__txt').textContent =
+      (el.getAttribute('data-estado')==='corto') ? corto : txt;
   });
 })();
 </script>
-<script src="/assets/js/movimiento.js?v=40" defer></script>
-<script src="/assets/js/cookies.js?v=40" defer></script>
+<script src="/assets/js/movimiento.js?v=43" defer></script>
+<script src="/assets/js/cookies.js?v=43" defer></script>
 </body>
 </html>
