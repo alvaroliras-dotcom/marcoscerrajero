@@ -634,6 +634,7 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
   --fx-puntos:radial-gradient(circle at center, rgba(255,255,255,.09) 1.4px, transparent 1.5px);
   --fx-puntos-claro:radial-gradient(circle at center, rgba(22,22,22,.07) 1.4px, transparent 1.5px);
   --fx-dibujo:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 260' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M150 40h120a34 34 0 0 1 0 68h-52v104a18 18 0 0 1-18 18h-32a18 18 0 0 1-18-18V40z'/%3E%3Ccircle cx='262' cy='74' r='15'/%3E%3Cpath d='M178 128h40M178 152h40M178 176h28'/%3E%3Cpath d='M300 196h96M300 214h64'/%3E%3Ccircle cx='352' cy='150' r='26'/%3E%3Cpath d='M352 176v54l14 10-14 12'/%3E%3Ccircle cx='352' cy='150' r='9'/%3E%3C/svg%3E");
+  --fx-dibujo-tinta:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 260' fill='none' stroke='%23161616' stroke-width='2'%3E%3Cpath d='M150 40h120a34 34 0 0 1 0 68h-52v104a18 18 0 0 1-18 18h-32a18 18 0 0 1-18-18V40z'/%3E%3Ccircle cx='262' cy='74' r='15'/%3E%3Cpath d='M178 128h40M178 152h40M178 176h28'/%3E%3Cpath d='M300 196h96M300 214h64'/%3E%3Ccircle cx='352' cy='150' r='26'/%3E%3Cpath d='M352 176v54l14 10-14 12'/%3E%3Ccircle cx='352' cy='150' r='9'/%3E%3C/svg%3E");
 }
 
 /* secciones en tinta: resplandor + puntos + dibujo */
@@ -1319,4 +1320,38 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
    a Marcos le cortaba la cabeza. Se desplaza el recorte hacia él. */
 @media (max-width:900px){
   .hero--retrato .hero__foto{object-position:72% center}
+}
+
+/* ===============================================================
+   TEXTURA DE LAS SECCIONES CLARAS
+   ---------------------------------------------------------------
+   Las secciones en tinta llevan resplandor, puntos y dibujo. Las
+   claras llevaban una esquina de puntos pequeña y poco más, y en
+   una página larga —la plantilla de pueblos tiene dieciséis
+   secciones— cuatro bloques claros seguidos se leen como una sola
+   mancha.
+
+   No se añade decoración nueva: se usa lo que ya hay en la casa,
+   los puntos y el dibujo del bombín, y se le da a cada fondo su
+   propia huella para que blanco y hueso no se confundan.
+   =============================================================== */
+
+/* La esquina de puntos, algo mayor y más presente */
+.seccion:not(.seccion--tinta):not(.seccion--franja):not(.seccion--cifras)::after{
+  width:300px;height:340px;opacity:.85}
+
+/* Las de hueso llevan además el dibujo abajo a la izquierda, muy bajado
+   de tono. Las blancas no: así se distinguen entre ellas de un vistazo. */
+.seccion:not(.seccion--tinta):not(.seccion--blanca):not(.seccion--franja):not(.seccion--cifras):not(.seccion--mapa){
+  position:relative;isolation:isolate;overflow:hidden}
+.seccion:not(.seccion--tinta):not(.seccion--blanca):not(.seccion--franja):not(.seccion--cifras):not(.seccion--mapa)::before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  left:-40px;bottom:-30px;width:360px;height:230px;opacity:.05;
+  background:var(--fx-dibujo-tinta) left bottom/contain no-repeat}
+
+/* En móvil, fuera: en una pantalla estrecha la esquina de puntos se come
+   el texto y el dibujo no se entiende. */
+@media (max-width:760px){
+  .seccion:not(.seccion--tinta):not(.seccion--franja):not(.seccion--cifras)::after{display:none}
+  .seccion:not(.seccion--tinta):not(.seccion--blanca):not(.seccion--franja):not(.seccion--cifras):not(.seccion--mapa)::before{display:none}
 }
