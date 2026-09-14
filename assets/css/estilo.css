@@ -85,7 +85,6 @@ ul{margin:0;padding:0;list-style:none}
 .menu__chevron{width:11px;height:8px;flex:none;transition:transform .3s var(--ease)}
 .menu__grupo{position:relative}
 .menu__grupo:hover .menu__chevron,.menu__grupo:focus-within .menu__chevron{transform:rotate(180deg)}
-.menu__solo-movil{display:none}
 
 /* Desplegable de escritorio: se abre al pasar por encima y con el teclado */
 .menu__sub{position:absolute;top:100%;left:-18px;min-width:274px;z-index:5;
@@ -119,23 +118,43 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 
 @media (max-width:1100px){
   .hamburguesa{display:block}
-  .menu__solo-movil{display:block}
 
   /* Sin JavaScript el menú se queda visible debajo de la cabecera:
      nunca se esconde una navegación que no se puede volver a abrir. */
-  html.fx-js .menu{position:fixed;inset:0;z-index:45;margin:0;
-    background:var(--ink);color:#fff;overflow-y:auto;overscroll-behavior:contain;
-    padding:calc(76px + var(--s4)) var(--gutter) 130px;
-    opacity:0;visibility:hidden;transform:translateY(-14px);
-    transition:opacity .32s var(--ease),transform .38s var(--ease),visibility .32s}
-  html.fx-js .menu::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  /* El alto NO se ata al viewport dinámico. Con `inset:0` el panel encogía y
+     crecía cada vez que Chrome de Android enseñaba o escondía su barra en
+     mitad del gesto, y el repintado dejaba filas en blanco (bug 2, 13/09).
+     `lvh` es el alto con la barra escondida y no se mueve nunca. */
+  html.fx-js .menu{position:fixed;top:0;left:0;right:0;bottom:auto;
+    height:100vh;height:100lvh;z-index:45;margin:0;
+    /* La trama va en el fondo del propio panel. Antes vivía en un `::before`
+       con z-index:-1 dentro de un contenedor con scroll: una capa de más
+       justo donde fallaba el repintado. */
     background:var(--fx-puntos) 0 0/22px 22px,
-      radial-gradient(120% 60% at 100% 0%,rgba(242,183,5,.20),transparent 62%)}
-  html.fx-js .menu[data-abierto]{opacity:1;visibility:visible;transform:translateY(0)}
-  /* El menú tiene catorce entradas y no cabe de una vez: sin esto no hay nada
-     que diga que sigue habiendo lista debajo, y Contacto se queda sin ver. */
-  html.fx-js .menu[data-abierto]::after{content:"";position:fixed;left:0;right:0;bottom:0;
-    height:96px;z-index:1;pointer-events:none;
+      radial-gradient(120% 60% at 100% 0%,rgba(242,183,5,.20),transparent 62%),
+      var(--ink);
+    color:#fff;overflow-y:auto;overscroll-behavior:contain;
+    padding:calc(76px + var(--s4)) var(--gutter) 130px;
+    opacity:0;visibility:hidden;transform:translateY(-14px);pointer-events:none;
+    transition:opacity .32s var(--ease),transform .38s var(--ease),visibility .32s}
+  /* Cinturón del bug 1: cerrado no recibe pulsaciones, pase lo que pase con la
+     visibilidad de los hijos. */
+  html.fx-js .menu[data-abierto]{opacity:1;visibility:visible;pointer-events:auto;
+    transform:translateZ(0);backface-visibility:hidden}
+  /* El menú tiene catorce entradas y no cabe de una vez: sin este degradado no
+     hay nada que diga que sigue habiendo lista debajo, y Contacto se queda sin
+     ver.
+
+     Vive colgado de la CABECERA, no del panel, y esa es toda la gracia. El
+     panel lleva `transform`, así que es bloque contenedor: un hijo `fixed` deja
+     de anclarse al viewport y se ancla al panel. Cuando Chrome de Android
+     enseñaba o escondía su barra, el alto del panel se quedaba a medio camino y
+     la franja oscura aparecía flotando en mitad de la lista, borrando una fila
+     y dejando la de encima a medias (bug 2, 13/09). La cabecera es `sticky` y
+     no lleva `transform`: desde aquí el degradado se pega al borde de abajo de
+     la pantalla, esté la barra del navegador donde esté. */
+  html.fx-js .cabecera[data-menu]::after{content:"";position:fixed;left:0;right:0;bottom:0;
+    height:96px;pointer-events:none;
     background:linear-gradient(to top,var(--ink) 24%,rgba(22,22,22,0))}
   html.menu-abierto,html.menu-abierto body{overflow:hidden}
 
@@ -162,8 +181,16 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
     background:var(--action) var(--fx-simbolo) center/11px 11px no-repeat}
   .menu__chevron{display:none}
 
-  .menu__sub{position:static;opacity:1;visibility:visible;transform:none;
+  /* OJO: la visibilidad se hereda, y un hijo puede reencenderla aunque el padre
+     esté apagado. Este `visibility:visible` estaba aquí suelto y dejaba once
+     enlaces invisibles recibiendo las pulsaciones con el panel cerrado: al
+     pulsar una FAQ la web saltaba de página (bug 1, 13/09). Ahora el submenú
+     solo se enciende con el panel abierto, o cuando no hay JavaScript y el
+     menú se queda desplegado a propósito. */
+  .menu__sub{position:static;opacity:1;visibility:hidden;transform:none;
     min-width:0;background:none;border:0;box-shadow:none;padding:0;border-radius:0}
+  html.fx-js .menu[data-abierto] .menu__sub,
+  html:not(.fx-js) .menu__sub{visibility:visible}
   .menu__sub li{border-top:1px solid rgba(255,255,255,.13)}
   .menu__sub li:first-child{border-top:0}
   .menu__sub a{display:flex;align-items:center;justify-content:space-between;
@@ -1080,13 +1107,13 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + 76px)}
 /* 1 · el relleno del texto, declarado a mano donde va claro sobre oscuro */
 .menu__lista > li > a,
 .menu__sub a,
-.menu__solo-movil a,
+.menu__empresa a,
 .hero h1, .hero p, .hero__caja,
 .seccion--tinta, .seccion--tinta h2, .seccion--tinta h3, .seccion--tinta p,
 .pie, .pie h4, .pie a, .pie li{-webkit-text-fill-color:currentColor}
 html.fx-js .menu[data-abierto] .menu__lista > li > a,
 html.fx-js .menu[data-abierto] .menu__sub a,
-html.fx-js .menu[data-abierto] .menu__solo-movil a{
+html.fx-js .menu[data-abierto] .menu__empresa a{
   color:#fff;-webkit-text-fill-color:#fff;opacity:1}
 html.fx-js .menu[data-abierto] .menu__jefe{
   color:var(--action);-webkit-text-fill-color:var(--action);opacity:1}
@@ -1095,11 +1122,15 @@ html.fx-js .menu[data-abierto] .menu__jefe{
 @media (prefers-color-scheme: dark){
   html.fx-js .menu[data-abierto] .menu__lista > li > a,
   html.fx-js .menu[data-abierto] .menu__sub a,
-  html.fx-js .menu[data-abierto] .menu__solo-movil a{
+  html.fx-js .menu[data-abierto] .menu__empresa a{
     color:#fff;-webkit-text-fill-color:#fff}
   html.fx-js .menu[data-abierto] .menu__jefe{
     color:var(--action);-webkit-text-fill-color:var(--action)}
-  html.fx-js .menu{background:var(--ink)}
+  /* Repetido entero, no solo el color: si aquí se pone `background:var(--ink)`
+     a secas se borra la trama del panel en modo oscuro. */
+  html.fx-js .menu{background:var(--fx-puntos) 0 0/22px 22px,
+    radial-gradient(120% 60% at 100% 0%,rgba(242,183,5,.20),transparent 62%),
+    var(--ink)}
   .pie{background:var(--ink);color:var(--steel-l)}
   .seccion--tinta{background:var(--ink);color:#fff}
 }
@@ -1110,7 +1141,7 @@ html.fx-js .menu[data-abierto] .menu__jefe{
     background-color:Canvas;color:CanvasText}
   html.fx-js .menu[data-abierto] .menu__lista > li > a,
   html.fx-js .menu[data-abierto] .menu__sub a,
-  html.fx-js .menu[data-abierto] .menu__solo-movil a,
+  html.fx-js .menu[data-abierto] .menu__empresa a,
   html.fx-js .menu[data-abierto] .menu__jefe{
     color:LinkText;-webkit-text-fill-color:LinkText}
   .menu__lista > li,.menu__sub li{border-top-color:CanvasText}
@@ -1200,10 +1231,10 @@ html.fx-js .menu[data-abierto] .menu__jefe{
      Todo a bandera izquierda, que es como tiene que leerse una lista. */
   .menu__lista{display:flex;flex-direction:column;align-items:stretch;gap:0}
   .menu__lista > li{order:2}                  /* Contacto y cualquier suelto */
-  .menu__lista > .menu__solo-movil{order:3}   /* Sobre mí */
+  .menu__lista > .menu__empresa{order:3}   /* Marcos Cerrajeros, la página de empresa */
   .menu__lista > .menu__grupo{order:4}        /* los servicios, debajo */
   /* raya que separa «a dónde voy» de «qué hacéis» */
-  .menu__lista > .menu__solo-movil{border-bottom:1px solid rgba(255,255,255,.22)}
+  .menu__lista > .menu__empresa{border-bottom:1px solid rgba(255,255,255,.22)}
 }
 
 /* ===============================================================
@@ -1226,3 +1257,46 @@ html.fx-js .menu[data-abierto] .menu__jefe{
 /* la firma de la agencia: lo último de la página, centrada y discreta */
 .pie__firma{margin:var(--s3) 0 0;text-align:center;font-size:13.5px;color:var(--steel)}
 .pie__firma a{text-decoration:underline;text-underline-offset:3px}
+
+/* ===============================================================
+   FALDÓN ÁMBAR DE LAS CIFRAS
+   ---------------------------------------------------------------
+   La franja de cifras quedaba en el mismo hueso que la sección de
+   arriba y el blanco de abajo: tres bloques claros seguidos y la
+   página se aplanaba justo donde están los datos que más pesan.
+   En ámbar corta la página en dos y los números se leen de una
+   pasada.
+
+   Sobre ámbar no vale ninguno de los colores de texto de la casa:
+   el gris de apoyo se apaga, y el propio ámbar de los signos «+»
+   y de la línea divisoria desaparece contra su mismo fondo. Todo
+   pasa a tinta con distintos pesos.
+
+   Va al final del archivo para ganarle a «.fx-js .cifras li::before»
+   y a «.cifras__mas», que se declaran más arriba.
+   =============================================================== */
+.seccion--cifras{background:var(--action);color:var(--ink);padding-block:var(--s5)}
+.seccion--cifras .cifras li{border-left-color:rgba(22,22,22,.22)}
+.seccion--cifras .cifras__mas{color:var(--ink)}
+.seccion--cifras .cifras li > span:last-child{color:rgba(22,22,22,.74)}
+html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
+
+/* Si el sistema fuerza su propia paleta, que mande la suya y se lea */
+@media (forced-colors: active){
+  .seccion--cifras{background:Canvas;color:CanvasText;forced-color-adjust:none}
+  .seccion--cifras .cifras__mas,
+  .seccion--cifras .cifras li > span:last-child{color:CanvasText}
+  .seccion--cifras .cifras li{border-left-color:CanvasText}
+}
+
+/* En móvil las cuatro cifras en una sola columna hacían un faldón de casi
+   una pantalla entera de ámbar. En dos columnas ocupa la mitad, se abarca
+   de un vistazo y el color deja de comerse la página. */
+@media (max-width:520px){
+  .seccion--cifras .cifras{grid-template-columns:1fr 1fr;gap:var(--s4) var(--s3)}
+  /* El rayajo va encima de cada cifra para separarla de la de arriba. En dos
+     columnas, las dos primeras ya no tienen nada encima: sin esto, la segunda
+     salía con raya y bajada respecto a la primera, y la fila quedaba coja. */
+  .seccion--cifras .cifras li:nth-child(-n+2){padding-top:0}
+  html.fx-js .seccion--cifras .cifras li:nth-child(-n+2)::before{display:none}
+}
