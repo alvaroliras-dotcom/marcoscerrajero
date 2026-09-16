@@ -31,13 +31,14 @@
      cuatro píxeles y no se lee. De este alto también cuelgan el hueco que el
      hero deja por arriba y el que deja el panel del menú de móvil: si se
      cambia aquí, se cambia en los tres a la vez. */
-  --logo-h:64px; --cabecera-h:92px;
+  --logo-h:52px; --cabecera-h:88px;
 }
 @media (max-width:992px){ :root{ --section-y:64px } }
 @media (max-width:576px){ :root{ --section-y:48px } }
 /* Sin menú de escritorio sobra sitio a lo ancho, pero conviene bajar un punto
    el alto de la barra: en un teléfono se lleva menos pantalla. */
-@media (max-width:1100px){ :root{ --logo-h:58px; --cabecera-h:86px } }
+@media (max-width:1100px){ :root{ --logo-h:46px; --cabecera-h:80px } }
+@media (max-width:480px){ :root{ --logo-h:40px; --cabecera-h:72px } }
 
 /* --- Base --------------------------------------------------- */
 *,*::before,*::after{box-sizing:border-box}
@@ -81,8 +82,13 @@ ul{margin:0;padding:0;list-style:none}
 /* --- Cabecera ----------------------------------------------- */
 .cabecera{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line)}
 .cabecera__inner{display:flex;align-items:center;gap:var(--s4);min-height:var(--cabecera-h)}
-.cabecera__logo{display:block;flex:none}
-.cabecera__logo svg,.cabecera__logo img{height:var(--logo-h);width:auto}
+.cabecera__logo{display:block;flex:none;position:relative}
+.cabecera__logo svg,.cabecera__logo img{height:var(--logo-h);width:auto;display:block}
+/* El logotipo tiene DOS tintas. Antes bastaba con un filtro para pasarlo a
+   blanco sobre el hero; ahora ese filtro se comería el ámbar. Van las dos
+   imágenes de verdad y el CSS enseña la que toca. */
+.cabecera__logo img{transition:opacity .35s var(--ease)}
+.cabecera__logo .logo--oscuro{position:absolute;inset:0;opacity:0;pointer-events:none}
 .menu{margin-left:auto}
 .menu__lista{display:flex;gap:var(--s3);align-items:center}
 .menu a,.menu__jefe{position:relative;text-decoration:none;font:600 16px/1 var(--font-body);
@@ -221,7 +227,8 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
   .cabecera[data-menu]{z-index:60;background:var(--ink);border-bottom-color:rgba(255,255,255,.13)}
   .cabecera[data-menu] .cabecera__logo,
   .cabecera .hamburguesa{position:relative;z-index:50}
-  .cabecera[data-menu] .cabecera__logo img{filter:brightness(0) invert(1) !important}
+  .cabecera[data-menu] .cabecera__logo .logo--claro{opacity:0}
+  .cabecera[data-menu] .cabecera__logo .logo--oscuro{opacity:1}
   .cabecera[data-menu] .hamburguesa{color:#fff}
   .cabecera[data-menu] .btn{display:none}
 }
@@ -423,7 +430,7 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 .pie__dest{color:#fff;font-weight:600}
 .pie a:hover,.pie a:focus-visible{color:var(--action);transform:translateX(6px)}
 /* el icono de WhatsApp conserva su verde de marca aunque el texto se ponga naranja */
-.pie__logo{height:72px;width:auto;margin-bottom:var(--s3)}
+.pie__logo{height:58px;width:auto;margin-bottom:var(--s3)}
 .pie__legal{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
   margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid rgba(255,255,255,.1);font-size:14.5px}
 .pie__legal a:hover{transform:none}
@@ -622,12 +629,14 @@ body:has(.hero) .cabecera .menu a,body:has(.hero) .cabecera .menu__jefe,
 body:has(.hero) .cabecera__logo{color:#fff}
 body:has(.hero) .cabecera .menu__lista > li > a::after,
 body:has(.hero) .cabecera .menu__jefe::after{background:#fff}
-body:has(.hero) .cabecera__logo img{filter:brightness(0) invert(1)}
+body:has(.hero) .cabecera__logo .logo--claro{opacity:0}
+body:has(.hero) .cabecera__logo .logo--oscuro{opacity:1}
 .cabecera--fija .menu a,.cabecera--fija .menu__jefe,
 .cabecera--fija .cabecera__logo{color:var(--ink) !important}
 .cabecera--fija .menu__lista > li > a::after,
 .cabecera--fija .menu__jefe::after{background:var(--ink) !important}
-.cabecera--fija .cabecera__logo img{filter:none !important}
+.cabecera--fija .cabecera__logo .logo--claro{opacity:1 !important}
+.cabecera--fija .cabecera__logo .logo--oscuro{opacity:0 !important}
 body:has(.hero) .hero{padding-top:calc(var(--s6) + var(--cabecera-h))}
 @media (max-width:768px){
   .cabecera .btn::after{display:none}
