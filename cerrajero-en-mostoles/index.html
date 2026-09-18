@@ -10,19 +10,19 @@
 <meta name="color-scheme" content="only light">
 <title>Cerrajero en Móstoles | Puertas, cerraduras y rejas</title>
 <meta name="description" content="Cerrajero en Móstoles: puertas blindadas, cerraduras, rejas y vallas. Presupuesto gratis y sin sorpresas. L-V de 8 a 20 h. Llámenos al 663 250 778.">
-<link rel="canonical" href="https://marcoscerrajeros.es/cerrajero-en-mostoles/">
+<link rel="canonical" href="https://www.marcoscerrajeros.es/cerrajero-en-mostoles/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cerrajero en Móstoles | Puertas, cerraduras y rejas">
 <meta property="og:description" content="Cerrajero en Móstoles: puertas blindadas, cerraduras, rejas y vallas. Presupuesto gratis y sin sorpresas. L-V de 8 a 20 h. Llámenos al 663 250 778.">
-<meta property="og:url" content="https://marcoscerrajeros.es/cerrajero-en-mostoles/">
-<meta property="og:image" content="https://marcoscerrajeros.es/assets/img/cerrajero-en-mostoles.jpg">
+<meta property="og:url" content="https://www.marcoscerrajeros.es/cerrajero-en-mostoles/">
+<meta property="og:image" content="https://www.marcoscerrajeros.es/assets/img/cerrajero-en-mostoles.jpg">
 <meta property="og:locale" content="es_ES">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/barlow-600.woff" as="font" type="font/woff" crossorigin>
-<link rel="preload" href="/assets/fonts/barlow-400.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/assets/css/estilo.css?v=57">
+<link rel="preload" href="/assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/estilo.min.css?v=65">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,9 +40,9 @@
     "@context": "https://schema.org",
     "@type": "Locksmith",
     "name": "Marcos Cerrajeros Alcorcón",
-    "url": "https://marcoscerrajeros.es/",
-    "image": "https://marcoscerrajeros.es/assets/img/cerrajero-puerta-entrada-piso-alcorcon.jpg",
-    "logo": "https://marcoscerrajeros.es/assets/logo/logo.png",
+    "url": "https://www.marcoscerrajeros.es/",
+    "image": "https://www.marcoscerrajeros.es/assets/img/cerrajero-puerta-entrada-piso-alcorcon.jpg",
+    "logo": "https://www.marcoscerrajeros.es/assets/logo/logo.png",
     "telephone": "+34663250778",
     "email": "marcoscerrajeros.es@gmail.com",
     "priceRange": "$$",
@@ -68,8 +68,10 @@
       "https://www.houzz.es/pro/marcos-alcorcon",
       "https://www.provenexpert.com/es-es/marcos-cerrajeros-alcorcon/",
       "https://www.proveedores.com/proveedores/marcos-cerrajeros-alcorcon/",
-      "https://solo.to/marcos-cerrajeros"
+      "https://solo.to/marcos-cerrajeros",
+      "https://g.page/r/CYjI6nriEg0rEAE"
     ],
+    "hasMap": "https://g.page/r/CYjI6nriEg0rEAE",
     "areaServed": [
       {
         "@type": "City",
@@ -126,13 +128,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Inicio",
-      "item": "https://marcoscerrajeros.es/"
+      "item": "https://www.marcoscerrajeros.es/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Cerrajero en Móstoles",
-      "item": "https://marcoscerrajeros.es/cerrajero-en-mostoles/"
+      "item": "https://www.marcoscerrajeros.es/cerrajero-en-mostoles/"
     }
   ]
 }
@@ -152,10 +154,10 @@
     },
     {
       "@type": "Question",
-      "name": "¿Trabajan por la noche o los fines de semana?",
+      "name": "¿Qué horario tienen en Móstoles?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. El horario es de lunes a viernes, de 8:00 a 20:00. Preferimos decírselo antes que dejarle tirado a las once de la noche."
+        "text": "De lunes a viernes, de 8:00 a 20:00. Desde el taller de Alcorcón hay diez minutos, así que dentro de ese horario solemos darle hora para el mismo día. Los avisos de noche o de fin de semana se atienden el siguiente día laborable, por orden de llegada."
       }
     },
     {
@@ -274,7 +276,7 @@
 <main id="contenido">
 
   <section class="hero hero--servicio">
-    <img class="hero__foto" src="/assets/img/cerrajero-en-mostoles.jpg" alt="Puerta blindada recién instalada en una vivienda de Móstoles" width="1600" height="1067" fetchpriority="high">
+    <img class="hero__foto" src="/assets/img/cerrajero-en-mostoles.jpg" srcset="/assets/img/cerrajero-en-mostoles-800.jpg 800w, /assets/img/cerrajero-en-mostoles.jpg 1600w" sizes="100vw" alt="Puerta blindada recién instalada en una vivienda de Móstoles" width="1600" height="1067" fetchpriority="high">
     <div class="contenedor hero__rejilla">
 
       <div class="hero__caja">
@@ -298,7 +300,9 @@
         </div>
         <h2>¿Prefiere que le llamemos?</h2>
         <p class="hero__tarjeta-sub">Déjenos el teléfono y le llamamos lo antes posible, dentro de nuestro horario.</p>
-        <form class="formulario formulario--claro" method="post" action="#">
+        <form class="formulario formulario--claro" method="post" action="/enviar.php" data-form="llamada">
+          <input type="hidden" name="tipo" value="llamada"><input type="hidden" name="t" value="">
+          <div class="campo-trampa" aria-hidden="true"><label for="web-h">Deje este campo vacío</label><input id="web-h" name="web" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="campo"><label for="nombre-h">Nombre</label><input id="nombre-h" name="nombre" type="text" autocomplete="name" required></div>
           <div class="campo"><label for="telefono-h">Teléfono</label><input id="telefono-h" name="telefono" type="tel" autocomplete="tel" required></div>
           <p class="acepto"><input id="privacidad-h" name="privacidad" type="checkbox" required><label for="privacidad-h">Acepto la <a href="/politica-privacidad/">política de privacidad</a>.</label></p>
@@ -364,7 +368,7 @@
           <p class="mostoles__mas">→ <a href="/instalacion-puertas-blindadas/">Más detalle en instalación de puertas blindadas</a></p>
         </div>
         <div class="texto-foto__img">
-          <img src="/assets/img/puertas-blindadas-mostoles.jpg" alt="Instalación de puerta blindada en un piso de Móstoles" width="1000" height="666" loading="lazy">
+          <img src="/assets/img/puertas-blindadas-mostoles.jpg" srcset="/assets/img/puertas-blindadas-mostoles-800.jpg 800w, /assets/img/puertas-blindadas-mostoles.jpg 1600w" sizes="(max-width: 992px) 92vw, 640px" alt="Instalación de puerta blindada en un piso de Móstoles" width="1000" height="666" loading="lazy">
         </div>
       </div>
     </div>
@@ -380,7 +384,7 @@
           <p class="mostoles__mas">→ <a href="/rejas-a-medida/">Más detalle en rejas a medida</a></p>
         </div>
         <div class="texto-foto__img">
-          <img src="/assets/img/rejas-a-medida-mostoles.jpg" alt="Rejas a medida instaladas en una ventana de una vivienda de Móstoles" width="1000" height="666" loading="lazy">
+          <img src="/assets/img/rejas-a-medida-mostoles.jpg" srcset="/assets/img/rejas-a-medida-mostoles-800.jpg 800w, /assets/img/rejas-a-medida-mostoles.jpg 1600w" sizes="(max-width: 992px) 92vw, 640px" alt="Rejas a medida instaladas en una ventana de una vivienda de Móstoles" width="1000" height="666" loading="lazy">
         </div>
       </div>
     </div>
@@ -396,7 +400,7 @@
           <p class="mostoles__mas">→ <a href="/instalacion-de-vallas/">Más detalle en instalación de vallas</a></p>
         </div>
         <div class="texto-foto__img">
-          <img src="/assets/img/instalacion-vallas-mostoles.jpg" alt="Vallado metálico y puerta de parcela en un chalé de Móstoles" width="1000" height="666" loading="lazy">
+          <img src="/assets/img/instalacion-vallas-mostoles.jpg" srcset="/assets/img/instalacion-vallas-mostoles-800.jpg 800w, /assets/img/instalacion-vallas-mostoles.jpg 1600w" sizes="(max-width: 992px) 92vw, 640px" alt="Vallado metálico y puerta de parcela en un chalé de Móstoles" width="1000" height="666" loading="lazy">
         </div>
       </div>
     </div>
@@ -413,7 +417,7 @@
           <p class="mostoles__mas">→ <a href="/cambio-de-cerraduras/">Más detalle en cambio de cerraduras</a> · <a href="/reparacion-de-cerraduras-de-puertas/">y en reparación de cerraduras</a></p>
         </div>
         <div class="texto-foto__img">
-          <img src="/assets/img/cambio-de-cerraduras-mostoles.jpg" alt="Cambio de cerradura y bombín de seguridad en una vivienda de Móstoles" width="1000" height="666" loading="lazy">
+          <img src="/assets/img/cambio-de-cerraduras-mostoles.jpg" srcset="/assets/img/cambio-de-cerraduras-mostoles-800.jpg 800w, /assets/img/cambio-de-cerraduras-mostoles.jpg 1600w" sizes="(max-width: 992px) 92vw, 640px" alt="Cambio de cerradura y bombín de seguridad en una vivienda de Móstoles" width="1000" height="666" loading="lazy">
         </div>
       </div>
     </div>
@@ -429,7 +433,7 @@
           <p class="mostoles__mas">→ <a href="/apertura-de-puertas/">Más detalle en apertura de puertas</a></p>
         </div>
         <div class="texto-foto__img">
-          <img src="/assets/img/apertura-de-puertas-mostoles.jpg" alt="Apertura de puerta de vivienda sin daños en Móstoles" width="1000" height="666" loading="lazy">
+          <img src="/assets/img/apertura-de-puertas-mostoles.jpg" srcset="/assets/img/apertura-de-puertas-mostoles-800.jpg 800w, /assets/img/apertura-de-puertas-mostoles.jpg 1600w" sizes="(max-width: 992px) 92vw, 640px" alt="Apertura de puerta de vivienda sin daños en Móstoles" width="1000" height="666" loading="lazy">
         </div>
       </div>
     </div>
@@ -441,10 +445,9 @@
           <h3 class="mostoles__h3" data-n="06">Mantenimiento de puertas en Móstoles</h3>
           <p>Puertas que rozan el suelo, que no cierran a la primera, que hay que levantar para echar la llave. Muelles vencidos, bisagras caídas, cierrapuertas que dan portazo.</p>
           <p class="apoyo">No es una avería, todavía. Por eso se deja pasar. Y por eso acaba siendo una avería.</p>
-          <p class="mostoles__mas">→ <a href="/mantenimiento-de-puertas/">Más detalle en mantenimiento de puertas</a></p>
         </div>
         <div class="texto-foto__img">
-          <img src="/assets/img/mantenimiento-de-puertas-alcorcon.jpg" alt="Mantenimiento de puerta de entrada de vivienda" width="1000" height="666" loading="lazy">
+          <img src="/assets/img/mantenimiento-de-puertas-alcorcon.jpg" srcset="/assets/img/mantenimiento-de-puertas-alcorcon-800.jpg 800w, /assets/img/mantenimiento-de-puertas-alcorcon.jpg 1600w" sizes="(max-width: 992px) 92vw, 640px" alt="Mantenimiento de puerta de entrada de vivienda" width="1000" height="666" loading="lazy">
         </div>
       </div>
     </div>
@@ -548,7 +551,7 @@
           <p><b>Aquí va el mapa de Google.</b></p>
           <p class="apoyo">Para enseñarlo tenemos que conectar con Google, y entonces Google recibe su dirección IP. Solo lo hacemos si usted nos deja.</p>
           <button class="btn btn--tinta" type="button" data-consent-permitir="externas">Ver el mapa <svg aria-hidden="true"><use href="#i-flecha"></use></svg></button>
-          <p class="apoyo"><a href="https://www.google.com/maps/search/?api=1&amp;query=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">O abrirlo en Google Maps</a></p>
+          <p class="apoyo"><a href="https://g.page/r/CYjI6nriEg0rEAE" target="_blank" rel="noopener">O abrirlo en Google Maps</a></p>
         </div>
         <iframe
           data-consent="externas"
@@ -556,7 +559,7 @@
           title="Ubicación de Marcos Cerrajeros en Alcorcón, en Google Maps"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         <figcaption>Nuestro taller está en la calle Porto Colón, 2 (posterior), junto a la Plaza de Lugo ·
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">Abrir en Google Maps</a></figcaption>
+          <a href="https://g.page/r/CYjI6nriEg0rEAE" target="_blank" rel="noopener">Abrir en Google Maps</a></figcaption>
       </figure>
       <p class="apoyo" style="margin-top:var(--s3);font-size:15px">Nuestro taller está en Alcorcón, a diez minutos de Móstoles.</p>
     </div>
@@ -581,7 +584,7 @@
       </div>
       <div class="faq">
         <details open><summary>¿Cobran el desplazamiento por venir a Móstoles?</summary><p>No. La visita para ver el trabajo y darle el presupuesto es gratis, venga de donde venga dentro de la zona. Si acepta, el precio que le dimos es el que paga.</p></details>
-        <details><summary>¿Trabajan por la noche o los fines de semana?</summary><p>No. El horario es de lunes a viernes, de 8:00 a 20:00. Preferimos decírselo antes que dejarle tirado a las once de la noche.</p></details>
+        <details><summary>¿Qué horario tienen en Móstoles?</summary><p>De lunes a viernes, de 8:00 a 20:00. Desde el taller de Alcorcón hay diez minutos, así que dentro de ese horario solemos darle hora para el mismo día. Los avisos de noche o de fin de semana se atienden el siguiente día laborable, por orden de llegada.</p></details>
         <details><summary>¿Cuánto tardan en venir a Móstoles?</summary><p>Desde Alcorcón hay diez minutos. Dentro del horario, normalmente el mismo día o al día siguiente, según cómo esté la agenda. Se lo decimos por teléfono, no se lo dejamos en el aire.</p></details>
         <details><summary>¿Cuánto cuesta cambiar una cerradura en Móstoles?</summary><p>Depende de la cerradura que tenga y de la que quiera poner. Por eso no hay precios fijos: nos llama, nos lo cuenta y le decimos la cifra.</p></details>
         <details><summary>¿Se puede blindar la puerta que ya tengo?</summary><p>Muchas veces sí, y sale bastante más barato que una puerta nueva. Depende del estado del marco y de si la hoja aguanta el peso extra. Se ve en la visita, y si no compensa, se lo decimos.</p></details>
@@ -603,7 +606,9 @@
           <p style="margin-top:var(--s4)"><a class="btn" data-cta="tel-cta-final" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a></p>
           <p style="margin-top:var(--s4);max-width:42ch">Somos cerrajeros: lo nuestro es la rapidez. Si lo prefiere, déjenos un mensaje y le llamamos nosotros.</p>
         </div>
-        <form class="formulario" method="post" action="#">
+        <form class="formulario" method="post" action="/enviar.php" data-form="mensaje">
+          <input type="hidden" name="tipo" value="mensaje"><input type="hidden" name="t" value="">
+          <div class="campo-trampa" aria-hidden="true"><label for="web">Deje este campo vacío</label><input id="web" name="web" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required></div>
           <div class="campo"><label for="telefono">Teléfono</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" required></div>
           <div class="campo"><label for="necesita">¿Qué necesita? <span class="opcional">(opcional)</span></label><textarea id="necesita" name="necesita"></textarea></div>
@@ -629,7 +634,7 @@
         <p style="margin-top:var(--s3);font-size:16px"><a class="pie__dest" href="/sobre-mi/">Empresa</a></p>
       </div>
       <div>
-        <h4>Servicios</h4>
+        <p class="pie__titulo">Servicios</p>
         <ul class="pie__nav">
           <li><a href="/apertura-de-puertas/">Apertura de puertas</a></li>
           <li><a href="/cambio-de-cerraduras/">Cambio de cerraduras</a></li>
@@ -646,7 +651,7 @@
         </ul>
       </div>
       <div>
-        <h4>Dónde trabajamos</h4>
+        <p class="pie__titulo">Dónde trabajamos</p>
         <ul class="pie__nav">
           <li>Alcorcón</li>
           <li><a href="/cerrajero-en-mostoles/" aria-current="page">Móstoles</a></li>
@@ -658,7 +663,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <p class="pie__titulo">Contacto</p>
         <ul>
           <li>C. Porto Colón, 2 (posterior)<br>Plaza de Lugo<br>28924 Alcorcón (Madrid)</li>
           <li><a href="mailto:marcoscerrajeros.es@gmail.com">marcoscerrajeros.es@gmail.com</a></li>
@@ -674,41 +679,53 @@
   </div>
 </footer>
 
-<div class="llamar-movil">
+<div class="llamar-movil" role="region" aria-label="Llamar o escribir por WhatsApp">
   <a class="btn" data-cta="tel-barra-movil" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llamar ahora</a>
   <a class="btn btn--wa" data-cta="wa-barra-movil" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a>
 </div>
 
 <script>
-/* Estado de apertura en vivo: L-V 8:00-20:00 (hora de Madrid).
-   Dentro de horario el cartel dice el horario entero, que es lo que el
-   visitante necesita saber. Fuera de horario NO lo dice: un «abierto de
-   lunes a viernes» a las once de la noche se lee como «abierto ahora», y
-   aquí no se promete nada que no se cumpla. Entonces dice cuándo se abre.
-   Los festivos no los sabe: en un festivo entre semana dirá que está
-   abierto. Hace falta la lista de Marcos para afinarlo. */
+/* Estado de apertura en vivo: L-V 8:00-20:00 (hora de Madrid), cerrado
+   fines de semana y festivos de Alcorcón. Dentro de horario dice el horario;
+   fuera, cuándo se abre (saltando fines de semana y festivos). */
 (function(){
+  /* Festivos en los que Marcos cierra: nacionales, de la Comunidad de Madrid
+     y locales de Alcorcón. 2026: calendario oficial (BOCM 25/09/2025 y
+     12/12/2025). 2027: solo los seguros; al publicarse el calendario oficial
+     (autonómico en otoño, locales en diciembre) se completan aquí y en
+     plantilla.py. Formato AAAA-MM-DD. */
+  var FESTIVOS={
+    '2026-01-01':1,'2026-01-06':1,'2026-04-02':1,'2026-04-03':1,'2026-04-06':1,
+    '2026-05-01':1,'2026-09-08':1,'2026-10-12':1,'2026-11-02':1,'2026-12-07':1,
+    '2026-12-08':1,'2026-12-25':1,
+    '2027-01-01':1,'2027-01-06':1,'2027-03-25':1,'2027-03-26':1,'2027-10-12':1,
+    '2027-11-01':1,'2027-12-06':1,'2027-12-08':1
+  };
+  var DIAS=['el domingo','el lunes','el martes','el miércoles','el jueves','el viernes','el sábado'];
+  function clave(f){var m=f.getMonth()+1,d=f.getDate();return f.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(d<10?'0':'')+d;}
+  function laborable(f){var d=f.getDay();return d>=1&&d<=5&&!FESTIVOS[clave(f)];}
   var m=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Madrid'}));
-  var d=m.getDay(), min=m.getHours()*60+m.getMinutes();
-  var abierto=(d>=1&&d<=5&&min>=480&&min<1200), txt;
-  var corto;
+  var min=m.getHours()*60+m.getMinutes();
+  var abierto=laborable(m)&&min>=480&&min<1200, txt, corto;
   if(abierto){
-    txt='Abierto \u00b7 de lunes a viernes, de 8:00 a 20:00';
-    corto='Abierto ahora';
-  }
-  else{
-    var prox=(d===0)?'ma\u00f1ana':(d===6)?'el lunes':(d===5&&min>=1200)?'el lunes':(min>=1200)?'ma\u00f1ana':'hoy';
-    txt='Cerrado ahora \u00b7 abrimos '+prox+' a las 8:00';
-    corto=txt;
+    txt='Abierto \u00b7 de lunes a viernes, de 8:00 a 20:00'; corto='Abierto ahora';
+  }else{
+    var prox;
+    if(laborable(m)&&min<480){prox='hoy';}
+    else{
+      var f=new Date(m.getFullYear(),m.getMonth(),m.getDate()), n=0;
+      do{f.setDate(f.getDate()+1);n++;}while(!laborable(f)&&n<15);
+      prox=(n===1)?'mañana':DIAS[f.getDay()];
+    }
+    txt='Cerrado ahora · abrimos '+prox+' a las 8:00'; corto=txt;
   }
   document.querySelectorAll('[data-estado]').forEach(function(el){
     el.hidden=false; el.classList.toggle('estado--on',abierto);
-    el.querySelector('.estado__txt').textContent =
-      (el.getAttribute('data-estado')==='corto') ? corto : txt;
+    el.querySelector('.estado__txt').textContent=(el.getAttribute('data-estado')==='corto')?corto:txt;
   });
 })();
 </script>
-<script src="/assets/js/movimiento.js?v=57" defer></script>
-<script src="/assets/js/cookies.js?v=57" defer></script>
+<script src="/assets/js/movimiento.js?v=65" defer></script>
+<script src="/assets/js/cookies.js?v=65" defer></script>
 </body>
 </html>

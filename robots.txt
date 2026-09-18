@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://marcoscerrajeros.es/sitemap.xml
+Sitemap: https://www.marcoscerrajeros.es/sitemap.xml

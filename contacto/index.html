@@ -9,28 +9,28 @@
      Chrome se aparta y respeta los colores de la hoja. -->
 <meta name="color-scheme" content="only light">
 <title>Contacto y horario | Marcos Cerrajeros Alcorcón</title>
-<meta name="description" content="Marcos Cerrajeros Alcorcón: C. Porto Colón, 2, Plaza de Lugo. De lunes a viernes, de 8:00 a 20:00. Llame al 663 250 778 y le decimos el precio.">
-<link rel="canonical" href="https://marcoscerrajeros.es/contacto/">
+<meta name="description" content="Marcos Cerrajeros Alcorcón: C. Porto Colón, 2 (posterior), Plaza de Lugo. De lunes a viernes, de 8:00 a 20:00. Llame al 663 250 778 y le decimos el precio.">
+<link rel="canonical" href="https://www.marcoscerrajeros.es/contacto/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contacto y horario | Marcos Cerrajeros Alcorcón">
-<meta property="og:description" content="Marcos Cerrajeros Alcorcón: C. Porto Colón, 2, Plaza de Lugo. De lunes a viernes, de 8:00 a 20:00. Llame al 663 250 778 y le decimos el precio.">
-<meta property="og:url" content="https://marcoscerrajeros.es/contacto/">
-<meta property="og:image" content="https://marcoscerrajeros.es/assets/img/contacto-cerrajero-alcorcon.jpg">
+<meta property="og:description" content="Marcos Cerrajeros Alcorcón: C. Porto Colón, 2 (posterior), Plaza de Lugo. De lunes a viernes, de 8:00 a 20:00. Llame al 663 250 778 y le decimos el precio.">
+<meta property="og:url" content="https://www.marcoscerrajeros.es/contacto/">
+<meta property="og:image" content="https://www.marcoscerrajeros.es/assets/img/contacto-cerrajero-alcorcon.jpg">
 <meta property="og:locale" content="es_ES">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/barlow-600.woff" as="font" type="font/woff" crossorigin>
-<link rel="preload" href="/assets/fonts/barlow-400.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/assets/css/estilo.css?v=57">
+<link rel="preload" href="/assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/estilo.min.css?v=65">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Locksmith",
   "name": "Marcos Cerrajeros Alcorcón",
-  "url": "https://marcoscerrajeros.es/",
-  "image": "https://marcoscerrajeros.es/assets/img/cerrajero-puerta-entrada-piso-alcorcon.jpg",
-  "logo": "https://marcoscerrajeros.es/assets/logo/logo.png",
+  "url": "https://www.marcoscerrajeros.es/",
+  "image": "https://www.marcoscerrajeros.es/assets/img/cerrajero-puerta-entrada-piso-alcorcon.jpg",
+  "logo": "https://www.marcoscerrajeros.es/assets/logo/logo.png",
   "telephone": "+34663250778",
   "email": "marcoscerrajeros.es@gmail.com",
   "priceRange": "$$",
@@ -56,8 +56,10 @@
     "https://www.houzz.es/pro/marcos-alcorcon",
     "https://www.provenexpert.com/es-es/marcos-cerrajeros-alcorcon/",
     "https://www.proveedores.com/proveedores/marcos-cerrajeros-alcorcon/",
-    "https://solo.to/marcos-cerrajeros"
+    "https://solo.to/marcos-cerrajeros",
+    "https://g.page/r/CYjI6nriEg0rEAE"
   ],
+  "hasMap": "https://g.page/r/CYjI6nriEg0rEAE",
   "areaServed": [
     {
       "@type": "City",
@@ -113,13 +115,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Inicio",
-      "item": "https://marcoscerrajeros.es/"
+      "item": "https://www.marcoscerrajeros.es/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Contacto",
-      "item": "https://marcoscerrajeros.es/contacto/"
+      "item": "https://www.marcoscerrajeros.es/contacto/"
     }
   ]
 }
@@ -181,7 +183,7 @@
 <main id="contenido">
 
   <section class="hero hero--servicio">
-    <img class="hero__foto" src="/assets/img/contacto-cerrajero-alcorcon.jpg" alt="Banco de trabajo con herramientas de cerrajería" width="1600" height="1067" fetchpriority="high">
+    <img class="hero__foto" src="/assets/img/contacto-cerrajero-alcorcon.jpg" srcset="/assets/img/contacto-cerrajero-alcorcon-800.jpg 800w, /assets/img/contacto-cerrajero-alcorcon.jpg 1600w" sizes="100vw" alt="Banco de trabajo con herramientas de cerrajería" width="1600" height="1067" fetchpriority="high">
     <div class="contenedor hero__rejilla">
 
       <div class="hero__caja">
@@ -205,7 +207,9 @@
         </div>
         <h2>¿Prefiere que le llamemos?</h2>
         <p class="hero__tarjeta-sub">Déjenos el teléfono y le llamamos lo antes posible, dentro de nuestro horario.</p>
-        <form class="formulario formulario--claro" method="post" action="#">
+        <form class="formulario formulario--claro" method="post" action="/enviar.php" data-form="llamada">
+          <input type="hidden" name="tipo" value="llamada"><input type="hidden" name="t" value="">
+          <div class="campo-trampa" aria-hidden="true"><label for="web-h">Deje este campo vacío</label><input id="web-h" name="web" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="campo"><label for="nombre-h">Nombre</label><input id="nombre-h" name="nombre" type="text" autocomplete="name" required></div>
           <div class="campo"><label for="telefono-h">Teléfono</label><input id="telefono-h" name="telefono" type="tel" autocomplete="tel" required></div>
           <p class="acepto"><input id="privacidad-h" name="privacidad" type="checkbox" required><label for="privacidad-h">Acepto la <a href="/politica-privacidad/">política de privacidad</a>.</label></p>
@@ -244,7 +248,7 @@
             <dt>Dirección</dt><dd>C. Porto Colón, 2 (posterior) – Plaza de Lugo<br>28924 Alcorcón (Madrid)</dd>
             <dt>Teléfono</dt><dd><a data-cta="tel-ficha" href="tel:+34663250778">663 250 778</a>, también por <a class="enlace-wa" data-cta="wa-ficha" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a></dd>
             <dt>Correo</dt><dd><a href="mailto:marcoscerrajeros.es@gmail.com">marcoscerrajeros.es@gmail.com</a></dd>
-            <dt>Horario</dt><dd>De lunes a viernes, de 8:00 a 20:00. No trabajamos de noche ni los fines de semana.</dd>
+            <dt>Horario</dt><dd>De lunes a viernes, de 8:00 a 20:00. Si nos avisa fuera de ese horario, le llamamos a primera hora del siguiente día laborable.</dd>
           </dl>
           <p class="aviso"><p class="estado" data-estado="corto" hidden><span class="estado__punto"></span><span class="estado__txt"></span></p></p>
         </div>
@@ -254,7 +258,7 @@
           <p><b>Aquí va el mapa de Google.</b></p>
           <p class="apoyo">Para enseñarlo tenemos que conectar con Google, y entonces Google recibe su dirección IP. Solo lo hacemos si usted nos deja.</p>
           <button class="btn btn--tinta" type="button" data-consent-permitir="externas">Ver el mapa <svg aria-hidden="true"><use href="#i-flecha"></use></svg></button>
-          <p class="apoyo"><a href="https://www.google.com/maps/search/?api=1&amp;query=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">O abrirlo en Google Maps</a></p>
+          <p class="apoyo"><a href="https://g.page/r/CYjI6nriEg0rEAE" target="_blank" rel="noopener">O abrirlo en Google Maps</a></p>
         </div>
         <iframe
           data-consent="externas"
@@ -262,7 +266,7 @@
           title="Ubicación de Marcos Cerrajeros en Alcorcón, en Google Maps"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         <figcaption>Nuestro taller está en la calle Porto Colón, 2 (posterior), junto a la Plaza de Lugo ·
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">Abrir en Google Maps</a></figcaption>
+          <a href="https://g.page/r/CYjI6nriEg0rEAE" target="_blank" rel="noopener">Abrir en Google Maps</a></figcaption>
       </figure>
     </div>
   </section>
@@ -321,7 +325,7 @@
           <p class="antetitulo">Opiniones de clientes</p>
           <h2>Lo que dicen los vecinos de Alcorcón</h2>
         </div>
-        <a class="btn btn--tinta" data-cta="google-opiniones" href="https://www.google.com/search?q=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">Ver todas las opiniones</a>
+        <a class="btn btn--tinta" data-cta="google-opiniones" href="https://g.page/r/CYjI6nriEg0rEAE" target="_blank" rel="noopener">Ver todas las opiniones</a>
       </div>
 
       <div class="carrusel" data-carrusel>
@@ -423,7 +427,7 @@
 
       <p class="opiniones__pie">
         <span class="opiniones__nota"><b>4,9</b> <span class="estrellas" aria-hidden="true">★★★★★</span></span>
-        Más de 180 opiniones de vecinos de Alcorcón que nos llamaron por una urgencia, una cerradura o una reja — <a data-cta="google-opiniones-pie" href="https://www.google.com/search?q=Marcos+Cerrajeros+Alcorc%C3%B3n" target="_blank" rel="noopener">verlas en Google</a>
+        Más de 180 opiniones de vecinos de Alcorcón que nos llamaron por una urgencia, una cerradura o una reja — <a data-cta="google-opiniones-pie" href="https://g.page/r/CYjI6nriEg0rEAE" target="_blank" rel="noopener">verlas en Google</a>
       </p>
     </div>
   </section>
@@ -433,12 +437,14 @@
       <div class="cta">
         <div>
           <p class="antetitulo">¿Le ayudamos?</p>
-          <h2>¿Prefiere que le llamemos nosotros?</h2>
+          <h2>¿Prefiere escribirnos?</h2>
           <p>Déjenos un mensaje con lo que necesita y le llamamos lo antes posible, dentro de nuestro horario.</p>
           <p style="margin-top:var(--s4)"><a class="btn" data-cta="tel-cta-final" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a></p>
           <p style="margin-top:var(--s4);max-width:42ch">Somos cerrajeros: lo nuestro es la rapidez. Si lo prefiere, déjenos un mensaje y le llamamos nosotros.</p>
         </div>
-        <form class="formulario" method="post" action="#">
+        <form class="formulario" method="post" action="/enviar.php" data-form="mensaje">
+          <input type="hidden" name="tipo" value="mensaje"><input type="hidden" name="t" value="">
+          <div class="campo-trampa" aria-hidden="true"><label for="web">Deje este campo vacío</label><input id="web" name="web" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required></div>
           <div class="campo"><label for="telefono">Teléfono</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" required></div>
           <div class="campo"><label for="necesita">¿Qué necesita? <span class="opcional">(opcional)</span></label><textarea id="necesita" name="necesita"></textarea></div>
@@ -464,7 +470,7 @@
         <p style="margin-top:var(--s3);font-size:16px"><a class="pie__dest" href="/sobre-mi/">Empresa</a></p>
       </div>
       <div>
-        <h4>Servicios</h4>
+        <p class="pie__titulo">Servicios</p>
         <ul class="pie__nav">
           <li><a href="/apertura-de-puertas/">Apertura de puertas</a></li>
           <li><a href="/cambio-de-cerraduras/">Cambio de cerraduras</a></li>
@@ -481,7 +487,7 @@
         </ul>
       </div>
       <div>
-        <h4>Dónde trabajamos</h4>
+        <p class="pie__titulo">Dónde trabajamos</p>
         <ul class="pie__nav">
           <li>Alcorcón</li>
           <li><a href="/cerrajero-en-mostoles/">Móstoles</a></li>
@@ -493,7 +499,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <p class="pie__titulo">Contacto</p>
         <ul>
           <li>C. Porto Colón, 2 (posterior)<br>Plaza de Lugo<br>28924 Alcorcón (Madrid)</li>
           <li><a href="mailto:marcoscerrajeros.es@gmail.com">marcoscerrajeros.es@gmail.com</a></li>
@@ -509,41 +515,53 @@
   </div>
 </footer>
 
-<div class="llamar-movil">
+<div class="llamar-movil" role="region" aria-label="Llamar o escribir por WhatsApp">
   <a class="btn" data-cta="tel-barra-movil" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llamar ahora</a>
   <a class="btn btn--wa" data-cta="wa-barra-movil" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a>
 </div>
 
 <script>
-/* Estado de apertura en vivo: L-V 8:00-20:00 (hora de Madrid).
-   Dentro de horario el cartel dice el horario entero, que es lo que el
-   visitante necesita saber. Fuera de horario NO lo dice: un «abierto de
-   lunes a viernes» a las once de la noche se lee como «abierto ahora», y
-   aquí no se promete nada que no se cumpla. Entonces dice cuándo se abre.
-   Los festivos no los sabe: en un festivo entre semana dirá que está
-   abierto. Hace falta la lista de Marcos para afinarlo. */
+/* Estado de apertura en vivo: L-V 8:00-20:00 (hora de Madrid), cerrado
+   fines de semana y festivos de Alcorcón. Dentro de horario dice el horario;
+   fuera, cuándo se abre (saltando fines de semana y festivos). */
 (function(){
+  /* Festivos en los que Marcos cierra: nacionales, de la Comunidad de Madrid
+     y locales de Alcorcón. 2026: calendario oficial (BOCM 25/09/2025 y
+     12/12/2025). 2027: solo los seguros; al publicarse el calendario oficial
+     (autonómico en otoño, locales en diciembre) se completan aquí y en
+     plantilla.py. Formato AAAA-MM-DD. */
+  var FESTIVOS={
+    '2026-01-01':1,'2026-01-06':1,'2026-04-02':1,'2026-04-03':1,'2026-04-06':1,
+    '2026-05-01':1,'2026-09-08':1,'2026-10-12':1,'2026-11-02':1,'2026-12-07':1,
+    '2026-12-08':1,'2026-12-25':1,
+    '2027-01-01':1,'2027-01-06':1,'2027-03-25':1,'2027-03-26':1,'2027-10-12':1,
+    '2027-11-01':1,'2027-12-06':1,'2027-12-08':1
+  };
+  var DIAS=['el domingo','el lunes','el martes','el miércoles','el jueves','el viernes','el sábado'];
+  function clave(f){var m=f.getMonth()+1,d=f.getDate();return f.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(d<10?'0':'')+d;}
+  function laborable(f){var d=f.getDay();return d>=1&&d<=5&&!FESTIVOS[clave(f)];}
   var m=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Madrid'}));
-  var d=m.getDay(), min=m.getHours()*60+m.getMinutes();
-  var abierto=(d>=1&&d<=5&&min>=480&&min<1200), txt;
-  var corto;
+  var min=m.getHours()*60+m.getMinutes();
+  var abierto=laborable(m)&&min>=480&&min<1200, txt, corto;
   if(abierto){
-    txt='Abierto \u00b7 de lunes a viernes, de 8:00 a 20:00';
-    corto='Abierto ahora';
-  }
-  else{
-    var prox=(d===0)?'ma\u00f1ana':(d===6)?'el lunes':(d===5&&min>=1200)?'el lunes':(min>=1200)?'ma\u00f1ana':'hoy';
-    txt='Cerrado ahora \u00b7 abrimos '+prox+' a las 8:00';
-    corto=txt;
+    txt='Abierto \u00b7 de lunes a viernes, de 8:00 a 20:00'; corto='Abierto ahora';
+  }else{
+    var prox;
+    if(laborable(m)&&min<480){prox='hoy';}
+    else{
+      var f=new Date(m.getFullYear(),m.getMonth(),m.getDate()), n=0;
+      do{f.setDate(f.getDate()+1);n++;}while(!laborable(f)&&n<15);
+      prox=(n===1)?'mañana':DIAS[f.getDay()];
+    }
+    txt='Cerrado ahora · abrimos '+prox+' a las 8:00'; corto=txt;
   }
   document.querySelectorAll('[data-estado]').forEach(function(el){
     el.hidden=false; el.classList.toggle('estado--on',abierto);
-    el.querySelector('.estado__txt').textContent =
-      (el.getAttribute('data-estado')==='corto') ? corto : txt;
+    el.querySelector('.estado__txt').textContent=(el.getAttribute('data-estado')==='corto')?corto:txt;
   });
 })();
 </script>
-<script src="/assets/js/movimiento.js?v=57" defer></script>
-<script src="/assets/js/cookies.js?v=57" defer></script>
+<script src="/assets/js/movimiento.js?v=65" defer></script>
+<script src="/assets/js/cookies.js?v=65" defer></script>
 </body>
 </html>
