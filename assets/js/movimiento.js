@@ -322,4 +322,55 @@
       tarjetas.forEach(function (t) { obs3.observe(t); });
     });
   }
+  /* --- formularios (bloque 58): envío sin recargar, con aviso en la página.
+         Sin JavaScript el formulario va igual a /enviar.php y acaba en /gracias/. --- */
+  var ahora = String(Date.now());
+  document.querySelectorAll('form[data-form]').forEach(function (f) {
+    var t = f.querySelector('input[name="t"]');
+    if (t) t.value = ahora;
+    f.addEventListener('submit', function (e) {
+      if (!window.fetch || !window.FormData) return;
+      e.preventDefault();
+      var boton = f.querySelector('button[type="submit"]');
+      var aviso = f.querySelector('.formulario__aviso');
+      if (!aviso) {
+        aviso = document.createElement('p');
+        aviso.className = 'formulario__aviso';
+        aviso.setAttribute('role', 'status');
+        aviso.setAttribute('aria-live', 'polite');
+        f.appendChild(aviso);
+      }
+      aviso.classList.remove('es-error');
+      aviso.textContent = 'Enviando…';
+      if (boton) boton.disabled = true;
+      fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (d) {
+          if (d && d.ok) {
+            f.classList.add('formulario--enviado');
+            aviso.textContent = 'Recibido. Marcos le llama lo antes posible, de lunes a viernes de 8:00 a 20:00.';
+            f.reset();
+            if (window.mcMedicion) window.dataLayer.push({ event: 'formulario_enviado', tipo_formulario: f.getAttribute('data-form') });
+          } else {
+            aviso.classList.add('es-error');
+            aviso.textContent = (d && d.motivo) ? d.motivo + ' Si lo prefiere, llámenos al 663 250 778.' : 'No se ha podido enviar. Llámenos al 663 250 778.';
+            if (boton) boton.disabled = false;
+          }
+        })
+        .catch(function () {
+          aviso.classList.add('es-error');
+          aviso.textContent = 'No se ha podido enviar. Llámenos al 663 250 778.';
+          if (boton) boton.disabled = false;
+        });
+    });
+  });
+  /* --- medición (bloque 65): los clics en teléfono y WhatsApp los cuenta
+         Tag Manager con sus propios activadores (Click URL contiene «tel:» /
+         «wa.me»). Aquí solo se deja en el dataLayer desde QUÉ botón se pulsó
+         (data-cta), por si se quiere usar en GTM. Solo con consentimiento. --- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-cta]');
+    if (!a || !window.mcMedicion) return;
+    window.dataLayer.push({ event: 'cta', cta_posicion: a.getAttribute('data-cta') });
+  });
 })();

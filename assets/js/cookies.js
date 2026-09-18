@@ -15,6 +15,12 @@
 (function () {
   'use strict';
 
+  /* Medición (bloque 65): el mismo contenedor de Google Tag Manager que usaba
+     el WordPress (GTM-TJB2J2BK), que ya lleva GA4 (G-KFTMX8NC4D) y los eventos
+     clave (clic_telefono, boton_flotante_whatsapp). Se carga en todas las
+     páginas y SOLO si el visitante acepta «Estadísticas». Vacío = nada. */
+  var GTM_ID = 'GTM-TJB2J2BK';
+
   var CLAVE = 'mc-consentimiento';
   var VERSION = 1;            // súbela si cambian las categorías: se vuelve a preguntar
   var CATEGORIAS = [
@@ -39,8 +45,23 @@
     document.dispatchEvent(new CustomEvent('consentimiento', { detail: estado }));
   }
 
+  /* ---- Tag Manager, detrás del consentimiento ------------------ */
+  var gtmCargado = false;
+  function cargarGTM() {
+    if (gtmCargado || !GTM_ID) return;
+    gtmCargado = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    window.mcMedicion = true;
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM_ID);
+    document.head.appendChild(g);
+  }
+
   /* ---- soltar lo que estaba retenido -------------------------- */
   function aplicar(estado) {
+    if (estado.estadisticas) cargarGTM();
     document.querySelectorAll('script[type="text/plain"][data-consent]').forEach(function (s) {
       if (!estado[s.getAttribute('data-consent')]) return;
       var n = document.createElement('script');
@@ -79,7 +100,7 @@
 
   function pinta(abrirDetalle) {
     if (caja) { caja.remove(); caja = null; }
-    caja = document.createElement('aside');
+    caja = document.createElement('div');
     caja.className = 'ck';
     caja.setAttribute('role', 'dialog');
     caja.setAttribute('aria-modal', 'false');

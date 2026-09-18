@@ -424,7 +424,7 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
    abre un hueco en la columna de al lado. */
 .pie__cols > div:nth-child(2) ul{columns:2;column-gap:var(--s4)}
 .pie__cols > div:nth-child(2) li{break-inside:avoid}
-.pie h4{font:600 19px/1.2 var(--font-head);color:#fff;margin-bottom:var(--s3)}
+.pie h4,.pie .pie__titulo{font:600 19px/1.2 var(--font-head);color:#fff;margin-bottom:var(--s3)}
 .pie li{margin-bottom:10px;font-size:16px}
 .pie a{text-decoration:none;display:inline-block;transition:transform .4s var(--ease),color .4s var(--ease)}
 .pie__dest{color:#fff;font-weight:600}
@@ -1134,7 +1134,7 @@ body:has(.hero) .hero{padding-top:calc(var(--s6) + var(--cabecera-h))}
 .menu__empresa a,
 .hero h1, .hero p, .hero__caja,
 .seccion--tinta, .seccion--tinta h2, .seccion--tinta h3, .seccion--tinta p,
-.pie, .pie h4, .pie a, .pie li{-webkit-text-fill-color:currentColor}
+.pie, .pie h4, .pie .pie__titulo, .pie a, .pie li{-webkit-text-fill-color:currentColor}
 html.fx-js .menu[data-abierto] .menu__lista > li > a,
 html.fx-js .menu[data-abierto] .menu__sub a,
 html.fx-js .menu[data-abierto] .menu__empresa a{
@@ -1537,7 +1537,7 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
 .pie{position:relative;isolation:isolate;overflow:hidden}
 .pie::before{content:"";position:absolute;z-index:-1;pointer-events:none;right:-6%;bottom:-8%;
   width:min(620px,55vw);aspect-ratio:1600/1155;background:url(../img/trama-m-negativo.png) center/contain no-repeat;opacity:.05}
-.pie h4::after{content:"";display:block;width:28px;height:3px;border-radius:2px;background:var(--action);margin-top:12px}
+.pie h4::after,.pie .pie__titulo::after{content:"";display:block;width:28px;height:3px;border-radius:2px;background:var(--action);margin-top:12px}
 .pie__nav a{position:relative;padding-left:22px;transform:none !important;
   transition:color .35s var(--ease),padding-left .35s var(--ease)}
 .pie__nav a::before{content:"";position:absolute;left:0;top:50%;width:12px;height:2px;border-radius:2px;
@@ -1584,3 +1584,36 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
   .seccion--trama.seccion--trama.seccion--trama.seccion--trama.seccion--trama-der::after{right:-50%}
   .seccion--trama.seccion--trama.seccion--trama.seccion--trama.seccion--trama-izq::after{left:-50%}
 }
+
+/* ==============================================================
+   BLOQUE 58 · FORMULARIOS QUE ENVÍAN
+   El campo trampa no se ve ni se alcanza con el tabulador; el aviso
+   aparece debajo del botón. Enviado, los campos se retiran.
+   ============================================================== */
+.campo-trampa{position:absolute !important;left:-10000px;width:1px;height:1px;overflow:hidden}
+.formulario{position:relative}
+.formulario__aviso{margin:var(--s2) 0 0;padding:12px 16px;border-radius:var(--r-btn);font-size:15.5px;line-height:1.45;
+  background:rgba(242,183,5,.16);color:inherit;border-left:3px solid var(--action)}
+.formulario__aviso.es-error{background:rgba(200,40,40,.10);border-left-color:#c82828}
+.formulario--enviado .campo,.formulario--enviado .acepto,.formulario--enviado button{display:none}
+.formulario--enviado .formulario__aviso{margin-top:0;font-weight:600}
+.seccion--gracias{min-height:55vh;display:flex;align-items:center}
+
+/* ==============================================================
+   BLOQUE 58 · ACCESIBILIDAD Y DETALLES DE LA AUDITORÍA
+   ============================================================== */
+/* «Abierto ahora» en la ficha de datos: heredaba el color claro del hero
+   y salía blanco sobre blanco (contraste 1,27). */
+.ficha .estado__txt,.ficha .aviso .estado{color:var(--ink)}
+/* Migas: el enlace se distingue del texto por el subrayado, no solo por el tono. */
+.migas a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;opacity:1}
+/* Sello del hero en móvil: la nota, las estrellas y el texto en líneas limpias
+   en vez de una columna estrecha. */
+@media (max-width:640px){
+  .hero__sello{display:block;line-height:1.5}
+  .hero__sello b{margin-right:6px;vertical-align:-2px}
+  .hero__sello .estrellas{margin-right:8px}
+}
+/* El aviso del formulario claro (tarjeta del hero) heredaba el gris claro
+   de los párrafos del hero: en tinta. */
+.hero .formulario--claro .formulario__aviso,.formulario--claro .formulario__aviso{color:var(--ink);border-radius:var(--r-btn)}
