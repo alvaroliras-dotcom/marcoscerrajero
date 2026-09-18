@@ -1435,9 +1435,11 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
    PASOS EN TARJETAS (bloque 56)
    Cuatro tarjetas con flecha entre ellas. La activa se pinta en ámbar
    con el texto en tinta (sobre ámbar el blanco no da contraste).
-   Escritorio: activa la que tiene el ratón; sin ratón encima, la primera.
-   Táctil: movimiento.js marca .is-activo en la que cruza el centro de la
-   pantalla y pone .pasos4--toque para anular la primera por defecto.
+   Bloque 68: por defecto todas apagadas.
+   Escritorio: movimiento.js las enciende de una en una cada 3 s mientras
+   la sección está a la vista; al poner el ratón encima manda el ratón.
+   Táctil: se enciende la que cruza el centro de la pantalla al bajar.
+   Con «reducir movimiento» no hay encendido automático.
    ============================================================== */
 .pasos4__cab{text-align:center;max-width:780px;margin-inline:auto}
 .pasos4__intro{color:var(--steel-txt);margin-top:var(--s2);font-size:17px}
@@ -1459,23 +1461,18 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
 .paso__checks svg{width:20px;height:20px;flex:none;fill:var(--steel);transition:fill .3s var(--ease)}
 .paso__num{position:absolute;right:var(--s3);bottom:-8px;font:600 76px/1 var(--font-head);color:transparent;
   -webkit-text-stroke:1.5px var(--line);pointer-events:none;transition:-webkit-text-stroke-color .3s var(--ease)}
-.pasos4:not(:hover):not(.pasos4--toque) > li:first-child .paso,
 .paso:hover,
 .paso:focus-within,
 .paso.is-activo{background:var(--action);border-color:var(--action)}
-.pasos4:not(:hover):not(.pasos4--toque) > li:first-child .paso .paso__icono,
 .paso:hover .paso__icono,
 .paso:focus-within .paso__icono,
 .paso.is-activo .paso__icono{background:var(--ink);color:var(--action)}
-.pasos4:not(:hover):not(.pasos4--toque) > li:first-child .paso .paso__texto,
 .paso:hover .paso__texto,
 .paso:focus-within .paso__texto,
 .paso.is-activo .paso__texto{color:var(--ink)}
-.pasos4:not(:hover):not(.pasos4--toque) > li:first-child .paso .paso__checks svg,
 .paso:hover .paso__checks svg,
 .paso:focus-within .paso__checks svg,
 .paso.is-activo .paso__checks svg{fill:var(--ink)}
-.pasos4:not(:hover):not(.pasos4--toque) > li:first-child .paso .paso__num,
 .paso:hover .paso__num,
 .paso:focus-within .paso__num,
 .paso.is-activo .paso__num{-webkit-text-stroke-color:rgba(22,22,22,.22)}
@@ -1617,3 +1614,30 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
 /* El aviso del formulario claro (tarjeta del hero) heredaba el gris claro
    de los párrafos del hero: en tinta. */
 .hero .formulario--claro .formulario__aviso,.formulario--claro .formulario__aviso{color:var(--ink);border-radius:var(--r-btn)}
+
+/* ==============================================================
+   BLOQUE 67 · MÁS CONTRASTE EN EL TITULAR DEL HERO
+   El bloque 57 abrió el velo para que se vieran las fotos. Aquí se
+   vuelve a cerrar un poco SOLO donde va el texto (izquierda en
+   escritorio, arriba en móvil); la zona de la derecha / de abajo
+   sigue igual de luminosa.
+   ============================================================== */
+@media (min-width:1101px){
+  .hero:not(.hero--retrato)::before,
+  .hero--servicio:not(.hero--retrato)::before{
+    background:linear-gradient(100deg,
+      rgba(22,22,22,.92) 0%,
+      rgba(22,22,22,.82) 36%,
+      rgba(22,22,22,.46) 62%,
+      rgba(22,22,22,.14) 100%)}
+  .hero .hero__caja{text-shadow:0 1px 22px rgba(0,0,0,.5)}
+}
+@media (max-width:1100px){
+  .hero:not(.hero--retrato)::before,
+  .hero--servicio:not(.hero--retrato)::before{
+    background:linear-gradient(180deg,
+      rgba(22,22,22,.88) 0%,
+      rgba(22,22,22,.76) 45%,
+      rgba(22,22,22,.52) 76%,
+      rgba(22,22,22,.30) 100%)}
+}

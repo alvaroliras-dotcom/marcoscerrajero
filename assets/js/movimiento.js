@@ -312,7 +312,6 @@
       var tarjetas = [].slice.call(lista.querySelectorAll('.paso'));
       if (!tarjetas.length) return;
       lista.classList.add('pasos4--toque');
-      tarjetas[0].classList.add('is-activo');
       var obs3 = new IntersectionObserver(function (filas) {
         filas.forEach(function (f) {
           if (!f.isIntersecting) return;
@@ -320,6 +319,28 @@
         });
       }, { rootMargin: '-45% 0px -45% 0px' });
       tarjetas.forEach(function (t) { obs3.observe(t); });
+    });
+  }
+  /* --- pasos en escritorio (bloque 68): se encienden solos, uno cada 3 s,
+         mientras la sección está a la vista. Con el ratón encima se para y
+         manda el ratón; al salir sigue. Sin movimiento si el usuario lo pide. --- */
+  if (window.matchMedia('(hover: hover)').matches &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      'IntersectionObserver' in window) {
+    document.querySelectorAll('.pasos4').forEach(function (lista) {
+      var tarjetas = [].slice.call(lista.querySelectorAll('.paso'));
+      if (!tarjetas.length) return;
+      var i = -1, reloj = null, visible = false, encima = false;
+      function pinta(n) { tarjetas.forEach(function (t, k) { t.classList.toggle('is-activo', k === n); }); }
+      function paso() { i = (i + 1) % tarjetas.length; pinta(i); }
+      function arranca() { if (reloj || !visible || encima) return; paso(); reloj = setInterval(paso, 3000); }
+      function para() { clearInterval(reloj); reloj = null; }
+      new IntersectionObserver(function (filas) {
+        visible = filas[0].isIntersecting;
+        if (visible) { arranca(); } else { para(); i = -1; pinta(-1); }
+      }, { threshold: 0.45 }).observe(lista);
+      lista.addEventListener('mouseenter', function () { encima = true; para(); pinta(-1); });
+      lista.addEventListener('mouseleave', function () { encima = false; arranca(); });
     });
   }
   /* --- formularios (bloque 58): envío sin recargar, con aviso en la página.
