@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/barlow-600.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-400.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/assets/css/estilo.css?v=54">
+<link rel="stylesheet" href="/assets/css/estilo.css?v=56">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -457,23 +457,55 @@
     </div>
   </section>
 
-  <section class="seccion seccion--blanca">
+  <section class="seccion seccion--blanca seccion--pasos4">
     <div class="contenedor">
-      <div class="pasos-foto">
-        <div>
-          <p class="antetitulo">Paso a paso</p>
-          <h2>Cómo trabajamos</h2>
-          <ul class="pasos" style="margin-top:var(--s4)">
-          <li><span class="num">1</span><span><b>Nos llama</b><span>Nos cuenta qué le pasa. Marcos le dice por teléfono si se resuelve en el momento o si hay que ir a verlo.</span></span></li>
-          <li><span class="num">2</span><span><b>Vamos a verlo</b><span>La visita y el presupuesto no se cobran. Medimos, miramos el estado real y le decimos qué haríamos y qué no hace falta hacer.</span></span></li>
-          <li><span class="num">3</span><span><b>Le damos el precio antes de empezar</b><span>Y no cambia al terminar. Sin sorpresas.</span></span></li>
-          <li><span class="num">4</span><span><b>Se hace el trabajo</b><span>Y si algo no queda bien, volvemos y lo arreglamos.</span></span></li>
-          </ul>
-        </div>
-        <figure class="pasos-foto__img">
-          <img src="/assets/img/taller-entrada-alcorcon.jpg" alt="Taller de Marcos Cerrajeros en Alcorcón, desde donde salimos hacia Villaviciosa de Odón" width="1000" height="1250" loading="lazy">
-        </figure>
+      <div class="pasos4__cab">
+        <p class="antetitulo">Paso a paso</p>
+        <h2>Cómo trabajamos</h2>
+      <p class="pasos4__intro">Cuatro pasos, siempre los mismos. En cada momento sabe qué va a pasar y cuánto le va a costar.</p>
       </div>
+      <ol class="pasos4">
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg paso__svg--lleno"><use href="#i-tel"></use></svg></span>
+              <h3 class="paso__titulo">Nos llama</h3>
+              <p class="paso__texto">Nos cuenta qué le pasa. Marcos le dice por teléfono si se resuelve en el momento o si hay que ir a verlo.</p>
+              <ul class="paso__checks"><li><svg aria-hidden="true"><use href="#i-check"></use></svg>Le atiende Marcos, sin centralita</li><li><svg aria-hidden="true"><use href="#i-check"></use></svg>Le orientamos desde la primera llamada</li></ul>
+              <span class="paso__num" aria-hidden="true">.01</span>
+            </div>
+            <span class="paso__flecha" aria-hidden="true"><svg><use href="#i-flecha"></use></svg></span>
+          </li>
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg></span>
+              <h3 class="paso__titulo">Vamos a verlo</h3>
+              <p class="paso__texto">Medimos, miramos el estado real y le decimos qué haríamos y qué no hace falta hacer.</p>
+              <ul class="paso__checks"><li><svg aria-hidden="true"><use href="#i-check"></use></svg>Visita y presupuesto gratis</li><li><svg aria-hidden="true"><use href="#i-check"></use></svg>Sin compromiso</li></ul>
+              <span class="paso__num" aria-hidden="true">.02</span>
+            </div>
+            <span class="paso__flecha" aria-hidden="true"><svg><use href="#i-flecha"></use></svg></span>
+          </li>
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg"><path d="M6.5 3h8l4 4v14h-12z"/><path d="M14.5 3v4h4"/><path d="M9.5 12.5h6M9.5 16h4"/></svg></span>
+              <h3 class="paso__titulo">Le damos el precio</h3>
+              <p class="paso__texto">Antes de empezar, con todas las opciones delante. Ese precio no cambia al terminar.</p>
+              <ul class="paso__checks"><li><svg aria-hidden="true"><use href="#i-check"></use></svg>Cada opción, con su precio</li><li><svg aria-hidden="true"><use href="#i-check"></use></svg>Usted decide, sin presión</li></ul>
+              <span class="paso__num" aria-hidden="true">.03</span>
+            </div>
+            <span class="paso__flecha" aria-hidden="true"><svg><use href="#i-flecha"></use></svg></span>
+          </li>
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg"><path d="M14.5 5.5a4 4 0 0 0-5 5L3.5 16.5l3 3 6-6a4 4 0 0 0 5-5l-2.4 2.4-2.1-.5-.5-2.1z"/></svg></span>
+              <h3 class="paso__titulo">Hacemos el trabajo</h3>
+              <p class="paso__texto">Lo probamos con usted delante. Y si algo no queda bien, volvemos y lo arreglamos.</p>
+              <ul class="paso__checks"><li><svg aria-hidden="true"><use href="#i-check"></use></svg>Un año de garantía en mano de obra</li><li><svg aria-hidden="true"><use href="#i-check"></use></svg>La del fabricante en los materiales</li></ul>
+              <span class="paso__num" aria-hidden="true">.04</span>
+            </div>
+          </li>
+      </ol>
+      <p class="pasos4__remate"><span class="pasos4__tel" aria-hidden="true"><svg><use href="#i-tel"></use></svg></span>De la llamada al trabajo terminado, sin sorpresas. <a data-cta="tel-pasos" href="tel:+34663250778">Llame al 663 250 778</a></p>
     </div>
   </section>
 
@@ -662,7 +694,7 @@
   });
 })();
 </script>
-<script src="/assets/js/movimiento.js?v=54" defer></script>
-<script src="/assets/js/cookies.js?v=54" defer></script>
+<script src="/assets/js/movimiento.js?v=56" defer></script>
+<script src="/assets/js/cookies.js?v=56" defer></script>
 </body>
 </html>

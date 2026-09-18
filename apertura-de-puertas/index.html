@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/barlow-600.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-400.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/assets/css/estilo.css?v=54">
+<link rel="stylesheet" href="/assets/css/estilo.css?v=56">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -313,23 +313,50 @@
       </div>
     </div>
   </section>
-  <section class="seccion">
+  <section class="seccion seccion--pasos4">
     <div class="contenedor">
-      <div class="pasos-foto">
-        <div>
-          <p class="antetitulo">Paso a paso</p>
-          <h2>Así trabajamos en una apertura urgente</h2>
-          <ul class="pasos" style="margin-top:var(--s4)">
-          <li><span class="num">1</span><span><b>Nos llama y le atiende Marcos</b><span>Nos dice dónde está y qué ha pasado: si la puerta se ha cerrado solo con el resbalón o con la llave echada, y qué cerradura tiene. Con eso ya sabemos por dónde ir.</span></span></li>
-          <li><span class="num">2</span><span><b>Le damos hora</b><span>Para el mismo día. En una urgencia, lo prioritario es llegar pronto.</span></span></li>
-          <li><span class="num">3</span><span><b>Vemos la puerta y le decimos el precio</b><span>Antes de tocar nada. Le explicamos cómo vamos a abrir y qué opciones tiene, y usted elige la que mejor le encaja.</span></span></li>
-          <li><span class="num">4</span><span><b>Abrimos respetando su puerta</b><span>Y si lo necesita, en el mismo servicio le instalamos un <a href="/cerrojos-de-seguridad/">cerrojo de seguridad</a>, para que su puerta sea mucho más difícil de abrir para cualquiera que no sea usted.</span></span></li>
-          </ul>
-        </div>
-        <figure class="pasos-foto__img">
-          <img src="/assets/img/herramientas-cerrajero-rellano-alcorcon.jpg" alt="Herramientas de cerrajero en el rellano de un piso de Alcorcón" width="1000" height="1250" loading="lazy">
-        </figure>
+      <div class="pasos4__cab">
+        <p class="antetitulo">Paso a paso</p>
+        <h2>Así trabajamos en una apertura urgente</h2>
       </div>
+      <ol class="pasos4">
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg paso__svg--lleno"><use href="#i-tel"></use></svg></span>
+              <h3 class="paso__titulo">Nos llama y le atiende Marcos</h3>
+              <p class="paso__texto">Nos dice dónde está y qué ha pasado: si la puerta se ha cerrado solo con el resbalón o con la llave echada, y qué cerradura tiene. Con eso ya sabemos por dónde ir.</p>
+              <span class="paso__num" aria-hidden="true">.01</span>
+            </div>
+            <span class="paso__flecha" aria-hidden="true"><svg><use href="#i-flecha"></use></svg></span>
+          </li>
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg></span>
+              <h3 class="paso__titulo">Le damos hora</h3>
+              <p class="paso__texto">Para el mismo día. En una urgencia, lo prioritario es llegar pronto.</p>
+              <span class="paso__num" aria-hidden="true">.02</span>
+            </div>
+            <span class="paso__flecha" aria-hidden="true"><svg><use href="#i-flecha"></use></svg></span>
+          </li>
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg"><path d="M6.5 3h8l4 4v14h-12z"/><path d="M14.5 3v4h4"/><path d="M9.5 12.5h6M9.5 16h4"/></svg></span>
+              <h3 class="paso__titulo">Vemos la puerta y le decimos el precio</h3>
+              <p class="paso__texto">Antes de tocar nada. Le explicamos cómo vamos a abrir y qué opciones tiene, y usted elige la que mejor le encaja.</p>
+              <span class="paso__num" aria-hidden="true">.03</span>
+            </div>
+            <span class="paso__flecha" aria-hidden="true"><svg><use href="#i-flecha"></use></svg></span>
+          </li>
+          <li>
+            <div class="paso">
+              <span class="paso__icono"><svg viewBox="0 0 24 24" aria-hidden="true" class="paso__svg"><path d="M14.5 5.5a4 4 0 0 0-5 5L3.5 16.5l3 3 6-6a4 4 0 0 0 5-5l-2.4 2.4-2.1-.5-.5-2.1z"/></svg></span>
+              <h3 class="paso__titulo">Abrimos respetando su puerta</h3>
+              <p class="paso__texto">Y si lo necesita, en el mismo servicio le instalamos un <a href="/cerrojos-de-seguridad/">cerrojo de seguridad</a>, para que su puerta sea mucho más difícil de abrir para cualquiera que no sea usted.</p>
+              <span class="paso__num" aria-hidden="true">.04</span>
+            </div>
+          </li>
+      </ol>
+      <p class="pasos4__remate"><span class="pasos4__tel" aria-hidden="true"><svg><use href="#i-tel"></use></svg></span>De la llamada al trabajo terminado, sin sorpresas. <a data-cta="tel-pasos" href="tel:+34663250778">Llame al 663 250 778</a></p>
     </div>
   </section>
   <section class="seccion seccion--blanca">
@@ -526,7 +553,7 @@
   });
 })();
 </script>
-<script src="/assets/js/movimiento.js?v=54" defer></script>
-<script src="/assets/js/cookies.js?v=54" defer></script>
+<script src="/assets/js/movimiento.js?v=56" defer></script>
+<script src="/assets/js/cookies.js?v=56" defer></script>
 </body>
 </html>

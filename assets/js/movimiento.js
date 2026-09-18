@@ -53,7 +53,7 @@
   var GRUPOS = [
     '.seccion > .contenedor > .antetitulo, .seccion > .contenedor > h2, .seccion > .contenedor > .medida',
     '.banda li', '.cifras li', '.caso', '.tarjeta', '.resena', '.tipos li', '.ventajas li',
-    '.pasos li', '.faq details', '.faq-intro > *', '.texto-foto > div',
+    '.pasos li', '.pasos4 > li', '.pasos4__cab > *', '.pasos4__remate', '.faq details', '.faq-intro > *', '.texto-foto > div',
     '.pasos-foto > div, .pasos-foto > figure', '.partido > div', '.cta > *',
     '.opiniones__cab > *', '.opiniones__pie'
   ];
@@ -305,4 +305,21 @@
     var g = c.firstElementChild;
     if (g && !c.dataset.listo) { c.appendChild(g.cloneNode(true)); c.dataset.listo = '1'; }
   });
+  /* --- pasos en tarjetas: en pantallas táctiles no hay ratón, así que se
+         ilumina la tarjeta que cruza el centro de la pantalla (bloque 56) --- */
+  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    document.querySelectorAll('.pasos4').forEach(function (lista) {
+      var tarjetas = [].slice.call(lista.querySelectorAll('.paso'));
+      if (!tarjetas.length) return;
+      lista.classList.add('pasos4--toque');
+      tarjetas[0].classList.add('is-activo');
+      var obs3 = new IntersectionObserver(function (filas) {
+        filas.forEach(function (f) {
+          if (!f.isIntersecting) return;
+          tarjetas.forEach(function (t) { t.classList.toggle('is-activo', t === f.target); });
+        });
+      }, { rootMargin: '-45% 0px -45% 0px' });
+      tarjetas.forEach(function (t) { obs3.observe(t); });
+    });
+  }
 })();
