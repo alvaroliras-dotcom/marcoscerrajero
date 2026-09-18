@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/barlow-600.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-400.woff" as="font" type="font/woff" crossorigin>
-<link rel="stylesheet" href="/assets/css/estilo.css?v=56">
+<link rel="stylesheet" href="/assets/css/estilo.css?v=57">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -460,16 +460,19 @@
       <div>
         <img class="pie__logo" src="/assets/logo/logo-negativo.png" alt="Marcos Cerrajeros · Alcorcón" width="4000" height="812">
         <p style="font-size:16px">Cerrajería en Alcorcón desde hace más de 15 años. Presupuesto gratis, sin compromiso y sin sorpresas.</p>
-        <p style="margin-top:var(--s3);font-size:16px"><a class="pie__dest" data-cta="tel-pie" href="tel:+34663250778">663 250 778</a><br><a class="enlace-wa pie__dest" data-cta="wa-pie" style="margin-top:8px" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a></p>
+        <div class="pie__botones">
+          <a class="btn" data-cta="tel-pie" href="tel:+34663250778"><svg aria-hidden="true"><use href="#i-tel"></use></svg>Llame al 663 250 778</a>
+          <a class="btn btn--wa" data-cta="wa-pie" href="https://wa.me/34663250778?text=Hola%2C%20necesito%20un%20cerrajero%20en%20Alcorc%C3%B3n." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"></use></svg>Escríbanos por WhatsApp</a>
+        </div>
         <p style="margin-top:var(--s3);font-size:16px"><a class="pie__dest" href="/sobre-mi/">Empresa</a></p>
       </div>
       <div>
         <h4>Servicios</h4>
-        <ul>
+        <ul class="pie__nav">
           <li><a href="/apertura-de-puertas/">Apertura de puertas</a></li>
           <li><a href="/cambio-de-cerraduras/">Cambio de cerraduras</a></li>
           <li><a href="/reparacion-de-cerraduras-de-puertas/">Reparación de cerraduras</a></li>
-          <li><a href="/reparacion-de-puertas/">Reparación de puertas</a></li>
+          <li><a href="/reparacion-de-puertas/" aria-current="page">Reparación de puertas</a></li>
           <li><a href="/instalacion-puerta-acorazada/">Puertas acorazadas</a></li>
           <li><a href="/instalacion-puertas-blindadas/">Puertas blindadas</a></li>
           <li><a href="/cerraduras-de-borjas/">Cerraduras de borjas</a></li>
@@ -482,7 +485,7 @@
       </div>
       <div>
         <h4>Dónde trabajamos</h4>
-        <ul>
+        <ul class="pie__nav">
           <li>Alcorcón</li>
           <li><a href="/cerrajero-en-mostoles/">Móstoles</a></li>
           <li><a href="/cerrajero-en-leganes/">Leganés</a></li>
@@ -543,7 +546,7 @@
   });
 })();
 </script>
-<script src="/assets/js/movimiento.js?v=56" defer></script>
-<script src="/assets/js/cookies.js?v=56" defer></script>
+<script src="/assets/js/movimiento.js?v=57" defer></script>
+<script src="/assets/js/cookies.js?v=57" defer></script>
 </body>
 </html>
