@@ -414,18 +414,7 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 @media (max-width:992px){ .cta{grid-template-columns:1fr} }
 
 /* --- Pie ---------------------------------------------------- */
-/* El pie ya no es un color liso: lleva detrás la M de la marca repetida a
-   ladrillo, en blanco al 3,8 % para que componga sobre el fondo sin depender
-   de un gris fijo, y un resplandor de esquina que rompe la plancha. */
-.pie{position:relative;isolation:isolate;
-  background:var(--ink) url(/assets/img/trama-m.svg) repeat 0 0;
-  background-size:104px 104px;
-  color:var(--steel-l);padding-block:var(--s6) var(--s4);
-  border-top:1px solid rgba(255,255,255,.1)}
-.pie::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(120% 90% at 12% 0%, rgba(242,183,5,.10), transparent 58%),
-             radial-gradient(90% 70% at 100% 100%, rgba(255,255,255,.05), transparent 60%)}
-.pie .contenedor{position:relative}
+.pie{background:var(--ink);color:var(--steel-l);padding-block:var(--s6) var(--s4);border-top:1px solid rgba(255,255,255,.1)}
 .pie__cols{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s5) var(--s4)}
 /* Seis sextos: marca 2, servicios 2 (en dos columnas), zonas 1 y contacto 1.
    Con doce servicios, una sola columna dejaba el pie descolgado por la izquierda. */
@@ -436,55 +425,10 @@ body:has(.hero) .cabecera .menu__sub a{color:var(--ink)}
 .pie__cols > div:nth-child(2) ul{columns:2;column-gap:var(--s4)}
 .pie__cols > div:nth-child(2) li{break-inside:avoid}
 .pie h4{font:600 19px/1.2 var(--font-head);color:#fff;margin-bottom:var(--s3)}
-.pie li{margin-bottom:10px;font-size:16px;padding-left:18px;overflow-wrap:anywhere}
+.pie li{margin-bottom:10px;font-size:16px}
 .pie a{text-decoration:none;display:inline-block;transition:transform .4s var(--ease),color .4s var(--ease)}
 .pie__dest{color:#fff;font-weight:600}
 .pie a:hover,.pie a:focus-visible{color:var(--action);transform:translateX(6px)}
-
-/* --- Marcador de los enlaces del pie -------------------------
-   Antes el hover solo cambiaba de color y desplazaba seis píxeles: sobre fondo
-   oscuro y con doce servicios seguidos, apenas se veía cuál estabas señalando.
-   Ahora entra una barra ámbar por la izquierda. El hueco de la barra está
-   reservado SIEMPRE (padding-left), así que al pasar el ratón no se mueve la
-   maquetación: solo aparece la barra. */
-/* La sangría va en el LI, no en el enlace: así los que no son enlace
-   —Alcorcón, Leganés, la dirección— alinean con los que sí lo son, y la
-   barra cabe en ese hueco sin mover nada al pasar el ratón. */
-.pie li a{position:relative}
-.pie li a::before{content:"";position:absolute;left:-18px;top:.24em;
-  width:4px;height:1.02em;border-radius:2px;
-  background:var(--action);transform:scaleY(0);transform-origin:50% 50%;
-  transition:transform .32s var(--ease)}
-.pie li a:hover::before,.pie li a:focus-visible::before{transform:scaleY(1)}
-/* El texto se pone ámbar, como en TODA la web: la barra ya es el marcador
-   fuerte que faltaba, y cambiar aquí el color a blanco rompía la convención
-   del sitio (y lo cazó el control `pie_legal`, que tenía razón). */
-.pie li a:hover,.pie li a:focus-visible{transform:translateX(4px)}
-/* En «Dónde trabajamos» hoy solo Móstoles es enlace; las demás lo serán
-   cuando existan sus landings. Para que las cinco se señalen igual, el
-   marcador se engancha al LI y no al enlace. */
-.pie__zonas li{position:relative;transition:color .32s var(--ease),transform .4s var(--ease)}
-.pie__zonas li::before{content:"";position:absolute;left:-18px;top:.24em;
-  width:4px;height:1.02em;border-radius:2px;
-  background:var(--action);transform:scaleY(0);transform-origin:50% 50%;
-  transition:transform .32s var(--ease)}
-.pie__zonas li:hover::before{transform:scaleY(1)}
-.pie__zonas li:hover{color:var(--action);transform:translateX(4px)}
-.pie__zonas li:hover a{color:var(--action)}
-/* El enlace de dentro no pone su propia barra: la pone el LI. */
-.pie__zonas li a::before{content:none}
-.pie__zonas li a:hover,.pie__zonas li a:focus-visible{transform:none}
-
-/* Los legales van en línea corrida: ahí la barra sobra. */
-.pie__legal li,.pie__legal a{padding-left:0}
-.pie__legal a::before{content:none}
-
-/* --- El teléfono, que es lo que se vende --------------------- */
-.pie__tel{display:inline-block;font:600 clamp(26px,2.4vw,32px)/1.1 var(--font-head);
-  color:#fff;letter-spacing:-.01em;margin-bottom:10px}
-.pie__tel:hover,.pie__tel:focus-visible{color:var(--action);transform:translateX(4px)}
-.pie__tel-et{display:block;font-size:13px;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--steel);margin-bottom:4px}
 /* el icono de WhatsApp conserva su verde de marca aunque el texto se ponga naranja */
 .pie__logo{height:58px;width:auto;margin-bottom:var(--s3)}
 .pie__legal{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
