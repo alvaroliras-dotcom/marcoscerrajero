@@ -15,9 +15,14 @@
 
 /* ---------- CONFIGURACIÓN: lo único que puede hacer falta tocar ---------- */
 const DESTINO   = 'marcoscerrajeros.es@gmail.com';
-// Remitente: TIENE que ser un buzón que exista en el dominio, o el servidor
-// de WebEmpresa rechaza o manda a spam el correo. Confirmar cuál antes de subir.
-const REMITENTE = 'web@marcoscerrajeros.es';
+// Copia oculta para la agencia: sirve para comprobar que los avisos salen y
+// para no depender de que Marcos confirme cada uno. Marcos no la ve (va en
+// copia oculta). Para dejar de recibirla, poner '' aquí y volver a subir.
+const COPIA_OCULTA = 'alvaroliras@gmail.com';
+// Remitente: TIENE que ser un buzón que exista de verdad en el dominio, o el
+// servidor de WebEmpresa rechaza el envío. Comprobado el 22/09/2026 en el panel:
+// el único buzón del dominio es info@marcoscerrajeros.es (web@ NO existe).
+const REMITENTE = 'info@marcoscerrajeros.es';
 const NOMBRE_REMITENTE = 'Web Marcos Cerrajeros';
 const MAX_ENVIOS_POR_HORA = 5;
 /* ------------------------------------------------------------------------- */
@@ -135,6 +140,7 @@ $cabeceras = [
     'Content-Transfer-Encoding: 8bit',
     'X-Mailer: marcoscerrajeros.es',
 ];
+if (COPIA_OCULTA !== '') { $cabeceras[] = 'Bcc: ' . COPIA_OCULTA; }
 
 $enviado = mail(DESTINO, '=?UTF-8?B?' . base64_encode($asunto) . '?=', $cuerpo, implode("\r\n", $cabeceras), '-f' . REMITENTE);
 
