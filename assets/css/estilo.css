@@ -1641,3 +1641,22 @@ html.fx-js .seccion--cifras .cifras li::before{background:rgba(22,22,22,.26)}
       rgba(22,22,22,.52) 76%,
       rgba(22,22,22,.30) 100%)}
 }
+
+/* ==============================================================
+   BLOQUE 69 · NADA SE SALE POR LOS LADOS EN MÓVIL
+   Álvaro vio barra de scroll horizontal en su móvil (19/09). En
+   Chromium no se reproduce a 300-412 px, así que se corta en raíz:
+   `clip` (no `hidden`) para no romper la cabecera `sticky`.
+   ============================================================== */
+html,body{overflow-x:clip;max-width:100%}
+
+/* ===============================================================
+   Bloque 70 · Logo con el menú móvil abierto
+   Con la página bajada, la cabecera fija forzaba (con !important) el
+   logo oscuro, que desaparecía sobre la barra negra del menú. Con el
+   menú abierto manda siempre el logo en blanco y ámbar.
+   =============================================================== */
+@media (max-width:1100px){
+  .cabecera[data-menu] .cabecera__logo .logo--claro{opacity:0 !important}
+  .cabecera[data-menu] .cabecera__logo .logo--oscuro{opacity:1 !important}
+}
