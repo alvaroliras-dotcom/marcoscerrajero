@@ -1706,3 +1706,13 @@ html,body{overflow-x:clip;max-width:100%}
   .r404__card{padding:14px 16px}
   .r404__botones .btn{flex:1 1 100%;justify-content:center}
 }
+
+/* ===============================================================
+   Bloque 72 · Cabecera sólida en las páginas sin hero
+   La regla 6 dejó la cabecera transparente en TODAS las páginas y el
+   script solo la volvía sólida cuando había hero. Con una página que
+   empieza en oscuro (la 404), al bajar el contenido pasaba por debajo
+   de la barra y el logotipo y el menú se perdían. Sin hero, la barra
+   es sólida desde el principio.
+   =============================================================== */
+body:not(:has(.hero)) .cabecera{background:var(--paper);border-bottom-color:var(--line)}

@@ -141,7 +141,6 @@
      se baja, o el menú se queda invisible sobre la foto. Vive aquí y no en el
      HTML de una página suelta, para que lo hereden todas. */
   var cabecera = document.querySelector('.cabecera');
-  var hayHero = !!document.querySelector('.hero');
   var foto = document.querySelector('.hero__foto');
   var barra = document.querySelector('.fx-progreso');
   var pedido = false;
@@ -151,7 +150,9 @@
     requestAnimationFrame(function () {
       pedido = false;
       var y = window.pageYOffset || 0;
-      if (cabecera && hayHero) cabecera.classList.toggle('cabecera--fija', y > 60);
+      /* Con hero la barra pasa de transparente a sólida; sin hero ya nace
+         sólida y esto solo le pone la sombra al despegarse de arriba. */
+      if (cabecera) cabecera.classList.toggle('cabecera--fija', y > 60);
       if (foto && !quieto && !movil.matches) {
         foto.style.transform = 'translate3d(0,' + (y * 0.14).toFixed(1) + 'px,0) scale(1.06)';
       }
