@@ -1660,3 +1660,49 @@ html,body{overflow-x:clip;max-width:100%}
   .cabecera[data-menu] .cabecera__logo .logo--claro{opacity:0 !important}
   .cabecera[data-menu] .cabecera__logo .logo--oscuro{opacity:1 !important}
 }
+
+/* ===============================================================
+   Bloque 71 · La página 404
+   Una 404 es una visita que ya venía buscando cerrajero: aquí no se
+   la deja en un callejón sin salida. Rejilla de servicios con icono
+   y tira de pueblos. Componentes propios, nada que afecte al resto.
+   =============================================================== */
+.r404__cabeza h1{max-width:20ch}
+.r404__cabeza .estado{margin-top:var(--s3)}
+.r404__botones{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
+.seccion--tinta .btn--linea{color:#fff;border-color:rgba(255,255,255,.45)}
+.seccion--tinta .btn--linea:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+.r404{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-top:var(--s5)}
+.r404__card{display:flex;align-items:center;gap:var(--s2);padding:18px 20px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+  text-decoration:none;color:inherit;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+.r404__card:hover{transform:translateY(-3px);border-color:var(--action);
+  box-shadow:0 14px 30px -18px rgba(0,0,0,.45)}
+.r404__ico{flex:none;width:44px;height:44px;border-radius:50%;background:var(--action);
+  display:grid;place-items:center}
+.r404__ico svg{width:22px;height:22px;fill:var(--ink)}
+.r404__txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.r404__txt b{font:600 17px/1.25 var(--font-head)}
+.r404__txt i{font-style:normal;font-size:14.5px;color:var(--steel-txt)}
+.r404__flecha{width:20px;height:20px;flex:none;margin-left:auto;fill:var(--steel-l);
+  transition:transform .3s var(--ease),fill .3s var(--ease)}
+.r404__card:hover .r404__flecha{fill:var(--ink);transform:translateX(4px)}
+
+.r404__sitios{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--s4)}
+.r404__sitio{display:inline-flex;align-items:center;gap:9px;padding:11px 20px 11px 16px;
+  border:1px solid var(--line);border-radius:50px;background:var(--surface);
+  text-decoration:none;color:inherit;font-weight:600;
+  transition:border-color .3s var(--ease),background .3s var(--ease)}
+.r404__sitio svg{width:18px;height:18px;fill:var(--action)}
+.r404__sitio:hover{border-color:var(--ink);background:var(--paper)}
+
+@media (max-width:992px){
+  .r404{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .r404{grid-template-columns:1fr;gap:12px}
+  .r404__card{padding:14px 16px}
+  .r404__botones .btn{flex:1 1 100%;justify-content:center}
+}
